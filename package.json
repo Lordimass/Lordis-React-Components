@@ -1,0 +1,25 @@
+{
+  "name": "lordis-react-components",
+  "version": "1.0.0",
+  "description": "My personal React component library.",
+  "homepage": "https://github.com/Lordimass/Lordis-React-Components#readme",
+  "bugs": {
+    "url": "https://github.com/Lordimass/Lordis-React-Components/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lordimass/Lordis-React-Components.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Lordimass",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "react": "^19.2.4",
+    "typescript": "^5.9.3"
+  }
+}
