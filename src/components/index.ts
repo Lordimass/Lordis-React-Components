@@ -1,1 +1,1 @@
-export { default as Button } from "./Ticker"
+export { default as Ticker } from "./Ticker"
