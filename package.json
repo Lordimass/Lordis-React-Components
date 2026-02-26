@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/Lordimass"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "My personal React component library.",
   "homepage": "https://github.com/Lordimass/Lordis-React-Components",
   "bugs": {
@@ -15,7 +15,14 @@
   },
   "license": "Apache-2.0",
   "author": "Lordimass",
+  "main": "./dist/index.js",
   "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "rollup": "rollup -c"
@@ -23,7 +30,7 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
