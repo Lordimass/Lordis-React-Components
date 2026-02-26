@@ -1,5 +1,5 @@
 import React, {DetailedHTMLProps, HTMLAttributes, RefObject, useRef, useState} from 'react';
-import "./ticker.css"
+//import "./ticker.css" TODO: Sort out importing CSS
 
 export type TickerProps = {
     /** Function to call when the value of the ticker is changed */
@@ -30,29 +30,7 @@ export default function Ticker(
     {
         min = 0, max, onChange, defaultValue, inputId, showMaxValue = false, ariaLabel, updateValueRef,
         height = "50px", ...divProps
-    }: {
-        /** Function to call when the value of the ticker is changed */
-        onChange?: (value: number) => void | Promise<void>
-        /** The minimum possible ticker value, defaults to 0 */
-        min?: number,
-        /** The maximum possible ticker value */
-        max?: number,
-        /** The default ticker value, defaults to `min` if unset */
-        defaultValue?: number,
-        /** ID attribute to assign to the input field, required for accessibility */
-        inputId: string
-        /** Whether to display the maximum value of the ticker. */
-        showMaxValue?: boolean
-        /** `aria-label` property for input field, required for accessibility */
-        ariaLabel: string
-        /**
-         * Ref to be set by this component to a function that can be used to update the ticker value externally
-         * to the component
-         */
-        updateValueRef?: RefObject<((newValue: number) => Promise<void>) | null>
-        /** Height of the element */
-        height?: string
-    } & Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "onChange">) {
+    }: TickerProps) {
 
     async function decrement() {await updateValue(value - 1)}
     async function increment() {await updateValue(value + 1)}
