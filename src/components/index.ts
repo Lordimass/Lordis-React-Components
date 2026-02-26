@@ -1,1 +1,1 @@
-export { default as Ticker } from "./Ticker"
+export { default as Ticker } from "./Ticker/Ticker"

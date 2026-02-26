@@ -1,5 +1,5 @@
-import React, {DetailedHTMLProps, HTMLAttributes, RefObject, useRef, useState} from 'react';
-//import "./ticker.css" TODO: Sort out importing CSS
+import {DetailedHTMLProps, HTMLAttributes, RefObject, useRef, useState} from 'react';
+import "./ticker.css"
 
 export type TickerProps = {
     /** Function to call when the value of the ticker is changed */
@@ -97,8 +97,7 @@ export default function Ticker(
         style: {width: `${inProgressValue.length}ch`}
     } satisfies  React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
-    return (
-        <div
+    return <div
             {...divProps}
             className={'ticker' + (divProps.className ? " " + divProps.className : "")}
             style={{height}}
@@ -112,7 +111,7 @@ export default function Ticker(
 
             <button className='ticker-incrementer' onClick={increment}><span>+</span></button>
         </div>
-    )
+
 }
 
 function MaxValue({showMaxValue, max}: { showMaxValue: boolean, max?: number }) {
