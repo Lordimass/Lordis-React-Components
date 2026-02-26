@@ -1,5 +1,8 @@
 {
-  "name": "lordis-react-components",
+  "name": "@Lordimass/lordis-react-components",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/Lordimass"
+  },
   "version": "0.0.1",
   "description": "My personal React component library.",
   "homepage": "https://github.com/Lordimass/Lordis-React-Components",
