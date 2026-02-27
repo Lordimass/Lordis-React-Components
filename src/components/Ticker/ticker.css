@@ -70,7 +70,7 @@
     font-family: "Backso", sans-serif;
 
     border: none;
-    background-color: var(--purple);
+    background-color: black;
     transition: background-color 100ms;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .ticker-decrementer:hover, .ticker-incrementer:hover {
-    background-color: var(--light-purple);
+    background-color: grey;
 }
 
 .ticker-decrementer:hover span, .ticker-incrementer:hover span {
@@ -105,7 +105,7 @@
 }
 
 .ticker-slash {
-    color: var(--jamie-grey);
+    color: grey;
     margin-left: 3px;
     margin-right: 3px;
 }
