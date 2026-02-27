@@ -1,7 +1,7 @@
-import {DetailedHTMLProps, HTMLAttributes, RefObject, useRef, useState} from 'react';
+import {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, RefObject, useRef, useState} from 'react';
 import "./ticker.css"
 
-export type TickerProps = {
+type TickerProps = {
     /** Function to call when the value of the ticker is changed */
     onChange?: (value: number) => void | Promise<void>
     /** The minimum possible ticker value, defaults to 0 */
@@ -31,7 +31,6 @@ export default function Ticker(
         min = 0, max, onChange, defaultValue, inputId, showMaxValue = false, ariaLabel, updateValueRef,
         height = "50px", ...divProps
     }: TickerProps) {
-
     async function decrement() {await updateValue(value - 1)}
     async function increment() {await updateValue(value + 1)}
 
@@ -95,7 +94,7 @@ export default function Ticker(
         onChange: async e => {updateInProgressValue(e.target.value)},
         // Set width of the text box based on the current value.
         style: {width: `${inProgressValue.length}ch`}
-    } satisfies  React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+    } satisfies DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
     return <div
             {...divProps}
@@ -111,7 +110,6 @@ export default function Ticker(
 
             <button className='ticker-incrementer' onClick={increment}><span>+</span></button>
         </div>
-
 }
 
 function MaxValue({showMaxValue, max}: { showMaxValue: boolean, max?: number }) {
