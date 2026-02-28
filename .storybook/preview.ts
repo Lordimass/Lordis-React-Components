@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react-vite";
 import { spyOn } from "storybook/test";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const preview: Preview = {
   parameters: {

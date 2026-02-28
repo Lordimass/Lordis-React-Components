@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import "./ticker.css";
+import { Button } from "react-bootstrap";
 
 type TickerProps = {
   /** Function to call when the value of the ticker is changed */
@@ -123,7 +124,10 @@ export default function Ticker({
       updateInProgressValue(e.target.value);
     },
     // Set width of the text box based on the current value.
-    style: { width: `${inProgressValue.length}ch` },
+    style: {
+      minWidth: `${inProgressValue.length}ch`,
+      width: `${inProgressValue.length}ch`,
+    },
   } satisfies DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
@@ -137,19 +141,65 @@ export default function Ticker({
       }
       style={{ height }}
     >
-      <button className="ticker-decrementer" onClick={decrement}>
-        <span>-</span>
-      </button>
+      <Button
+        className="ticker-decrementer"
+        onClick={decrement}
+        variant={"primary"}
+      >
+        <MinusSign size={24} />
+      </Button>
 
-      <span className="ticker-text">
+      <span className="ticker-text" style={{ minWidth: "" + height }}>
         <input {...inputProps} />
         <MaxValue showMaxValue={showMaxValue} max={max} />
       </span>
 
-      <button className="ticker-incrementer" onClick={increment}>
-        <span>+</span>
-      </button>
+      <Button
+        className="ticker-incrementer"
+        onClick={increment}
+        variant={"primary"}
+      >
+        <PlusSign size={24} />
+      </Button>
     </div>
+  );
+}
+
+function PlusSign({ size }: { size: number }) {
+  return (
+    <svg height={size} width={size} viewBox="0 0 24 24" aria-hidden>
+      <line
+        x1="12"
+        y1="5"
+        x2="12"
+        y2="19"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <line
+        x1="5"
+        y1="12"
+        x2="19"
+        y2="12"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+    </svg>
+  );
+}
+
+function MinusSign({ size }: { size: number }) {
+  return (
+    <svg height={size} width={size} viewBox="0 0 24 24" aria-hidden>
+      <line
+        x1="5"
+        y1="12"
+        x2="19"
+        y2="12"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+    </svg>
   );
 }
 
