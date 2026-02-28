@@ -15,16 +15,11 @@
   align-items: center;
   justify-content: center;
 
-  min-width: 3ch;
+  padding: 0 5px;
 
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid grey;
   border-left: none;
   border-right: none;
-}
-
-.ticker-text p {
-  height: min-content;
 }
 
 .ticker-input {
@@ -38,6 +33,7 @@
 }
 
 .ticker-input.hidden-max-value {
+  padding: 0 5px;
   text-align: center;
   overflow-x: visible;
 }
@@ -54,7 +50,6 @@
 .ticker-decrementer, .ticker-incrementer {
   padding-right: 10px;
   padding-left: 10px;
-  width: 20%;
   box-sizing: content-box;
   border: none;
   display: flex;
@@ -73,4 +68,8 @@
   color: grey;
   margin-left: 3px;
   margin-right: 3px;
+}
+
+.ticker-text p {
+  margin-bottom: 0 !important;
 }

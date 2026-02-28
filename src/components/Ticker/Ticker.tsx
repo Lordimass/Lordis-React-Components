@@ -8,6 +8,7 @@ import {
 } from "react";
 import "./ticker.css";
 import { Button } from "react-bootstrap";
+import { motion } from "motion/react";
 
 type TickerProps = {
   /** Function to call when the value of the ticker is changed */
@@ -141,33 +142,50 @@ export default function Ticker({
       }
       style={{ height }}
     >
-      <Button
-        className="ticker-decrementer"
-        onClick={decrement}
-        variant={"primary"}
-      >
-        <MinusSign size={24} />
-      </Button>
+      <div style={{ display: "flex" }}>
+        <motion.button
+          variants={{ initial: {}, hover: {} }}
+          initial="initial"
+          whileHover="hover"
+          className="ticker-decrementer btn-primary btn"
+          onClick={decrement}
+        >
+          <MinusSign size={24} />
+        </motion.button>
+      </div>
 
       <span className="ticker-text" style={{ minWidth: "" + height }}>
         <input {...inputProps} />
         <MaxValue showMaxValue={showMaxValue} max={max} />
       </span>
 
-      <Button
-        className="ticker-incrementer"
-        onClick={increment}
-        variant={"primary"}
-      >
-        <PlusSign size={24} />
-      </Button>
+      <div style={{ display: "flex" }}>
+        <motion.button
+          variants={{ initial: {}, hover: {} }}
+          initial="initial"
+          whileHover="hover"
+          className="ticker-incrementer btn-primary btn"
+          onClick={increment}
+        >
+          <PlusSign size={24} />
+        </motion.button>
+      </div>
     </div>
   );
 }
 
 function PlusSign({ size }: { size: number }) {
   return (
-    <svg height={size} width={size} viewBox="0 0 24 24" aria-hidden>
+    <motion.svg
+      variants={{
+        initial: { scale: 1 },
+        hover: { scale: 1.2, transition: { duration: 0.2 } },
+      }}
+      height={size}
+      width={size}
+      viewBox="0 0 24 24"
+      aria-hidden
+    >
       <line
         x1="12"
         y1="5"
@@ -184,13 +202,22 @@ function PlusSign({ size }: { size: number }) {
         stroke="currentColor"
         strokeWidth="4"
       />
-    </svg>
+    </motion.svg>
   );
 }
 
 function MinusSign({ size }: { size: number }) {
   return (
-    <svg height={size} width={size} viewBox="0 0 24 24" aria-hidden>
+    <motion.svg
+      variants={{
+        initial: { scale: 1 },
+        hover: { scale: 1.2, transition: { duration: 0.2 } },
+      }}
+      height={size}
+      width={size}
+      viewBox="0 0 24 24"
+      aria-hidden
+    >
       <line
         x1="5"
         y1="12"
@@ -199,7 +226,7 @@ function MinusSign({ size }: { size: number }) {
         stroke="currentColor"
         strokeWidth="4"
       />
-    </svg>
+    </motion.svg>
   );
 }
 
