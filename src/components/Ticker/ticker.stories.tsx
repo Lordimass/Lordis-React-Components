@@ -11,9 +11,16 @@ const meta = {
     showMaxValue: false,
   },
   argTypes: {
+    onChange: { control: false, table: { disable: true } },
+    showMaxValue: { control: "boolean", if: { arg: "max", exists: true } },
     min: { control: "number" },
     max: { control: "number" },
-    defaultValue: { control: "number" },
+    defaultValue: {
+      control: "number",
+      table: { defaultValue: { summary: "0" } },
+    },
+    updateValueRef: { control: false, table: { disable: true } },
+    height: { control: "text", table: { value: "50px" } },
   },
 } satisfies Meta<typeof Ticker>;
 

@@ -7,11 +7,10 @@ import {
   useState,
 } from "react";
 import "./ticker.css";
-import { Button } from "react-bootstrap";
 import { motion } from "motion/react";
 
 type TickerProps = {
-  /** Function to call when the value of the ticker is changed */
+  /** Function to call when the value of the ticker is changed. */
   onChange?: (value: number) => void | Promise<void>;
   /** The minimum possible ticker value, defaults to 0 */
   min?: number;
@@ -23,8 +22,8 @@ type TickerProps = {
   inputId: string;
   /** Whether to display the maximum value of the ticker. */
   showMaxValue?: boolean;
-  /** `aria-label` property for input field, required for accessibility */
-  ariaLabel: string;
+  /** `aria-label` property for input field. */
+  ariaLabel?: string;
   /**
    * Ref to be set by this component to a function that can be used to update the ticker value externally
    * to the component
