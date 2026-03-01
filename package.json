@@ -4,7 +4,7 @@
     "registry": "https://npm.pkg.github.com/Lordimass"
   },
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "description": "My personal React component library.",
   "homepage": "https://github.com/Lordimass/Lordis-React-Components",
   "bugs": {

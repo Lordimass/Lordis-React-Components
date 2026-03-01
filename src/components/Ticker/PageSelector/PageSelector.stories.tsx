@@ -1,0 +1,23 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import PageSelector from "./PageSelector";
+import { fn } from "storybook/test";
+
+const meta = {
+  title: "Tickers/PageSelector",
+  component: PageSelector,
+  args: {
+    onChange: fn(),
+  },
+} satisfies Meta<typeof PageSelector>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    id: "default-page-selector-story",
+    pageCount: 10,
+  },
+};
