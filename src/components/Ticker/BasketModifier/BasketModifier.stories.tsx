@@ -2,7 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import BasketModifier from "./BasketModifier";
 import { fn } from "storybook/test";
-import { fakeMinimalProduct } from "../../../../.storybook/fakes";
+import {
+  fakeMinimalProduct,
+  fakeMinimalProductGroup,
+} from "../../../../.storybook/fakes";
 import { LRCRemoteSettingsContext } from "../../../lib";
 
 const meta = {
@@ -44,19 +47,20 @@ export const Default: Story = {
 export const OutOfStock: Story = {
   args: {
     inputId: "out-of-stock-basket-modifier-story",
-    product: { ...fakeMinimalProduct, stock: 0 },
+    product: { ...fakeMinimalProductGroup[1], stock: 0 },
   },
 };
 
 export const Disabled: Story = {
   args: {
     inputId: "disabled-basket-modifier-story",
-    product: { ...fakeMinimalProduct, active: false },
+    product: { ...fakeMinimalProductGroup[1], active: false },
   },
 };
 
 export const KillSwitch: Story = {
   args: {
+    product: fakeMinimalProductGroup[1],
     inputId: "kill-switch-basket-modifier-story",
   },
   decorators: [

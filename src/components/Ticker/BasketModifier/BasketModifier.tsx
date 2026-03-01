@@ -164,6 +164,7 @@ function ZeroQuantityBasketModifier({
 }) {
   const isDisabled = disabled?.isDisabled;
 
+  // TODO: Zoom animation in and out using React Motion
   return (
     <div className="zero-quantity-basket-modifier">
       {isDisabled && disabled.message ? <p>{disabled.message}</p> : null}
