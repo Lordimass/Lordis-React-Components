@@ -4,7 +4,7 @@ import Ticker from "./Ticker";
 import { fn } from "storybook/test";
 
 const meta = {
-  title: "components/Ticker",
+  title: "Tickers/Ticker",
   component: Ticker,
   args: {
     onChange: fn(),

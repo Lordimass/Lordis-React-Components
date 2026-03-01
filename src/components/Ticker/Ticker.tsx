@@ -6,10 +6,10 @@ import {
   useRef,
   useState,
 } from "react";
-import "./ticker.css";
+import "./Ticker.css";
 import { motion } from "motion/react";
 
-type TickerProps = {
+export type TickerProps = {
   /** Function to call when the value of the ticker is changed. */
   onChange?: (value: number) => void | Promise<void>;
   /** The minimum possible ticker value, defaults to 0 */
