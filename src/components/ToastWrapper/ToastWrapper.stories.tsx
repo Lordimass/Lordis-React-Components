@@ -7,12 +7,34 @@ import { ToastContext } from "../../lib";
 function AddToast() {
   const { toast } = useContext(ToastContext);
   return (
-    <button
-      className={"btn btn-outline-primary"}
-      onClick={() => toast({ msg: "A toast!" })}
+    <div
+      style={{
+        position: "relative",
+        left: "150%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "5px",
+        margin: "10px",
+      }}
     >
-      Add Toast
-    </button>
+      <button
+        className={"btn btn-outline-primary"}
+        onClick={() => toast({ msg: "I'm a toast!" })}
+      >
+        Add Toast
+      </button>
+      <button
+        className={"btn btn-outline-primary"}
+        onClick={() =>
+          toast({
+            msg: "I'm a toast that doesn't close itself!",
+            duration: null,
+          })
+        }
+      >
+        Add Permanent Toast
+      </button>
+    </div>
   );
 }
 

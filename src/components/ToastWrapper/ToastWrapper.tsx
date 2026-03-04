@@ -1,12 +1,17 @@
+import { AnimatePresence, motion } from "motion/react";
 import { IToast, IToastContext, ToastContext } from "../../lib";
 import { ReactNode, useRef, useState } from "react";
 import { ToastContainer } from "react-bootstrap";
 import Toast from "react-bootstrap/Toast";
 
+import "./ToastWrapper.css";
+
 /** Represents a toast with a unique key, used for distinguishing between toasts with identical content. */
 interface Toast_internal extends IToast {
   key: string | number;
-  timeoutId: number;
+  timeoutId?: number;
+  /** Whether to render this toast currently. Allows toasts to continue to exist while they animate out */
+  show: boolean;
 }
 
 interface ToastWrapperProps {
@@ -27,6 +32,17 @@ export default function ToastWrapper({
     const i = tRef.current.findIndex((toast) => toast.key === key);
     if (i === -1) return; // If it didn't find the toast for any reason, stop.
     window.clearTimeout(tRef.current[i].timeoutId); // Clear the timeout on the toast, in case this was closed prematurely.
+    // Hide the toast, then schedule removing it completely. This allows time for animations to run
+    const newStack = [...tRef.current];
+    newStack[i].show = false;
+    window.setTimeout(() => {
+      removeToast(key);
+    }, 500);
+    setStack(newStack);
+  }
+
+  function removeToast(key: Toast_internal["key"]): void {
+    const i = tRef.current.findIndex((toast) => toast.key === key);
     setStack(tRef.current.toSpliced(i, 1));
   }
 
@@ -37,8 +53,11 @@ export default function ToastWrapper({
 
     // Queue up removing the toast from the stack
     // If no duration was supplied, calculate a best guess based on an average character per second reading speed of 16.
-    const delay = toast.duration ?? Math.max(toast.msg.length / 16, 5);
-    const timeoutId = window.setTimeout(() => closeToast(key), delay * 1000);
+    let timeoutId: number | undefined;
+    if (toast.duration !== null) {
+      const delay = toast.duration ?? Math.max(toast.msg.length / 16, 5);
+      timeoutId = window.setTimeout(() => closeToast(key), delay * 1000);
+    }
 
     // Add toast to stack
     const internalToast: Toast_internal = {
@@ -46,6 +65,7 @@ export default function ToastWrapper({
       ...toast,
       key,
       timeoutId,
+      show: true,
     };
     setStack([internalToast, ...tRef.current]);
   };
@@ -61,14 +81,19 @@ export default function ToastWrapper({
   const tRef = useRef<Toast_internal[]>([]);
 
   return (
+    // TODO: Fix slight animation jank when there are multiple toasts open and one in the middle of the list closes
     <ToastContext.Provider value={{ toast }}>
-      <ToastContainer className="position-absolute" position="top-start">
+      <ToastContainer className="toast-container" position="top-start">
         {toastStack.map((toast, i) => (
-          <LRC_Toast
-            key={i}
-            toast={toast}
-            onClose={() => closeToast(toast.key)}
-          />
+          <AnimatePresence>
+            {toast.show ? (
+              <LRC_Toast
+                key={i}
+                toast={toast}
+                onClose={() => closeToast(toast.key)}
+              />
+            ) : null}
+          </AnimatePresence>
         ))}
       </ToastContainer>
 
@@ -92,20 +117,26 @@ export function LRC_Toast({ toast, onClose }: Toast_internalProps) {
   remove toasts from the stack after they're hidden.
   */
   return (
-    <Toast onClose={onClose} bg={toast.variant}>
-      <Toast.Header>
-        <img
-          src={toast.image?.uri}
-          alt={toast.image?.alt}
-          className="rounded me-2"
-        />
-        <strong className="me-auto">{toast.title ?? "Notification"}</strong>
-      </Toast.Header>
-      <Toast.Body
-        className={toast.variant === "dark" ? "text-white" : undefined}
-      >
-        {toast.msg}
-      </Toast.Body>
-    </Toast>
+    <motion.div
+      initial={{ x: -100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: -100, opacity: 0 }}
+    >
+      <Toast onClose={onClose} bg={toast.variant}>
+        <Toast.Header>
+          <img
+            src={toast.image?.uri}
+            alt={toast.image?.alt}
+            className="rounded me-2"
+          />
+          <strong className="me-auto">{toast.title ?? "Notification"}</strong>
+        </Toast.Header>
+        <Toast.Body
+          className={toast.variant === "dark" ? "text-white" : undefined}
+        >
+          {toast.msg}
+        </Toast.Body>
+      </Toast>
+    </motion.div>
   );
 }

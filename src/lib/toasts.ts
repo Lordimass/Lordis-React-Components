@@ -13,8 +13,8 @@ export interface IToastContext {
 export interface IToast {
   /** Message to display on the toast */
   msg: string;
-  /** Override the time to display the toast for in seconds. */
-  duration?: number;
+  /** Override the time to display the toast for in seconds. Null for infinite */
+  duration?: number | null;
   /** Override the contents of the title of the toast. */
   title?: string;
   /** The URI of an image icon to display on the toast */
