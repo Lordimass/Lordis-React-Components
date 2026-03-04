@@ -55,6 +55,7 @@ const meta = {
       </>
     ),
   ],
+  tags: ["skip-visual-test"],
 } satisfies Meta<typeof ToastWrapper>;
 
 export default meta;

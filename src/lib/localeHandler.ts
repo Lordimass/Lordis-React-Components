@@ -1,11 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import { getCurrency } from "locale-currency";
 import { Currency } from "dinero.js";
+import { LRC } from "./index";
 
-export const DEFAULT_LOCALE = "en-GB";
-export const DEFAULT_CURRENCY =
-  (getCurrency(DEFAULT_LOCALE) as Currency) || "GBP";
-export const DEFAULT_COUNTRY = "GB";
+// Only uses these before LRC is initialised, then should use values based on constants in LRC instead. Hence, no export.
+const DEFAULT_LOCALE = "en-GB";
+const DEFAULT_CURRENCY = (getCurrency(DEFAULT_LOCALE) as Currency) || "GBP";
+const DEFAULT_COUNTRY = DEFAULT_LOCALE.split("-")[1];
 
 /**
  * Response format from a successful call to `https://api.bigdatacloud.net/data/reverse-geocode-client`
@@ -75,7 +76,7 @@ export const LocaleContext = createContext<ILocaleContext>({
  * @return The user's locale string and associated currency.
  */
 export default function useLocale(): ILocaleContext {
-  const [locale, setLocale] = useState(DEFAULT_LOCALE);
+  const [locale, setLocale] = useState(LRC.defaultLocale);
   const [currency, setCurrency] = useState(DEFAULT_CURRENCY);
   const [country, setCountry] = useState(DEFAULT_COUNTRY);
 

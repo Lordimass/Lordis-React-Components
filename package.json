@@ -4,7 +4,7 @@
     "registry": "https://npm.pkg.github.com/Lordimass"
   },
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "My personal React component library.",
   "homepage": "https://github.com/Lordimass/Lordis-React-Components",
   "bugs": {
@@ -29,7 +29,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup"
+    "build": "tsup",
+    "publish": "tsup && npm publish"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

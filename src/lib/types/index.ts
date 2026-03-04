@@ -9,7 +9,7 @@ export * from "./image";
  * settings which are used by components, which you can be set freely, so long as they follow the given structure.
  */
 export const LRCRemoteSettingsContext = createContext<LRCRemoteSettings>({});
-type LRCRemoteSettings = {
+export interface LRCRemoteSettings {
   /** Disable ordering products all together. This is for use in an emergency. */
   kill_switch?: { enabled: boolean; message?: string };
   /** A notification to display to users at the start of their session. */
@@ -22,4 +22,4 @@ type LRCRemoteSettings = {
   };
   clockify_users?: { userID: string; name: string }[];
   [key: string]: any;
-};
+}

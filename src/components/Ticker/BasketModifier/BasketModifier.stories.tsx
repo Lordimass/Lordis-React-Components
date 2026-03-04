@@ -9,7 +9,7 @@ import {
 import { LRCRemoteSettingsContext } from "../../../lib";
 
 const meta = {
-  title: "Tickers/BasketModifier",
+  title: "Webshop/BasketModifier",
   component: BasketModifier,
   args: {
     onChange: fn(),

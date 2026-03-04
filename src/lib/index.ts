@@ -3,6 +3,7 @@ export * from "./basket";
 export * from "./localeHandler";
 export * from "./routing";
 export * from "./toasts";
+export * from "./price";
 
 /** Configuration for Lordi's React Components */
 export const LordisReactComponents: {
@@ -14,12 +15,15 @@ export const LordisReactComponents: {
     out_of_stock: string;
     [key: string]: string;
   };
+  /** If a locale can't be automatically determined, or {@link LocaleContext} is not provided, use this locale instead.*/
+  defaultLocale: string;
 } = {
   maxProductOrder: 10,
   disabledProductMessages: {
     disabled: "This product isn't available to buy right now, sorry!",
     out_of_stock: "We're out of stock, sorry!",
   },
+  defaultLocale: "en-GB",
 };
 /** Shorthand for {@link LordisReactComponents} */
 export const LRC: typeof LordisReactComponents = LordisReactComponents;
