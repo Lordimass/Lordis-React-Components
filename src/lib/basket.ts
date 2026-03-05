@@ -1,5 +1,6 @@
 import Dinero, { Currency } from "dinero.js";
 import { Basket, BasketProduct, MinimalProduct } from "./types";
+import { LRC } from "./index";
 
 /**
  * Fetch and return the basket from localStorage, including type validation.
@@ -35,7 +36,7 @@ export function getBasket(): Basket {
 export function setBasketStringQuantity(
   prod: MinimalProduct,
   quant: number,
-  currency: Currency = Dinero.defaultCurrency,
+  currency: Currency = LRC.defaultCurrency,
 ) {
   console.log(`Setting basket quantity of SKU ${prod.sku} to ${quant}`);
   /** The change in quantity from this update, used for GA4 triggers */

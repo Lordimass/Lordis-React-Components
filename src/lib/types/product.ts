@@ -1,3 +1,4 @@
+/** A product object with the absolute minimum data to be identifiable as a product */
 export interface MinimalProduct {
   /** The ID of this product */
   sku: number;
@@ -8,6 +9,7 @@ export interface MinimalProduct {
   [key: string]: unknown;
 }
 
+/** A product which is in the customer's basket */
 export interface BasketProduct extends MinimalProduct {
   /** The quantity of this product in the user's basket */
   basketQuantity: number;

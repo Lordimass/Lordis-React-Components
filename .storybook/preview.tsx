@@ -2,6 +2,8 @@ import { Preview } from "@storybook/react-vite";
 import { spyOn } from "storybook/test";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { Decorator } from "@storybook/react-vite";
+import LRCContextProvider from "../src/components/LRCContext/LRCContext";
 
 const preview: Preview = {
   parameters: {
@@ -40,3 +42,11 @@ const preview: Preview = {
 };
 
 export default preview;
+
+export const withLRCContext: Decorator = (Story) => {
+  return (
+    <LRCContextProvider>
+      <Story />
+    </LRCContextProvider>
+  );
+};

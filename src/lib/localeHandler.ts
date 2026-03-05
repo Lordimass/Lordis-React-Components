@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getCurrency } from "locale-currency";
-import { Currency } from "dinero.js";
+import Dinero, { Currency } from "dinero.js";
 import { LRC } from "./index";
 
 // Only uses these before LRC is initialised, then should use values based on constants in LRC instead. Hence, no export.
@@ -104,14 +104,17 @@ export default function useLocale(): ILocaleContext {
             "-" +
             geocodeResponse.countryCode;
           setLocale(locale);
-          setCurrency((getCurrency(locale) as Currency) || DEFAULT_CURRENCY);
+          const currency =
+            (getCurrency(locale) as Currency) || DEFAULT_CURRENCY;
+          setCurrency(currency);
         }
 
         url.searchParams.set("locale", locale);
         window.history.replaceState(null, "", url);
       } else {
         setLocale(locale);
-        setCurrency((getCurrency(locale) as Currency) || DEFAULT_CURRENCY);
+        const currency = (getCurrency(locale) as Currency) || DEFAULT_CURRENCY;
+        setCurrency(currency);
         setCountry(locale.split("-")[1]);
       }
     }

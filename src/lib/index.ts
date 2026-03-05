@@ -1,3 +1,6 @@
+import { getCurrency } from "locale-currency";
+import Dinero, { Currency } from "dinero.js";
+
 export * from "./types";
 export * from "./basket";
 export * from "./localeHandler";
@@ -17,6 +20,12 @@ export const LordisReactComponents: {
   };
   /** If a locale can't be automatically determined, or {@link LocaleContext} is not provided, use this locale instead.*/
   defaultLocale: string;
+  /**
+   * Default currency to assume monetary values are in. This does not determine the currency displayed to users, just
+   * what a float "4.99" should be interpreted as, for example. When this is changed, it's best practice to also change
+   * {@link Dinero.defaultCurrency} too.
+   */
+  defaultCurrency: Currency;
 } = {
   maxProductOrder: 10,
   disabledProductMessages: {
@@ -24,6 +33,9 @@ export const LordisReactComponents: {
     out_of_stock: "We're out of stock, sorry!",
   },
   defaultLocale: "en-GB",
+  defaultCurrency: "GBP",
 };
 /** Shorthand for {@link LordisReactComponents} */
 export const LRC: typeof LordisReactComponents = LordisReactComponents;
+
+Dinero.defaultCurrency = LRC.defaultCurrency;
