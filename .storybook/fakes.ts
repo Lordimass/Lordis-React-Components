@@ -43,7 +43,7 @@ export const fakePricedProductGroup: PricedProduct[] = [
   fakePricedProduct3,
 ];
 
-export const fakeMinimalImage1: MinimalImage = {
+export const fakeMinimalImage: MinimalImage = {
   uri: "https://live.staticflickr.com/65535/55130400819_0682e2c8e7_b.jpg",
   alt: "A close up of one blooming blue flower with various foliage growing around it",
 };

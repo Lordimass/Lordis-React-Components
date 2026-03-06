@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react-vite";
 import SquareImageBox from "./SquareImageBox";
 import {
-  fakeMinimalImage1,
+  fakeMinimalImage,
   fakeMinimalImage2,
   fakeMinimalImage3,
 } from "../../../.storybook/fakes";
@@ -33,7 +33,7 @@ type SquareImageBox = StoryObj<typeof SquareImageBox>;
 
 export const Single: SquareImageBox = {
   args: {
-    image: fakeMinimalImage1,
+    image: fakeMinimalImage,
     size: "300px",
   },
 };
@@ -47,14 +47,14 @@ export const MissingImage: SquareImageBox = {
 
 export const Carousel: SquareImageBox = {
   args: {
-    image: [fakeMinimalImage1, fakeMinimalImage2, fakeMinimalImage3],
+    image: [fakeMinimalImage, fakeMinimalImage2, fakeMinimalImage3],
     size: "300px",
   },
 };
 
 export const SingleHoverable: SquareImageBox = {
   args: {
-    image: fakeMinimalImage1,
+    image: fakeMinimalImage,
     size: "300px",
     hoverable: true,
   },
@@ -62,7 +62,7 @@ export const SingleHoverable: SquareImageBox = {
 
 export const CarouselHoverable: SquareImageBox = {
   args: {
-    image: [fakeMinimalImage1, fakeMinimalImage2, fakeMinimalImage3],
+    image: [fakeMinimalImage, fakeMinimalImage2, fakeMinimalImage3],
     size: "300px",
     hoverable: true,
   },

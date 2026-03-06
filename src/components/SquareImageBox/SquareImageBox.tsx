@@ -34,29 +34,6 @@ export default function SquareImageBox({
   const [activeImage, setActiveImage] = useState<MinimalImage | undefined>(
     images[0],
   );
-  const carouselRef = useRef<CarouselRef>(null);
-
-  // Track container size
-  const [containerSize, setContainerSize] = useState(0);
-  useEffect(() => {
-    const container = carouselRef.current?.element;
-    if (!container) return;
-
-    function updateSize() {
-      const container = carouselRef.current?.element;
-      if (!container) return;
-      setContainerSize(container.offsetWidth ?? 0);
-    }
-
-    // Run immediately
-    updateSize();
-    // Observe the element
-    const observer = new ResizeObserver(updateSize);
-    observer.observe(container);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   return (
     <>
@@ -65,8 +42,7 @@ export default function SquareImageBox({
       <Carousel
         {...props}
         className="square-image-box"
-        style={{ width: size, height: containerSize }}
-        ref={carouselRef}
+        style={{ width: size }}
         indicators={isCarousel}
         controls={isCarousel}
         onMouseOver={() => setIsHoverShowing(hoverable)}
@@ -76,11 +52,7 @@ export default function SquareImageBox({
         {images.map((img, i) => (
           <Carousel.Item
             key={i}
-            className="square-image-carousel-slide"
-            style={{
-              width: `${containerSize}px`,
-              height: `${containerSize}px`,
-            }}
+            className="square-image-carousel-slide ratio ratio-1x1"
           >
             <img
               src={img?.uri}
