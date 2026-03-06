@@ -38,6 +38,13 @@ export const Single: SquareImageBox = {
   },
 };
 
+export const MissingImage: SquareImageBox = {
+  args: {
+    image: undefined,
+    size: "300px",
+  },
+};
+
 export const Carousel: SquareImageBox = {
   args: {
     image: [fakeMinimalImage1, fakeMinimalImage2, fakeMinimalImage3],

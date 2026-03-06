@@ -7,7 +7,7 @@ import { CarouselRef } from "react-bootstrap/Carousel";
 
 interface SquareImageBoxProps extends CarouselProps {
   /** Image or images to display. */
-  image: MinimalImage | MinimalImage[];
+  image?: MinimalImage | MinimalImage[];
   /** Size of the box as a dynamic CSS string, defaults to 200px. */
   size?: string;
   /** Loading eagerness of images, "eager" or "lazy". Defaults to `lazy`. */
@@ -31,7 +31,9 @@ export default function SquareImageBox({
   const isCarousel = images.length > 1;
 
   const [isHoverShowing, setIsHoverShowing] = useState(false);
-  const [activeImage, setActiveImage] = useState<MinimalImage>(images[0]);
+  const [activeImage, setActiveImage] = useState<MinimalImage | undefined>(
+    images[0],
+  );
   const carouselRef = useRef<CarouselRef>(null);
 
   // Track container size
@@ -81,18 +83,15 @@ export default function SquareImageBox({
             }}
           >
             <img
-              src={img.uri}
+              src={img?.uri}
               alt=""
               aria-hidden="true"
               className="square-image-blur"
               loading={loading}
             />
+
             <div className="square-image-center">
-              <img
-                src={img.uri}
-                alt={img.alt}
-                className="square-image-foreground"
-              />
+              <Image className="square-image-foreground" img={img} />
             </div>
           </Carousel.Item>
         ))}
@@ -105,10 +104,10 @@ function HoverPopup({
   image,
   isHoverShowing,
 }: {
-  image: MinimalImage;
+  image?: MinimalImage;
   isHoverShowing?: boolean;
 }) {
-  if (!image.uri) return null;
+  if (!image?.uri) return null;
 
   return (
     <AnimatePresence>
@@ -132,5 +131,28 @@ function HoverPopup({
         </motion.div>
       ) : null}
     </AnimatePresence>
+  );
+}
+
+/** Provides an element with a placeholder instead of the image if no image exists */
+function Image({
+  img,
+  className,
+  loading,
+}: {
+  img?: MinimalImage;
+  className: string;
+  loading?: "eager" | "lazy";
+}) {
+  if (!img?.uri) {
+    return (
+      <div className="no-image">
+        <span>?</span>
+      </div>
+    );
+  }
+
+  return (
+    <img src={img.uri} alt={img.alt} className={className} loading={loading} />
   );
 }
