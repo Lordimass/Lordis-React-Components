@@ -1,5 +1,10 @@
-import { MinimalImage, MinimalProduct } from "../src";
-import { PricedProduct } from "../src/components/Price/ProductPrice/ProductPrice";
+import {
+  BasketProduct,
+  MinimalImage,
+  MinimalProduct,
+  ProductGroup,
+} from "../src";
+import { ProductData } from "../src";
 
 export const fakeMinimalProduct: MinimalProduct = {
   sku: 1,
@@ -22,27 +27,6 @@ export const fakeMinimalProductGroup: MinimalProduct[] = [
   fakeMinimalProduct3,
 ];
 
-export const fakePricedProduct: PricedProduct = {
-  ...fakeMinimalProduct,
-  price: 4.99,
-};
-
-export const fakePricedProduct2: PricedProduct = {
-  ...fakeMinimalProduct2,
-  price: 4.99,
-};
-
-export const fakePricedProduct3: PricedProduct = {
-  ...fakeMinimalProduct3,
-  price: 5.99,
-};
-
-export const fakePricedProductGroup: PricedProduct[] = [
-  fakePricedProduct,
-  fakePricedProduct2,
-  fakePricedProduct3,
-];
-
 export const fakeMinimalImage: MinimalImage = {
   uri: "https://live.staticflickr.com/65535/55130400819_0682e2c8e7_b.jpg",
   alt: "A close up of one blooming blue flower with various foliage growing around it",
@@ -56,4 +40,34 @@ export const fakeMinimalImage2: MinimalImage = {
 export const fakeMinimalImage3: MinimalImage = {
   uri: "https://live.staticflickr.com/65535/55130400824_2432bec17e_b.jpg",
   alt: "A photo of a labradoodle dog laid down in front of a Christmas tree.",
+};
+
+export const fakeProduct: ProductData = new ProductData(1, {
+  name: "Product 1",
+  images: [fakeMinimalImage, fakeMinimalImage2, fakeMinimalImage3],
+  price: 4.99,
+  stock: 10,
+});
+
+export const fakeProduct2: ProductData = new ProductData(2, {
+  name: "Product 2",
+  images: [fakeMinimalImage2, fakeMinimalImage, fakeMinimalImage3],
+  price: 4.99,
+});
+
+export const fakeProduct3: ProductData = new ProductData(3, {
+  name: "Product 3",
+  images: [fakeMinimalImage3, fakeMinimalImage, fakeMinimalImage2],
+  price: 5.99,
+});
+
+export const fakeProductGroup: ProductGroup = new ProductGroup([
+  { ...fakeProduct, groupName: "Product Group 1" },
+  { ...fakeProduct2, groupName: "Product Group 1" },
+  { ...fakeProduct3, groupName: "Product Group 1" },
+]);
+
+export const fakeBasketProduct: BasketProduct = {
+  ...fakeProduct,
+  basketQuantity: 1,
 };

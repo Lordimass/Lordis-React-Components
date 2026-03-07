@@ -1,33 +1,6 @@
-import Dinero, { Currency } from "dinero.js";
+import { Currency } from "dinero.js";
 import { Basket, BasketProduct, MinimalProduct } from "./types";
 import { LRC } from "./index";
-
-/**
- * Fetch and return the basket from localStorage, including type validation.
- * @returns A {@link Basket} object. Returns an empty basket with {@link Basket.lastUpdated} set to the Unix Epoch if
- * no basket was found in localStorage.
- */
-export function getBasket(): Basket {
-  // Fetch from localStorage
-  const basketString = localStorage.getItem("basket");
-  if (!basketString) return { products: [], lastUpdated: 0 };
-  return JSON.parse(basketString) as Basket;
-
-  // Validate shape
-  // TODO: Setup schemas
-  // if (VALIDATORS.Basket(basketObj)) return basketObj as Basket;
-  // console.warn(`
-  //       Basket was not in expected shape, resetting basket. Old basket:
-  //       ${JSON.stringify(basketObj, undefined, 2)}`
-  // )
-  // logValidationErrors("Basket")
-
-  // Reset basket if validation failed, clearing any old or mismatched basket representations
-  // localStorage.removeItem("basket")
-  // window.dispatchEvent(new CustomEvent("basketUpdate"))
-  //
-  // return {products: [], lastUpdated: 0};
-}
 
 /**
  * Given a new quantity and relevant information on a product to associate it with,
@@ -38,10 +11,10 @@ export function setBasketStringQuantity(
   quant: number,
   currency: Currency = LRC.defaultCurrency,
 ) {
-  console.log(`Setting basket quantity of SKU ${prod.sku} to ${quant}`);
+  console.log(`Setting product ${prod.sku} basket quantity to ${quant}`);
   /** The change in quantity from this update, used for GA4 triggers */
   let diff = 0;
-  const basket = getBasket();
+  const basket = Basket.getBasket();
 
   // If this is a new basket, set last updated to current time
   if (basket.lastUpdated === 0) basket.lastUpdated = Date.now();
@@ -52,7 +25,7 @@ export function setBasketStringQuantity(
   for (let i = 0; i < basket.products.length; i++) {
     let item: BasketProduct = basket.products[i];
     if (item.sku == prod.sku) {
-      diff = quant - item.basketQuantity;
+      diff = quant - (item.basketQuantity ?? 0);
       found = true;
       // Just remove it from the basket if 0
       if (quant == 0) {
@@ -66,7 +39,7 @@ export function setBasketStringQuantity(
   // If it wasn't found, create it
   if (!found && quant > 0) {
     diff = quant;
-    basket.products.push({ ...prod, basketQuantity: quant });
+    basket.products.push(new BasketProduct(prod.sku, quant, prod));
   }
 
   // Save to localStorage

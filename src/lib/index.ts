@@ -7,6 +7,7 @@ export * from "./localeHandler";
 export * from "./routing";
 export * from "./toasts";
 export * from "./price";
+export * from "./image";
 
 /** Configuration for Lordi's React Components */
 export const LordisReactComponents: {

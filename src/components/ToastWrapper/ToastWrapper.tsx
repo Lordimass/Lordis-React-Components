@@ -85,7 +85,7 @@ export default function ToastWrapper({
     <ToastContext.Provider value={{ toast }}>
       <ToastContainer className="toast-container" position="top-start">
         {toastStack.map((toast, i) => (
-          <AnimatePresence>
+          <AnimatePresence key={i}>
             {toast.show ? (
               <LRC_Toast
                 key={i}

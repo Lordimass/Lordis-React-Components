@@ -1,29 +1,22 @@
 import DineroFactory, { Currency } from "dinero.js";
 import Price from "../Price";
 import "./ProductPrice.css";
-import { LRC, MinimalProduct } from "../../../lib";
+import { LRC, ProductData, ProductGroup } from "../../../lib";
 
-/** A {@link MinimalProduct} with a price */
-export interface PricedProduct extends MinimalProduct {
-  /** Price of product in the default currency, inc. tax. */
-  price: number;
+interface ProductPriceProps {
+  /** The product or product group to display a price for */
+  prod: ProductData | ProductGroup;
+  /** Override currency to display. Only use to display a currency other than the user's local currency. */
+  currency?: Currency;
 }
 
 /** Displays a price (or price range) for a given product or product group. */
-export default function ProductPrice({
-  prod,
-  currency,
-}: {
-  /** The product or product group to display a price for */
-  prod: PricedProduct | PricedProduct[];
-  /** Override currency to display. Only use to display a currency other than the user's local currency. */
-  currency?: Currency;
-}) {
+export default function ProductPrice({ prod, currency }: ProductPriceProps) {
   // Product group
-  if (Array.isArray(prod) && prod.length > 1)
+  if (prod instanceof ProductGroup && prod.products.length > 1)
     return <ProductPriceRange prods={prod} />;
   // Single product in a group
-  else if (Array.isArray(prod)) prod = prod[0];
+  else if (prod instanceof ProductGroup) prod = prod.products[0];
 
   const price = prod.price;
   const dinero = DineroFactory({
@@ -47,13 +40,13 @@ function ProductPriceRange({
   currency,
 }: {
   /** Product group to display a price range for. */
-  prods: PricedProduct[];
+  prods: ProductGroup;
   /** Override currency to display. Only use to display a currency other than the user's local currency. */
   currency?: Currency;
 }) {
   let minPrice = Number.MAX_SAFE_INTEGER;
   let maxPrice = 0;
-  prods.forEach((prod) => {
+  prods.products.forEach((prod) => {
     const price = Math.round(prod.price * 100);
     minPrice = Math.min(minPrice, price);
     maxPrice = Math.max(maxPrice, price);

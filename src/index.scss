@@ -1,0 +1,6 @@
+// Sass deprecation warnings are shown when compiling source Sass files with the latest versions of Dart Sass. This
+// does not prevent compilation or usage of Bootstrap. A long-term fix is in progress, but in the meantime these
+// deprecation notices can be ignored.
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$enable-shadows: true !default;

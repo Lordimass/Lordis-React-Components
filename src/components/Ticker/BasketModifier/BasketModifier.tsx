@@ -4,21 +4,22 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./BasketModifier.css";
 import { useGetDisabledStatus } from "./lib";
 import {
-  getBasket,
+  Basket,
   getProductPagePath,
   LocaleContext,
   LRC,
   MinimalProduct,
+  ProductGroup,
   setBasketStringQuantity,
 } from "../../../lib";
-import { FaShoppingBasket } from "react-icons/fa";
+import { FaAngleRight, FaShoppingBasket } from "react-icons/fa";
 
 type BasketModifierProps = Omit<
   ArgumentsType<typeof Ticker>[0],
   "ariaLabel"
 > & {
   /** The product for which to control the basket quantity of. If a collection of products is provided, this will be treated as a product group. */
-  product: MinimalProduct | MinimalProduct[];
+  product: MinimalProduct | ProductGroup;
 };
 
 export default function BasketModifier({
@@ -42,8 +43,8 @@ export default function BasketModifier({
    */
   async function syncWithBasket() {
     // Find the new quantity of the product in the basket
-    const basket = getBasket().products;
-    const item = basket.find((item) => item.sku === rp.sku);
+    const basketProds = Basket.getBasket().products;
+    const item = basketProds.find((item) => item.sku === rp.sku);
     const newQuantity = item?.basketQuantity ?? 0;
 
     // Update state and ticker value if it exists.
@@ -57,13 +58,13 @@ export default function BasketModifier({
   let altReturnComponent;
   // Representative product
   let rp: MinimalProduct;
-  if (Array.isArray(product) && product.length > 1) {
+  if (product instanceof ProductGroup && product.products.length > 1) {
     // Cannot return straight away because of hooks.
     altReturnComponent = (
-      <ProductGroupBasketModifier products={product} height={args.height} />
+      <ProductGroupBasketModifier group={product} height={args.height} />
     );
-    rp = product[0];
-  } else if (Array.isArray(product)) rp = product[0];
+    rp = product.products[0];
+  } else if (product instanceof ProductGroup) rp = product.products[0];
   else rp = product;
 
   // Get currency for updating the basket string
@@ -123,29 +124,27 @@ export default function BasketModifier({
 }
 
 function ProductGroupBasketModifier({
-  products,
+  group,
   height = "50px",
 }: {
   /** The products that this basket modifier represents */
-  products: MinimalProduct[];
+  group: ProductGroup;
   /** The height of the element */
   height?: string;
 }) {
   // If there are no products in the group, button is disabled.
-  const disabled = products.length == 0;
+  const disabled = group.products.length == 0;
   // The first product is the representative for the group.
-  const representative = disabled ? undefined : products[0];
+  const representative = disabled ? undefined : group.products[0];
 
   return (
     <a
-      className="product-group-basket-modifier"
+      className="product-group-basket-modifier btn btn-primary"
       href={representative ? getProductPagePath(representative.sku) : undefined}
       aria-disabled={disabled}
       style={{ height }}
     >
-      <p>
-        View Options <i className="fi fi-rr-angle-right"></i>
-      </p>
+      View Options <FaAngleRight />
     </a>
   );
 }

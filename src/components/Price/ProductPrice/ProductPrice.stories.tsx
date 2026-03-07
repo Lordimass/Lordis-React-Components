@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import {
-  fakePricedProduct,
-  fakePricedProductGroup,
-} from "../../../../.storybook/fakes";
 import ProductPrice from "./ProductPrice";
 import { withLRCContext } from "../../../../.storybook/preview";
+import { fakeProduct, fakeProductGroup } from "../../../../.storybook/fakes";
+import { ProductGroup } from "../../../lib";
 
 const meta = {
   title: "Webshop/Price/ProductPrice",
@@ -25,18 +23,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    prod: fakePricedProduct,
+    prod: fakeProduct,
   },
 };
 
 export const PriceRange: Story = {
   args: {
-    prod: fakePricedProductGroup,
+    prod: fakeProductGroup,
   },
 };
 
 export const AllEqualPrices: Story = {
   args: {
-    prod: fakePricedProductGroup.slice(0, 2),
+    prod: new ProductGroup(fakeProductGroup.products.slice(0, 2)),
   },
 };
