@@ -9,8 +9,8 @@ import {
   LocaleContext,
   LRC,
   MinimalProduct,
+  ProductData,
   ProductGroup,
-  setBasketStringQuantity,
 } from "../../../lib";
 import { FaAngleRight, FaShoppingBasket } from "react-icons/fa";
 
@@ -19,7 +19,7 @@ type BasketModifierProps = Omit<
   "ariaLabel"
 > & {
   /** The product for which to control the basket quantity of. If a collection of products is provided, this will be treated as a product group. */
-  product: MinimalProduct | ProductGroup;
+  product: ProductData | ProductGroup;
 };
 
 export default function BasketModifier({
@@ -33,7 +33,7 @@ export default function BasketModifier({
    */
   async function onTickerChange(val: number) {
     setBasketQuantity(val);
-    setBasketStringQuantity(rp, val, currency);
+    rp.setBasketStringQuantity(val, currency);
     if (args.onChange) await args.onChange(val);
   }
 
@@ -57,7 +57,7 @@ export default function BasketModifier({
   // Check if product is a group and return a different component if so
   let altReturnComponent;
   // Representative product
-  let rp: MinimalProduct;
+  let rp: ProductData;
   if (product instanceof ProductGroup && product.products.length > 1) {
     // Cannot return straight away because of hooks.
     altReturnComponent = (
@@ -72,10 +72,8 @@ export default function BasketModifier({
   // The value of the ticker. In theory, this is always in sync with the basket through `syncWithBasket`
   const [basketQuantity, setBasketQuantity] = useState<number>(0);
   // The maximum value of the ticker
-  const max =
-    typeof rp.stock === "number"
-      ? Math.min(LRC.maxProductOrder, rp.stock)
-      : LRC.maxProductOrder;
+  const max = Math.min(LRC.maxProductOrder, rp.stock);
+
   // The disabled status of this ticker, as well as an explanatory message if it is disabled.
   const disabled = useGetDisabledStatus(rp);
   // A ref to a method that can be called to update the ticker value.

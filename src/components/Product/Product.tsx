@@ -1,7 +1,7 @@
 import "./Product.scss";
 import { Currency } from "dinero.js";
+import { ProductData, ProductGroup, BasketProduct } from "../../lib";
 import { BasketModifier, ProductPrice, SquareImageBox } from "../index";
-import { BasketProduct, ProductData, ProductGroup } from "../../lib";
 import { getProductPagePath, getRepresentativeImage } from "../../lib";
 
 interface ProductProps {

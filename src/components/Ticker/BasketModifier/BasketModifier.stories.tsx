@@ -5,6 +5,10 @@ import { fn } from "storybook/test";
 import {
   fakeMinimalProduct,
   fakeMinimalProductGroup,
+  fakeProduct,
+  fakeProduct2,
+  fakeProduct3,
+  fakeProductGroup,
 } from "../../../../.storybook/fakes";
 import { LRCRemoteSettingsContext } from "../../../lib";
 
@@ -13,7 +17,7 @@ const meta = {
   component: BasketModifier,
   args: {
     onChange: fn(),
-    product: fakeMinimalProduct,
+    product: fakeProduct,
   },
   argTypes: {
     onChange: { control: false, table: { disable: true } },
@@ -40,27 +44,27 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     inputId: "default-basket-modifier-story",
-    product: fakeMinimalProduct,
+    product: fakeProduct,
   },
 };
 
 export const OutOfStock: Story = {
   args: {
     inputId: "out-of-stock-basket-modifier-story",
-    product: { ...fakeMinimalProductGroup[1], stock: 0 },
+    product: fakeProduct2,
   },
 };
 
 export const Disabled: Story = {
   args: {
     inputId: "disabled-basket-modifier-story",
-    product: { ...fakeMinimalProductGroup[1], active: false },
+    product: fakeProduct3,
   },
 };
 
 export const KillSwitch: Story = {
   args: {
-    product: fakeMinimalProductGroup[1],
+    product: fakeProduct2,
     inputId: "kill-switch-basket-modifier-story",
   },
   decorators: [

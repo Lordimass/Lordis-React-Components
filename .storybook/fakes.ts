@@ -59,15 +59,26 @@ export const fakeProduct3: ProductData = new ProductData(3, {
   name: "Product 3",
   images: [fakeMinimalImage3, fakeMinimalImage, fakeMinimalImage2],
   price: 5.99,
+  active: false,
 });
 
 export const fakeProductGroup: ProductGroup = new ProductGroup([
-  { ...fakeProduct, groupName: "Product Group 1" },
-  { ...fakeProduct2, groupName: "Product Group 1" },
-  { ...fakeProduct3, groupName: "Product Group 1" },
+  new ProductData(fakeProduct.sku, {
+    ...fakeProduct,
+    groupName: "Product Group 1",
+  }),
+  new ProductData(fakeProduct.sku, {
+    ...fakeProduct2,
+    groupName: "Product Group 1",
+  }),
+  new ProductData(fakeProduct.sku, {
+    ...fakeProduct3,
+    groupName: "Product Group 1",
+  }),
 ]);
 
-export const fakeBasketProduct: BasketProduct = {
-  ...fakeProduct,
-  basketQuantity: 1,
-};
+export const fakeBasketProduct: BasketProduct = new BasketProduct(
+  fakeProduct.sku,
+  1,
+  fakeProduct,
+);

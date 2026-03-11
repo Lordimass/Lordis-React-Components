@@ -1,8 +1,6 @@
-import { getCurrency } from "locale-currency";
 import Dinero, { Currency } from "dinero.js";
 
 export * from "./types";
-export * from "./basket";
 export * from "./localeHandler";
 export * from "./routing";
 export * from "./toasts";

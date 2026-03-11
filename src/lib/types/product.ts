@@ -1,4 +1,7 @@
-import { MinimalImage, MinimalProductImage } from "./image";
+import { MinimalProductImage } from "./image";
+import { Currency } from "dinero.js";
+import { BasketProduct, Basket } from "./index";
+import { LRC } from "../index";
 
 /** A product object with the absolute minimum data to be identifiable as a product */
 export interface MinimalProduct {
@@ -11,7 +14,7 @@ export interface MinimalProduct {
   [key: string]: unknown;
 }
 
-interface ProductDataConstructorOpts {
+export interface ProductDataConstructorOpts {
   name?: string;
   stock?: number;
   /** Price of product in the default currency, inc. tax. */
@@ -53,6 +56,56 @@ export class ProductData implements MinimalProduct {
     this.groupName = opts.groupName;
     this.images = opts.images ?? [];
   }
+
+  /**
+   * Given a new quantity and relevant information on a product to associate it with,
+   * update the local storage basket to contain that new quantity
+   *
+   * @param quant The new basket string quantity for the product.
+   * @param currency The currency to be used when recording a GA4 event. Defaults to {@link LRC.defaultCurrency}
+   */
+  setBasketStringQuantity(
+    quant: number,
+    currency: Currency = LRC.defaultCurrency,
+  ) {
+    //console.log(`Setting product ${this.sku} basket quantity to ${quant}`);
+    /** The change in quantity from this update, used for GA4 triggers */
+    let diff = 0;
+    const basket = Basket.getBasket();
+
+    // If this is a new basket, set last updated to current time
+    if (basket.lastUpdated === 0) basket.lastUpdated = Date.now();
+
+    // Find product and set quantity
+    let found: boolean = false;
+    // Using for loop instead of forEach for splicing
+    for (let i = 0; i < basket.products.length; i++) {
+      const item: BasketProduct = basket.products[i];
+      if (item.sku == this.sku) {
+        diff = quant - (item.basketQuantity ?? 0);
+        found = true;
+        // Just remove it from the basket if 0
+        if (quant == 0) {
+          basket.products.splice(i, 1);
+          break;
+        }
+        item.basketQuantity = quant;
+        break;
+      }
+    }
+    // If it wasn't found, create it
+    if (!found && quant > 0) {
+      diff = quant;
+      basket.products.push(new BasketProduct(this.sku, quant, this));
+    }
+
+    // Save to localStorage
+    localStorage.setItem("basket", JSON.stringify(basket));
+    window.dispatchEvent(new CustomEvent("basketUpdate"));
+
+    // TODO: Trigger GA4 Event
+    // triggerAddToCart(prod, diff, currency).then();
+  }
 }
 
 /**
@@ -75,75 +128,5 @@ export class ProductGroup {
     }
     this.groupName = products[0].groupName;
     this.products = products;
-  }
-}
-
-/** A product which is in the customer's basket */
-export class BasketProduct extends ProductData {
-  /** The quantity of this product in the user's basket */
-  public basketQuantity?: number;
-
-  constructor(
-    sku: number,
-    /** The quantity of this product in the user's basket */
-    basketQuantity: number,
-    opts?: ProductDataConstructorOpts,
-  ) {
-    super(sku, opts);
-    this.basketQuantity = basketQuantity;
-  }
-}
-
-/** A basket of products for a customer */
-export class Basket {
-  /** The products in the basket and their quantities */
-  products: BasketProduct[];
-  /**
-   * The date-time in milliseconds since epoch at which this version of the basket was last updated with
-   * information from the database
-   */
-  lastUpdated: number;
-  constructor(
-    /** The products in the basket and their quantities */
-    products: BasketProduct[],
-    /**
-     * The date-time in milliseconds since epoch at which this version of the basket was last updated with
-     * information from the database
-     */
-    lastUpdated: number,
-  ) {
-    this.products = products;
-    this.lastUpdated = lastUpdated;
-  }
-
-  /**
-   * Fetch and return the basket from `localStorage`.
-   * @returns A {@link Basket} object. Returns an empty basket with {@link Basket.lastUpdated} set to 0 if no basket was
-   * found in localStorage.
-   */
-  static getBasket(): Basket {
-    // Fetch from localStorage
-    const basketString = localStorage.getItem("basket");
-    if (!basketString) return new Basket([], 0);
-    else return this.deserialize(basketString);
-  }
-
-  /** Convert a serialized basket string from {@link JSON.stringify} into a basket object */
-  private static deserialize(serialized: string): Basket {
-    const json = JSON.parse(serialized);
-    if (!json.products || !(json.products instanceof Array)) {
-      return new Basket([], json.lastUpdated ?? 0);
-    }
-
-    // Deserialize products
-    const productsJson = json.products as Array<any>;
-    const products: BasketProduct[] = productsJson
-      .map((p) => {
-        if (!p.sku) return null;
-        return new BasketProduct(p.sku, p.basketQuantity ?? 0, p);
-      })
-      .filter((p) => p !== null);
-
-    return new Basket(products, json.lastUpdated ?? 0);
   }
 }
