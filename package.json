@@ -1,10 +1,7 @@
 {
-  "name": "@Lordimass/lordis-react-components",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/Lordimass"
-  },
+  "name": "lordis-react-components",
   "type": "module",
-  "version": "0.7.0",
+  "version": "1.0.2",
   "description": "My personal React component library.",
   "homepage": "https://github.com/Lordimass/Lordis-React-Components",
   "bugs": {
@@ -15,7 +12,7 @@
     "url": "git+https://github.com/Lordimass/Lordis-React-Components.git"
   },
   "license": "Apache-2.0",
-  "author": "Lordimass",
+  "author": "Lordimass (lordimass.net)",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "files": [

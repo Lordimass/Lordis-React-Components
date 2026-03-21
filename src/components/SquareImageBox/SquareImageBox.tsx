@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./squareImageBox.css";
+import "./SquareImageBox.css";
 import { AnimatePresence, motion } from "motion/react";
 import { MinimalImage } from "../../lib";
 import { Carousel, CarouselProps } from "react-bootstrap";

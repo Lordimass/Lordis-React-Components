@@ -1,3 +1,3 @@
-import "./index.scss";
+import "./index.css";
 export * from "./components";
 export * from "./lib";

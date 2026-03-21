@@ -7,3 +7,4 @@ export { default as ProductPrice } from "./Price/ProductPrice/ProductPrice";
 export { default as LRCContext } from "./LRCContext/LRCContext";
 export { default as SquareImageBox } from "./SquareImageBox/SquareImageBox";
 export { default as Product } from "./Product/Product";
+export { default as Content } from "./Content/Content";

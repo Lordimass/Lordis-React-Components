@@ -1,4 +1,4 @@
-import "./Product.scss";
+import "./Product.css";
 import { Currency } from "dinero.js";
 import { ProductData, ProductGroup, BasketProduct } from "../../lib";
 import { BasketModifier, ProductPrice, SquareImageBox } from "../index";

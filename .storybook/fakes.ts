@@ -60,6 +60,7 @@ export const fakeProduct3: ProductData = new ProductData(3, {
   images: [fakeMinimalImage3, fakeMinimalImage, fakeMinimalImage2],
   price: 5.99,
   active: false,
+  stock: 10,
 });
 
 export const fakeProductGroup: ProductGroup = new ProductGroup([

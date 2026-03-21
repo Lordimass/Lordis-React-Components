@@ -13,15 +13,14 @@ export function useGetDisabledStatus(product: MinimalProduct) {
   };
   const disabledMessages = LRC.disabledProductMessages;
 
-  // Stock
-  if (typeof product.stock === "number" && product.stock <= 0)
-    disabled = { isDisabled: true, message: disabledMessages?.out_of_stock };
+  // Kill Switch
+  if (siteSettings.kill_switch?.enabled)
+    disabled = { isDisabled: true, message: siteSettings.kill_switch?.message };
   // Active
   else if (product.active == false)
     disabled = { isDisabled: true, message: disabledMessages?.disabled };
-  // Kill Switch
-  else if (siteSettings.kill_switch?.enabled)
-    disabled = { isDisabled: true, message: siteSettings.kill_switch?.message };
-
+  // Stock
+  else if (typeof product.stock === "number" && product.stock <= 0)
+    disabled = { isDisabled: true, message: disabledMessages?.out_of_stock };
   return disabled;
 }

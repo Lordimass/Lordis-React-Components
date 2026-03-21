@@ -4,3 +4,15 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 $enable-shadows: true !default;
+
+body {
+  margin: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}

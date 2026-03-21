@@ -26,6 +26,8 @@ export interface ProductDataConstructorOpts {
   groupName?: string;
   /** All images associated with this product */
   images?: MinimalProductImage[];
+  /** Whether this is a product which is currently active and available to buy */
+  active?: boolean;
   [key: string]: unknown;
 }
 
@@ -46,6 +48,10 @@ export class ProductData implements MinimalProduct {
   public groupName?: string;
   /** All images associated with this product */
   public images: MinimalProductImage[];
+  /** Whether this is a product which is currently active and available to buy */
+  public active: boolean;
+  /** Additional data on this product which isn't encoded in the standard class attributes.*/
+  public metadata: { [key: string]: any };
   [key: string]: unknown;
 
   constructor(sku: number, opts: ProductDataConstructorOpts = {}) {
@@ -55,6 +61,8 @@ export class ProductData implements MinimalProduct {
     this.price = opts.price ?? 0;
     this.groupName = opts.groupName;
     this.images = opts.images ?? [];
+    this.active = opts.active ?? true;
+    this.metadata = opts;
   }
 
   /**
