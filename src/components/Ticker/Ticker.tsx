@@ -147,6 +147,7 @@ export default function Ticker({
           initial="initial"
           whileHover="hover"
           className="ticker-decrementer btn-primary btn"
+          title={"decrement"}
           onClick={decrement}
         >
           <MinusSign size={24} />
@@ -164,6 +165,7 @@ export default function Ticker({
           initial="initial"
           whileHover="hover"
           className="ticker-incrementer btn-primary btn"
+          title={"increment"}
           onClick={increment}
         >
           <PlusSign size={24} />

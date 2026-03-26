@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import Ticker from "./Ticker";
-import { fn } from "storybook/test";
+import { expect, fn } from "storybook/test";
 
 const meta = {
   title: "Tickers/Ticker",
@@ -33,6 +33,39 @@ export const Default: Story = {
     inputId: "default-ticker-story",
     ariaLabel: "Default Ticker",
   },
+  play: async ({ args, canvas, step, userEvent }) => {
+    let inputField = canvas.getByLabelText(
+      "Default Ticker",
+    ) as HTMLInputElement;
+
+    // Check increment functionality
+    await step("Increment", async () => {
+      const start = Number(inputField.value);
+      const increment = canvas.getByTitle("increment");
+      await userEvent.click(increment);
+      // Assert that onChange was called
+      await expect(args.onChange).toHaveBeenCalledWith(start + 1);
+      // Assert that input field was updated
+      await expect(inputField.value).toSatisfy((value: string) => {
+        console.log(value);
+        return value == "" + (start + 1);
+      });
+    });
+
+    // Check decrement functionality
+    await step("Decrement", async () => {
+      const start = Number(inputField.value);
+      const decrement = canvas.getByTitle("decrement");
+      await userEvent.click(decrement);
+      // Assert that onChange was called
+      await expect(args.onChange).toHaveBeenCalledWith(start - 1);
+      // Assert that input field was updated
+      await expect(inputField.value).toSatisfy((value: string) => {
+        console.log(value);
+        return value == "" + (start - 1);
+      });
+    });
+  },
 };
 
 export const MaxValue: Story = {
@@ -41,5 +74,28 @@ export const MaxValue: Story = {
     ariaLabel: "Default Ticker",
     showMaxValue: true,
     max: 10,
+  },
+  play: async ({ args, canvas, step, userEvent }) => {
+    let inputField = canvas.getByLabelText(
+      "Default Ticker",
+    ) as HTMLInputElement;
+    const increment = canvas.getByTitle("increment");
+
+    await step("Increase to maximum", async () => {
+      const start = Number(inputField.value);
+      for (let i = 0; i < (args.max || 10); i++) {
+        await userEvent.click(increment);
+      }
+      // Assert that input field was updated
+      await expect(inputField.value).toSatisfy((value: string) => {
+        console.log(value);
+        return value == "10";
+      });
+    });
+
+    await step("Attempt to increase beyond maximum", async () => {
+      await userEvent.click(increment);
+      await expect(args.onChange).toHaveBeenCalledWith(args.max || 10);
+    });
   },
 };
