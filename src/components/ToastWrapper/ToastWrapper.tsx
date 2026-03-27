@@ -128,11 +128,13 @@ export function LRC_Toast({ toast, onClose }: Toast_internalProps) {
     >
       <Toast onClose={onClose} bg={toast.variant}>
         <Toast.Header>
-          <img
-            src={toast.image?.uri}
-            alt={toast.image?.alt}
-            className="rounded me-2"
-          />
+          {toast.image ? (
+            <img
+              src={toast.image.uri}
+              alt={toast.image.alt}
+              className="rounded me-2"
+            />
+          ) : null}
           <strong className="me-auto">{toast.title ?? "Notification"}</strong>
         </Toast.Header>
         <Toast.Body

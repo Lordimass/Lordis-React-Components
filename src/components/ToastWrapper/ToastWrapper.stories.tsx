@@ -20,13 +20,13 @@ function AddToast() {
       }}
     >
       <button
-        className={"btn btn-outline-primary"}
+        className={"btn btn-primary"}
         onClick={() => toast({ msg: "I'm a toast!" })}
       >
         Add Toast
       </button>
       <button
-        className={"btn btn-outline-primary"}
+        className={"btn btn-primary"}
         onClick={() =>
           toast({
             msg: "I'm a toast that doesn't close itself!",
@@ -37,7 +37,7 @@ function AddToast() {
         Add Permanent Toast
       </button>
       <button
-        className={"btn btn-outline-primary"}
+        className={"btn btn-primary"}
         onClick={() =>
           toast({
             msg: "I'm a toast that closes itself very fast!",

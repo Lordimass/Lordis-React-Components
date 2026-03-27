@@ -2,6 +2,7 @@ import { fn } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { LRC_Toast } from "./ToastWrapper";
+import { fakeMinimalImage, fakeMinimalImage2 } from "../../../.storybook/fakes";
 
 const meta = {
   title: "Toasts/Toast",
@@ -19,6 +20,11 @@ type Story = StoryObj<typeof meta>;
 const toast = { msg: "Toast message" };
 
 export const Default: Story = {};
+
+export const WithImage: Story = {
+  args: { toast: { ...toast, image: fakeMinimalImage2 } },
+};
+
 export const Light: Story = {
   args: { toast: { ...toast, variant: "light" } },
 };
