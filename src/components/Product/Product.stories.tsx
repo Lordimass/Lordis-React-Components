@@ -4,6 +4,7 @@ import {
   fakeProduct,
   fakeProduct2,
   fakeProductGroup,
+  fakeProductNoImages,
 } from "../../../.storybook/fakes";
 import Product from "./Product";
 
@@ -74,5 +75,11 @@ export const BasketProduct: Product = {
   args: {
     prod: fakeBasketProduct,
     quantityLocked: true,
+  },
+};
+
+export const NoImages: Product = {
+  args: {
+    prod: fakeProductNoImages,
   },
 };

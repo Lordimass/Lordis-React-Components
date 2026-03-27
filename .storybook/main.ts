@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/react-vite";
-import Dinero from "dinero.js";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(ts|tsx)"],

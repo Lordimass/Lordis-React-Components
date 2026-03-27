@@ -125,10 +125,10 @@ function HyperlinkedProductImage({
   href: string;
   prod: ProductData | ProductGroup;
 }) {
-  const reprImageUrl = getRepresentativeImage(prod);
+  const representativeImage = getRepresentativeImage(prod);
   return (
     <a className="product-image-link" href={href}>
-      <SquareImageBox image={reprImageUrl} size="100%" />
+      <SquareImageBox image={representativeImage} size="100%" />
     </a>
   );
 }

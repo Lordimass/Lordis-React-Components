@@ -18,6 +18,8 @@ interface ToastWrapperProps {
   children?: ReactNode;
   /** Default information to display on toasts when not provided. */
   defaults?: Partial<IToast>;
+  /** Callback function when the toasts on display change */
+  onChange?: (toasts: IToast[]) => void;
 }
 
 /**
@@ -26,11 +28,12 @@ interface ToastWrapperProps {
 export default function ToastWrapper({
   children,
   defaults = { title: "Notification" },
+  /* c8 ignore next 1 */
+  onChange = () => {},
 }: ToastWrapperProps) {
   /** Close the given toast */
   function closeToast(key: Toast_internal["key"]): void {
     const i = tRef.current.findIndex((toast) => toast.key === key);
-    if (i === -1) return; // If it didn't find the toast for any reason, stop.
     window.clearTimeout(tRef.current[i].timeoutId); // Clear the timeout on the toast, in case this was closed prematurely.
     // Hide the toast, then schedule removing it completely. This allows time for animations to run
     const newStack = [...tRef.current];
@@ -73,6 +76,7 @@ export default function ToastWrapper({
   function setStack(newStack: Toast_internal[]) {
     tRef.current = newStack;
     setToastStack(newStack);
+    onChange(newStack);
   }
 
   // "Stack" of toasts to display on screen. Technically not a stack since its possible to remove an item from the middle

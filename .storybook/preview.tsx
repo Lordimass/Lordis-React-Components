@@ -50,3 +50,7 @@ export const withLRCContext: Decorator = (Story) => {
     </LRCContextProvider>
   );
 };
+
+export function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

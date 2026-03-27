@@ -2,6 +2,7 @@ import {
   BasketProduct,
   MinimalImage,
   MinimalProduct,
+  MinimalProductImage,
   ProductGroup,
 } from "../src";
 import { ProductData } from "../src";
@@ -42,6 +43,14 @@ export const fakeMinimalImage3: MinimalImage = {
   alt: "A photo of a labradoodle dog laid down in front of a Christmas tree.",
 };
 
+export const fakeRepresentativeImage: MinimalProductImage = {
+  uri: "https://live.staticflickr.com/65535/55171341834_c7a8c8f152_b.jpg",
+  alt: "A close up of an black cat offset slightly to the left of the image. She is looking past the camera at the person taking the photo.",
+  association_metadata: {
+    group_representative: true,
+  },
+};
+
 export const fakeProduct: ProductData = new ProductData(1, {
   name: "Product 1",
   images: [fakeMinimalImage, fakeMinimalImage2, fakeMinimalImage3],
@@ -57,9 +66,19 @@ export const fakeProduct2: ProductData = new ProductData(2, {
 
 export const fakeProduct3: ProductData = new ProductData(3, {
   name: "Product 3",
-  images: [fakeMinimalImage3, fakeMinimalImage, fakeMinimalImage2],
+  images: [
+    fakeMinimalImage3,
+    fakeMinimalImage,
+    fakeMinimalImage2,
+    fakeRepresentativeImage,
+  ],
   price: 5.99,
   active: false,
+  stock: 10,
+});
+
+export const fakeProductNoImages: ProductData = new ProductData(3, {
+  name: "Fake Product No Images",
   stock: 10,
 });
 

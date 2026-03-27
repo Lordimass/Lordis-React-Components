@@ -1,21 +1,4 @@
-import {
-  MinimalImage,
-  MinimalProductImage,
-  ProductData,
-  ProductGroup,
-} from "./types";
-
-/**
- * Gets the public URL of the image which represents a product or group of products.
- * @param product The product or group of products from which to fetch URL from.
- * @returns The public URL of the image, or undefined if not found
- */
-export function getRepresentativeImageURL(
-  product: ProductData | ProductGroup,
-): string | undefined {
-  const representativeImage = getRepresentativeImage(product);
-  if (representativeImage) return representativeImage.uri;
-}
+import { MinimalProductImage, ProductData, ProductGroup } from "./types";
 
 /**
  * Gets the image that represents a product or group of products
