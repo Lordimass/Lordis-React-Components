@@ -1,6 +1,7 @@
 import Dinero, { Currency } from "dinero.js";
 
 export * from "./types";
+export * from "./ga";
 export * from "./localeHandler";
 export * from "./routing";
 export * from "./toasts";
