@@ -7,7 +7,6 @@ import {
 } from "../../../.storybook/fakes";
 
 const meta = {
-  title: "SquareImageBox",
   component: SquareImageBox,
   args: {
     hoverable: false,

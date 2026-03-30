@@ -4,7 +4,6 @@ import Ticker from "./Ticker";
 import { expect, fn } from "storybook/test";
 
 const meta = {
-  title: "Tickers/Ticker",
   component: Ticker,
   args: {
     onChange: fn(),

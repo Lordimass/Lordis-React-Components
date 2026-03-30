@@ -9,7 +9,6 @@ import {
 import Product from "./Product";
 
 const meta = {
-  title: "Webshop/Product",
   component: Product,
   args: {
     prod: fakeProduct,

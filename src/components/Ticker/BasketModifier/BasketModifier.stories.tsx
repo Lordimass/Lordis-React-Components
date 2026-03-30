@@ -3,17 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import BasketModifier from "./BasketModifier";
 import { fn } from "storybook/test";
 import {
-  fakeMinimalProduct,
-  fakeMinimalProductGroup,
   fakeProduct,
   fakeProduct2,
   fakeProduct3,
-  fakeProductGroup,
 } from "../../../../.storybook/fakes";
 import { LRCRemoteSettingsContext } from "../../../lib";
 
 const meta = {
-  title: "Webshop/BasketModifier",
   component: BasketModifier,
   args: {
     onChange: fn(),

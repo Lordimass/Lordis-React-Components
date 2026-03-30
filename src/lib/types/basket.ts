@@ -1,6 +1,4 @@
-import { Currency } from "dinero.js";
 import { ProductDataConstructorOpts, ProductData } from "./index";
-import { LRC } from "../index";
 
 /** A product which is in the customer's basket */
 export class BasketProduct extends ProductData {

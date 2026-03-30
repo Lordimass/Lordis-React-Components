@@ -52,7 +52,6 @@ function AddToast() {
 }
 
 const meta = {
-  title: "Toasts/ToastWrapper",
   component: ToastWrapper,
   args: {
     children: <AddToast />,

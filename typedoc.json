@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/typedoc-plugin-markdown/typedoc-plugin-markdown.schema.json",
+  "entryPoints": ["./src/lib/*"],
+  "entryPointStrategy": "expand",
+  "out": "./typedoc",
+  "includeHierarchySummary": false,
+  "hidePageHeader": true,
+  "hideBreadcrumbs": true,
+  "pageTitleTemplates": {
+    "member": "{name} `<{kind}>`"
+  },
+  "fileExtension": ".md",
+  "parametersFormat": "table",
+  "indexFormat": "table",
+  "interfacePropertiesFormat": "table",
+  "classPropertiesFormat": "table",
+  "typeAliasPropertiesFormat": "table",
+  "enumMembersFormat": "table",
+  "propertyMembersFormat": "table",
+  "typeDeclarationFormat": "table",
+  "tableColumnSettings": {
+    "hideSources": true
+  },
+  "useHTMLEncodedBrackets": true,
+  "markdownLinkExternal": true,
+  "markdownItOptions": {
+    "linkify": true
+  },
+  "hostedBaseUrl": "https://react.lordimass.net",
+  "router": "structure"
+}

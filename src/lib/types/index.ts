@@ -14,13 +14,20 @@ export interface LRCRemoteSettings {
   /** Disable ordering products all together. This is for use in an emergency. */
   kill_switch?: { enabled: boolean; message?: string };
   /** A notification to display to users at the start of their session. */
-  session_notif?: {
-    enabled: boolean;
-    message: string;
-    startTime: string;
-    endTime: string;
-    duration: number;
-  };
-  clockify_users?: { userID: string; name: string }[];
+  session_notif?: SessionNotif;
+  clockify_users?: ClockifyUser[];
   [key: string]: any;
+}
+
+export interface SessionNotif {
+  enabled: boolean;
+  message: string;
+  startTime: string;
+  endTime: string;
+  duration: number;
+}
+
+export interface ClockifyUser {
+  userID: string;
+  name: string;
 }

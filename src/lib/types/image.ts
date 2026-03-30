@@ -19,7 +19,7 @@ export interface MinimalProductImage extends MinimalImage {
   association_metadata?: AssociationMetadata;
 }
 
-interface AssociationMetadata {
+export interface AssociationMetadata {
   /**
    * Whether this image is relevant to all products in the product group
    * (if it exists), rather than just the SKU it's assigned to

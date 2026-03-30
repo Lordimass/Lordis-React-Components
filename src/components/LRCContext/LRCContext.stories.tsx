@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import LrcContext from "./LRCContext";
-import { delay, HttpResponse, http } from "msw";
 
 const meta = {
-  title: "Abstract/LRCContext",
   component: LrcContext,
   args: {
     children: (
@@ -28,15 +26,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  // parameters: {
-  //   // msw: {
-  //   //   handler: http.get("https://your-restful-endpoint", async () => {
-  //   //     await delay(800);
-  //   //     return new HttpResponse(null, {
-  //   //       status: 403,
-  //   //     });
-  //   //   }),
-  //   // },
-  // },
-};
+export const Default: Story = {};

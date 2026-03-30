@@ -6,7 +6,6 @@ import { fakeProduct, fakeProductGroup } from "../../../../.storybook/fakes";
 import { ProductGroup } from "../../../lib";
 
 const meta = {
-  title: "Webshop/Price/ProductPrice",
   component: ProductPrice,
   globals: {
     backgrounds: "light",

@@ -15,7 +15,9 @@ export interface MinimalProduct {
 }
 
 export interface ProductDataConstructorOpts {
+  /** Customer facing name of the product.*/
   name?: string;
+  /** Quantity of this product in stock */
   stock?: number;
   /** Price of product in the default currency, inc. tax. */
   price?: number;
@@ -31,7 +33,7 @@ export interface ProductDataConstructorOpts {
   [key: string]: unknown;
 }
 
-/** A fully fledged product object */
+/** A fully fledged product object. */
 export class ProductData implements MinimalProduct {
   /** The ID of this product */
   public sku: number;

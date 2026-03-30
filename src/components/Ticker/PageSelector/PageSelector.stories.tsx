@@ -4,7 +4,6 @@ import PageSelector from "./PageSelector";
 import { fn } from "storybook/test";
 
 const meta = {
-  title: "Tickers/PageSelector",
   component: PageSelector,
   args: {
     onChange: fn(),

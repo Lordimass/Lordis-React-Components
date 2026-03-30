@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import Content from "./Content";
 
 const meta = {
-  title: "Content",
   component: Content,
   args: {
     noindex: false,

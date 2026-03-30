@@ -1,12 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react-vite";
 import Price from "./Price";
 import DineroFactory from "dinero.js";
-import Dinero from "dinero.js";
 import { CURRENCY_SYMBOLS } from "../../assets/currencySymbols";
 import { LocaleContext } from "../../lib";
 
 const meta = {
-  title: "Webshop/Price",
   component: Price,
   globals: {
     backgrounds: { value: "light", grid: false },

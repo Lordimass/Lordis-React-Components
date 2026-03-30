@@ -5,7 +5,6 @@ import { LRC_Toast } from "./ToastWrapper";
 import { fakeMinimalImage, fakeMinimalImage2 } from "../../../.storybook/fakes";
 
 const meta = {
-  title: "Toasts/Toast",
   component: LRC_Toast,
   args: {
     toast: { msg: "Toast message" },
