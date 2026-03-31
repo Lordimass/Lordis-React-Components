@@ -2,7 +2,7 @@
 
 > **ExchangeRates** = `object` & `object`
 
-Defined in: [price.ts:15](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/price.ts#L15)
+Defined in: [price.ts:24](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/price.ts#L24)
 
 A mapping from currency strings to their conversion rates.
 
@@ -10,4 +10,18 @@ A mapping from currency strings to their conversion rates.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `date` | `string` | Date in YYYY-MM-DD format |
+| `date` | `string` | Date the exchange rates are valid on in `YYYY-MM-DD` format |
+
+## Example
+
+```ts
+{
+    date: "2026-03-31",
+    "GBP": {
+       "1inch": 15.03803069,
+       "aave": 0.013586657,
+       "ada": 5.42295077,
+       ...
+    }
+  }
+```

@@ -1,9 +1,5 @@
-# IToastContext `<Interface>`
+# IToastContext `<Type Alias>`
 
-Defined in: [toasts.ts:5](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/toasts.ts#L5)
+> **IToastContext** = `ContextType`&lt;*typeof* [`ToastContext`](ToastContext.md)&gt;
 
-## Properties
-
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="toast"></a> `toast` | (`toast`) => `void` | A function which can be called to display a toast |
+Defined in: [toasts.ts:32](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/toasts.ts#L32)

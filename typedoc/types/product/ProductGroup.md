@@ -1,6 +1,6 @@
 # ProductGroup `<Class>`
 
-Defined in: [types/product.ts:124](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/product.ts#L124)
+Defined in: [types/product.ts:124](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/product.ts#L124)
 
 A collection of closely related products/variants of the same product
 
@@ -10,7 +10,7 @@ A collection of closely related products/variants of the same product
 
 > **new ProductGroup**(`products`): `ProductGroup`
 
-Defined in: [types/product.ts:130](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/product.ts#L130)
+Defined in: [types/product.ts:130](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/product.ts#L130)
 
 #### Parameters
 

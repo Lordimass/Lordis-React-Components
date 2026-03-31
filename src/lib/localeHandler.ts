@@ -66,6 +66,10 @@ interface ILocaleContext {
   country: string;
 }
 
+/**
+ * Context wrapper which provides the user's locale, associated currency, and country. It's value should be set to the
+ * return value of {@link useLocale} to automatically fetch these details by reverse geocoding the IP address.
+ */
 export const LocaleContext = createContext<ILocaleContext>({
   locale: DEFAULT_LOCALE,
   currency: DEFAULT_CURRENCY,
@@ -73,6 +77,7 @@ export const LocaleContext = createContext<ILocaleContext>({
 });
 
 /**
+ * Automatically fetch the user's locale, associated currency, and country. This is done based on the user
  * @return The user's locale string and associated currency.
  */
 export default function useLocale(): ILocaleContext {

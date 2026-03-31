@@ -23,7 +23,7 @@ interface ToastWrapperProps {
 }
 
 /**
- * Wrapper for Bootstrap Toasts, including providing `ToastContext` with a method that can be called to display a toast.
+ * Wrapper for Bootstrap Toasts, including providing {@link ToastContext} with a method that can be called to display a toast.
  */
 export default function ToastWrapper({
   children,

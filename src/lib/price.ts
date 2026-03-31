@@ -11,9 +11,18 @@ export const CURRENCY_CONVERSION_ENDPOINT =
 
 /**
  * A mapping from currency strings to their conversion rates.
+ * @example {
+    date: "2026-03-31",
+    "GBP": {
+       "1inch": 15.03803069,
+       "aave": 0.013586657,
+       "ada": 5.42295077,
+       ...
+    }
+  }
  */
 export type ExchangeRates = {
-  /** Date in YYYY-MM-DD format */
+  /** Date the exchange rates are valid on in `YYYY-MM-DD` format */
   date: string;
 } & {
   /**
@@ -41,7 +50,9 @@ export async function fetchExchangeRates(from: string): Promise<ExchangeRates> {
 }
 
 /**
- * Convert between currencies
+ * Convert between currencies. If called from the client, will cache exchange rates in session storage so that this
+ * function can be repeatedly called without spamming API requests. If this is called from the server, you should
+ * cache the exchange rates some other way and provide them using the `exchangeRates` parameter.
  * @param dinero An object representing the money amount to convert from.
  * @param to The currency to convert to.
  * @param exchangeRates Cached exchange rates if they exist, used to prevent fetching exchange rates all the time if

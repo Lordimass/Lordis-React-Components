@@ -2,9 +2,11 @@
 
 > **convertDinero**(`dinero`, `to`, `exchangeRates?`): `Promise`&lt;`Dinero`&gt;
 
-Defined in: [price.ts:50](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/price.ts#L50)
+Defined in: [price.ts:61](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/price.ts#L61)
 
-Convert between currencies
+Convert between currencies. If called from the client, will cache exchange rates in session storage so that this
+function can be repeatedly called without spamming API requests. If this is called from the server, you should
+cache the exchange rates some other way and provide them using the `exchangeRates` parameter.
 
 ## Parameters
 

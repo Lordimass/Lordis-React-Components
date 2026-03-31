@@ -1,15 +1,9 @@
-import { createContext } from "react";
+import { ContextType, createContext } from "react";
 import { MinimalImage } from "./types";
 import { Variant } from "react-bootstrap/types";
 
-export interface IToastContext {
-  /** A function which can be called to display a toast */
-  toast: (
-    /** Toast to display */
-    toast: IToast,
-  ) => void;
-}
-
+/** A custom toast.
+ */
 export interface IToast {
   /** Message to display on the toast */
   msg: string;
@@ -23,4 +17,16 @@ export interface IToast {
   variant?: Variant;
 }
 
-export const ToastContext = createContext<IToastContext>({ toast: () => {} });
+/**
+ * Context provided by {@link ToastWrapper}. Contains a single `toast` method which can be called with an instance of
+ * {@link IToast} to display a toast on the screen.
+ */
+export const ToastContext = createContext<{
+  /** A function which can be called to display a toast */
+  toast: (
+    /** Toast to display */
+    toast: IToast,
+  ) => void;
+}>({ toast: () => {} });
+
+export type IToastContext = ContextType<typeof ToastContext>;

@@ -1,6 +1,6 @@
 # Basket `<Class>`
 
-Defined in: [types/basket.ts:20](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/basket.ts#L20)
+Defined in: [types/basket.ts:20](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/basket.ts#L20)
 
 A basket of products for a customer
 
@@ -10,7 +10,7 @@ A basket of products for a customer
 
 > **new Basket**(`products`, `lastUpdated`): `Basket`
 
-Defined in: [types/basket.ts:28](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/basket.ts#L28)
+Defined in: [types/basket.ts:28](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/basket.ts#L28)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [types/basket.ts:28](https://github.com/Lordimass/Lordis-React-Compo
 
 > `static` **getBasket**(): `Basket`
 
-Defined in: [types/basket.ts:46](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/basket.ts#L46)
+Defined in: [types/basket.ts:46](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/basket.ts#L46)
 
 Fetch and return the basket from `localStorage`.
 

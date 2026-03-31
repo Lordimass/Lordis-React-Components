@@ -1,6 +1,6 @@
 # LRCRemoteSettings `<Interface>`
 
-Defined in: [types/index.ts:13](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/index.ts#L13)
+Defined in: [types/index.ts:13](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/index.ts#L13)
 
 ## Indexable
 

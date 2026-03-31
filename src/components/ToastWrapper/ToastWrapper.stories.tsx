@@ -1,10 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+// @ts-ignore
+import IToastDocs from "../../../typedoc/toasts/IToast.md?raw";
+// @ts-ignore
+import ToastContextDocs from "../../../typedoc/toasts/ToastContext.md?raw";
 
 import ToastWrapper from "./ToastWrapper";
 import { useContext } from "react";
 import { IToast, ToastContext } from "../../lib";
 import { expect, fn } from "storybook/test";
 import { sleep } from "../../../.storybook/preview";
+import {
+  Controls,
+  Description,
+  Stories,
+  Subtitle,
+  Title,
+  Primary,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
 
 function AddToast() {
   const { toast } = useContext(ToastContext);
@@ -70,6 +83,23 @@ const meta = {
     ),
   ],
   tags: ["skip-visual-test"],
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Primary />
+          <Controls />
+          <Markdown>{IToastDocs}</Markdown>
+          <br />
+          <Markdown>{ToastContextDocs}</Markdown>
+          <Stories />
+        </>
+      ),
+    },
+  },
 } satisfies Meta<typeof ToastWrapper>;
 
 export default meta;

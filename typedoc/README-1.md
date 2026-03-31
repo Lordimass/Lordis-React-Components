@@ -4,7 +4,7 @@
 
 | Variable | Description |
 | ------ | ------ |
-| [LordisReactComponents](index/LordisReactComponents.md) | Configuration for Lordi's React Components |
+| [LordisReactComponents](index/LordisReactComponents.md) | Configuration for Lordi's React Components. This is also accessible by the builtin alias, `LRC`. |
 | [LRC](index/LRC.md) | Shorthand for [LordisReactComponents](index/LordisReactComponents.md) |
 
 ## References

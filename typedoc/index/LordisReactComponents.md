@@ -2,9 +2,9 @@
 
 > `const` **LordisReactComponents**: `object`
 
-Defined in: [index.ts:12](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/index.ts#L12)
+Defined in: [index.ts:12](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/index.ts#L12)
 
-Configuration for Lordi's React Components
+Configuration for Lordi's React Components. This is also accessible by the builtin alias, `LRC`.
 
 ## Type Declaration
 

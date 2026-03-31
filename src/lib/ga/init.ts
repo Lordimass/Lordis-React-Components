@@ -8,10 +8,15 @@ declare global {
 }
 
 /**
- * Initialises GA4 with default denied settings until cookies are accepted.
+ * Initialises Google Analytics 4 with default denied settings until cookies are accepted.
  *
- * GA4 must be initialised before consent for Advanced mode, which sends
- * cookie-less pings to track analytics without association with the user.
+ * GA4 must be initialised before consent for Advanced mode, which sends cookie-less pings to track analytics without
+ * association with the user. This should be combined with {@link acceptCookies} and {@link declineCookies} when consent
+ * is gained (or declined) by the user to use cookies for analytics. Until then, only cookie-less pings will be used,
+ * which prevent insights into user behaviours because events are not associated with each other, and instead just exist
+ * as stand-alone events.
+ *
+ * This method should be called early in the flow. Before the root component is even initialised (i.e. in `main.tsx`)
  */
 export function initGA4(measurement_id: string, dev?: boolean) {
   if (dev) console.log("In a development environment");

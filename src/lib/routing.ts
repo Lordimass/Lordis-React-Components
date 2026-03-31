@@ -1,5 +1,9 @@
 /**
  * Get the relative path to a product page. Does not check whether that product actually exists.
+ *
+ * This is a very trivial helper method, it's main use is for the `maintainQueryString` functionality which allows the
+ * user's locale query string parameter to carry over to product pages when modifying the window path.
+ *
  * @param sku The sku of the product to fetch a path for.
  * @param maintainQueryString Whether to preserve the current search parameters in the path.
  * @returns The relative path to the page requested.

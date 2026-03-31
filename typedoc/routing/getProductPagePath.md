@@ -2,9 +2,12 @@
 
 > **getProductPagePath**(`sku`, `maintainQueryString?`): `string`
 
-Defined in: [routing.ts:9](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/routing.ts#L9)
+Defined in: [routing.ts:13](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/routing.ts#L13)
 
 Get the relative path to a product page. Does not check whether that product actually exists.
+
+This is a very trivial helper method, it's main use is for the `maintainQueryString` functionality which allows the
+user's locale query string parameter to carry over to product pages when modifying the window path.
 
 ## Parameters
 

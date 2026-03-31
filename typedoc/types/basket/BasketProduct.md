@@ -1,6 +1,6 @@
 # BasketProduct `<Class>`
 
-Defined in: [types/basket.ts:4](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/basket.ts#L4)
+Defined in: [types/basket.ts:4](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/basket.ts#L4)
 
 A product which is in the customer's basket
 
@@ -18,7 +18,7 @@ A product which is in the customer's basket
 
 > **new BasketProduct**(`sku`, `basketQuantity`, `opts?`): `BasketProduct`
 
-Defined in: [types/basket.ts:8](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/basket.ts#L8)
+Defined in: [types/basket.ts:8](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/basket.ts#L8)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ Defined in: [types/basket.ts:8](https://github.com/Lordimass/Lordis-React-Compon
 
 > **setBasketStringQuantity**(`quant`, `currency?`): `void`
 
-Defined in: [types/product.ts:77](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/types/product.ts#L77)
+Defined in: [types/product.ts:77](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/types/product.ts#L77)
 
 Given a new quantity and relevant information on a product to associate it with,
 update the local storage basket to contain that new quantity

@@ -4,4 +4,4 @@
 
 | Function | Description |
 | ------ | ------ |
-| [initGA4](init/initGA4.md) | Initialises GA4 with default denied settings until cookies are accepted. |
+| [initGA4](init/initGA4.md) | Initialises Google Analytics 4 with default denied settings until cookies are accepted. |

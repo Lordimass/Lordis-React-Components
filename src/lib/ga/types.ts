@@ -1,41 +1,43 @@
 /**
  * A product used in Google Analytics events.
+ *
+ * Interpreted from the [GA4 Documentation](https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtag#add_payment_info_item)
  */
 export interface GAItem {
   /**
    * The ID of the item.
-   *
-   * *One of item_id or item_name is required.
+   * <br/>
+   * *One of item\_id or item\_name is required.
    */
   item_id?: string;
   /**
    * The name of the item.
-   *
-   * *One of item_id or item_name is required.
+   * <br/>
+   * *One of item\_id or item\_name is required.
    */
   item_name?: string;
   /**
    * A product affiliation to designate a supplying company or brick and mortar store location.
-   *
+   * <br/>
    * Note: `affiliation` is only available at the item-scope.
    */
   affiliation?: string;
   /**
    * The coupon name/code associated with the item.
-   *
+   * <br/>
    * Event-level and item-level coupon parameters are independent.
    */
   coupon?: string;
   /**
    * The name of the promotional creative.
-   *
+   * <br/>
    * If set, event-level `creative_name` is ignored.
    * If not set, event-level `creative_name` is used, if present.
    */
   creative_name?: string;
   /**
    * The name of the promotional creative slot associated with the item.
-   *
+   * <br/>
    * If set, event-level `creative_slot` is ignored.
    * If not set, event-level `creative_slot` is used, if present.
    */
@@ -61,17 +63,17 @@ export interface GAItem {
   item_category5?: string;
   /**
    * The ID of the list in which the item was presented to the user.
-   *
+   * <br/>
    * If set, event-level `item_list_id` is ignored.
-   *
+   * <br/>
    * If not set, event-level `item_list_id` is used, if present.
    */
   item_list_id?: string;
   /**
    * The name of the list in which the item was presented to the user.
-   *
+   * <br/>
    * If set, event-level `item_list_name` is ignored.
-   *
+   * <br/>
    * If not set, event-level `item_list_name` is used, if present.
    */
   item_list_name?: string;
@@ -82,7 +84,7 @@ export interface GAItem {
   /**
    * The physical location associated with the item (e.g. the physical store location). It's recommended to use the
    * Google Place ID that corresponds to the associated item. A custom location ID can also be used.
-   *
+   * <br/>
    * **Note:** `location_id` is only available at the item-scope.
    */
   location_id?: string;
@@ -93,7 +95,7 @@ export interface GAItem {
   price?: number;
   /**
    * Item quantity.
-   *
+   * <br/>
    * If not set, `quantity` is set to 1.
    */
   quantity?: number;

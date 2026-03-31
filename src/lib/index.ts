@@ -8,7 +8,7 @@ export * from "./toasts";
 export * from "./price";
 export * from "./image";
 
-/** Configuration for Lordi's React Components */
+/** Configuration for Lordi's React Components. This is also accessible by the builtin alias, `LRC`. */
 export const LordisReactComponents: {
   /** The maximum number of one product that can be ordered at a time, regardless of stock. This is a hard cap. */
   maxProductOrder: number;

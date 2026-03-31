@@ -2,4 +2,7 @@
 
 > `const` **LocaleContext**: `Context`&lt;`ILocaleContext`&gt;
 
-Defined in: [localeHandler.ts:69](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/localeHandler.ts#L69)
+Defined in: [localeHandler.ts:73](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/localeHandler.ts#L73)
+
+Context wrapper which provides the user's locale, associated currency, and country. It's value should be set to the
+return value of [useLocale](useLocale.md) to automatically fetch these details by reverse geocoding the IP address.

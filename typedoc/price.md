@@ -16,5 +16,5 @@
 
 | Function | Description |
 | ------ | ------ |
-| [convertDinero](price/convertDinero.md) | Convert between currencies |
+| [convertDinero](price/convertDinero.md) | Convert between currencies. If called from the client, will cache exchange rates in session storage so that this function can be repeatedly called without spamming API requests. If this is called from the server, you should cache the exchange rates some other way and provide them using the `exchangeRates` parameter. |
 | [fetchExchangeRates](price/fetchExchangeRates.md) | Fetch the current exchange rates in relation to a currency. |

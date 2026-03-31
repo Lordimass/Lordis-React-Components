@@ -2,7 +2,7 @@
 
 > **trackViewPromotion**(`item`, `creative_name?`, `creative_slot?`, `promotion_id?`, `promotion_name?`): `void`
 
-Defined in: [ga/events.ts:586](https://github.com/Lordimass/Lordis-React-Components/blob/5a0469711f38fed4f9a62e593d9d25995d476106/src/lib/ga/events.ts#L586)
+Defined in: [ga/events.ts:586](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/ga/events.ts#L586)
 
 This event signifies a promotion was viewed from a list.
 
