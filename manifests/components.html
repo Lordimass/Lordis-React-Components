@@ -1,0 +1,3050 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Components Manifest</title>
+  <style>
+      :root {
+          --bg: #0b0c10;
+          --panel: #121318;
+          --muted: #9aa0a6;
+          --fg: #e8eaed;
+          --ok: #22c55e;
+          --info: #1e88e5;
+          --err: #c62828;
+          --ok-bg: #0c1a13;
+          --info-bg: #0c1624;
+          --err-bg: #1a0e0e;
+          --chip: #1f2330;
+          --border: #2b2f3a;
+          --link: #8ab4f8;
+          --active-ring: 1px; /* 1px active ring for pills and toggles */
+      }
+
+      * {
+          box-sizing: border-box;
+      }
+
+      html,
+      body {
+          margin: 0;
+          background: var(--bg);
+          color: var(--fg);
+          font: 14px/1.5 system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Ubuntu,
+          Cantarell,
+          'Helvetica Neue',
+          Arial,
+          'Noto Sans';
+      }
+
+      .wrap {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 16px 20px;
+      }
+
+      header {
+          position: sticky;
+          top: 0;
+          backdrop-filter: blur(6px);
+          background: color-mix(in srgb, var(--bg) 84%, transparent);
+          border-bottom: 1px solid var(--border);
+          z-index: 10;
+      }
+
+      h1 {
+          font-size: 20px;
+          margin: 0 0 6px;
+      }
+
+      .summary {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          align-items: center;
+      }
+
+      /* Top filter pills */
+      .filter-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          background: var(--panel);
+          text-decoration: none;
+          cursor: pointer;
+          user-select: none;
+          color: var(--fg);
+      }
+
+      .filter-pill.ok {
+          color: #b9f6ca;
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+          background: color-mix(in srgb, var(--ok) 18%, #000);
+      }
+
+      .filter-pill.info {
+          color: #b3d9ff;
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+          background: var(--info-bg);
+      }
+
+      .filter-pill.err {
+          color: #ff9aa0;
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+          background: var(--err-bg);
+      }
+
+      .filter-pill.all {
+          color: #d7dbe0;
+          border-color: var(--border);
+          background: var(--panel);
+      }
+
+      .filter-pill[aria-disabled='true'] {
+          cursor: default;
+          text-decoration: none;
+      }
+
+      .filter-pill:focus,
+      .filter-pill:active {
+          outline: none;
+          box-shadow: none;
+      }
+
+      /* Selected top pill ring via :target */
+      #filter-all:target ~ header .filter-pill[data-k='all'],
+      #filter-errors:target ~ header .filter-pill[data-k='errors'],
+      #filter-infos:target ~ header .filter-pill[data-k='infos'],
+      #filter-story-errors:target ~ header .filter-pill[data-k='story-errors'],
+      #filter-doc-errors:target ~ header .filter-pill[data-k='docs'],
+      #filter-docs:target ~ header .filter-pill[data-k='docs'] {
+          box-shadow: 0 0 0 var(--active-ring) currentColor;
+          border-color: currentColor;
+      }
+
+      /* Hidden targets for filtering */
+      #filter-all,
+      #filter-errors,
+      #filter-infos,
+      #filter-story-errors,
+      #filter-doc-errors,
+      #filter-docs {
+          display: none;
+      }
+
+      main {
+          padding: 36px 0 40px;
+      }
+
+      .grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 18px;
+      }
+
+      /* one card per row */
+
+      .card {
+          border: 1px solid var(--border);
+          background: var(--panel);
+          border-radius: 14px;
+          padding: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+      }
+
+      .head {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+      }
+
+      .title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+      }
+
+      .title h2 {
+          font-size: 16px;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .meta {
+          font-size: 12px;
+          color: var(--muted);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .kv {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+      }
+
+      .chip {
+          font-size: 12px;
+          padding: 4px 8px;
+          border-radius: 999px;
+          background: var(--chip);
+          border: 1px solid var(--border);
+      }
+
+      .hint {
+          color: var(--muted);
+          font-size: 12px;
+      }
+
+      .badges {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+
+      /* Per-card badges: labels become toggles when clickable */
+      .badge {
+          font-size: 12px;
+          padding: 3px 8px;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: var(--chip);
+          color: #d7dbe0;
+      }
+
+      .badge.ok {
+          color: #b9f6ca;
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+      }
+
+      .badge.info {
+          color: #b3d9ff;
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+      }
+
+      .badge.err {
+          color: #ff9aa0;
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+      }
+
+      .as-toggle {
+          cursor: pointer;
+      }
+
+      /* 1px ring on active toggle */
+      .tg-err:checked + label.as-toggle,
+      .tg-info:checked + label.as-toggle,
+      .tg-stories:checked + label.as-toggle,
+      .tg-docs:checked + label.as-toggle,
+      .tg-content:checked + label.as-toggle,
+      .tg-props:checked + label.as-toggle {
+          box-shadow: 0 0 0 var(--active-ring) currentColor;
+          border-color: currentColor;
+      }
+
+      /* Panels: hidden by default, shown when respective toggle checked */
+      .panels {
+          display: grid;
+          gap: 10px;
+      }
+
+      .panel {
+          display: none;
+      }
+
+      .tg-err:checked ~ .panels .panel-err {
+          display: grid;
+      }
+
+      .tg-info:checked ~ .panels .panel-info {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-stories:checked ~ .panels .panel-stories {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-docs:checked ~ .panels .panel-docs {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-content:checked ~ .panels .panel-content {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-props:checked ~ .panels .panel-props {
+          display: grid;
+      }
+
+      /* Colored notes for prop type error + info */
+      .note {
+          padding: 12px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+      }
+
+      .note.err {
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+          background: var(--err-bg);
+          color: #ffd1d4;
+      }
+
+      .note.info {
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+          background: var(--info-bg);
+          color: #d6e8ff;
+      }
+
+      .note.ok {
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+          background: var(--ok-bg);
+          color: var(--fg);
+      }
+
+      .note-title {
+          font-weight: 600;
+          margin-bottom: 6px;
+      }
+
+      .note-body {
+          white-space: normal;
+      }
+
+      /* Story error cards */
+      .ex {
+          padding: 10px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          background: #0f131b;
+      }
+
+      .ex.err {
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+      }
+
+      .row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+
+      .status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          display: inline-block;
+      }
+
+      .dot-ok {
+          background: var(--ok);
+      }
+
+      .dot-err {
+          background: var(--err);
+      }
+
+      .ex-name {
+          font-weight: 600;
+      }
+
+      /* Error groups (visible in errors filter) */
+      .error-groups {
+          display: none;
+          margin-bottom: 16px;
+      }
+
+      .group {
+          border: 1px solid var(--border);
+          background: var(--panel);
+          border-radius: 14px;
+          overflow: hidden;
+      }
+
+      .group + .group {
+          margin-top: 12px;
+      }
+
+      .group-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 14px;
+          cursor: pointer;
+          border-bottom: 1px solid var(--border);
+      }
+
+      .group-header:hover {
+          background: #141722;
+      }
+
+      .group-title {
+          font-weight: 600;
+          flex: 1;
+      }
+
+      .group-count {
+          font-size: 12px;
+          color: var(--muted);
+      }
+
+      .group-cards {
+          display: none;
+          padding: 12px;
+      }
+
+      .group .card {
+          margin: 12px 0;
+      }
+
+      .group .card:first-child {
+          margin-top: 0;
+      }
+
+      .group .card:last-child {
+          margin-bottom: 0;
+      }
+
+      /* caret rotation */
+      .group-tg:checked + label .caret {
+          transform: rotate(90deg);
+      }
+
+      .caret {
+          transition: transform 0.15s ease;
+      }
+
+      /* toggle body */
+      .group-tg:checked ~ .group-cards {
+          display: block;
+      }
+
+      /* CSS-only filtering of cards via top pills */
+      #filter-errors:target ~ main .card:not(.has-error):not(.has-story-error) {
+          display: none;
+      }
+
+      #filter-infos:target ~ main .card:not(.has-info) {
+          display: none;
+      }
+
+      #filter-story-errors:target ~ main .card:not(.has-story-error) {
+          display: none;
+      }
+
+      #filter-doc-errors:target ~ main .card:not(.has-doc-error) {
+          display: none;
+      }
+
+      #filter-docs:target ~ main .card:has(> .tg-docs),
+      #filter-docs:target ~ main .card.is-doc {
+          display: block;
+      }
+
+      #filter-docs:target ~ main .card:not(:has(> .tg-docs)):not(.is-doc) {
+          display: none;
+      }
+
+      #filter-all:target ~ main .card {
+          display: block;
+      }
+
+      /* In errors view, hide standalone component-error cards in the regular grid (they will appear in groups) */
+      #filter-errors:target ~ main .grid .card.has-error {
+          display: none;
+      }
+
+      /* Show grouped section only in errors view */
+      #filter-errors:target ~ main .error-groups {
+          display: block;
+      }
+
+      /* Section titles */
+      .section-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--muted);
+          margin: 24px 0 12px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--border);
+      }
+      .section-title:first-child {
+          margin-top: 0;
+      }
+
+      /* When a toggle is checked, show the corresponding panel */
+      .card > .tg-err:checked ~ .panels .panel-err {
+          display: grid;
+      }
+      
+      .card > .tg-info:checked ~ .panels .panel-info {
+          display: grid;
+      }
+      
+      .card > .tg-stories:checked ~ .panels .panel-stories {
+          display: grid;
+      }
+
+      .card > .tg-docs:checked ~ .panels .panel-docs {
+          display: grid;
+      }
+
+      .card > .tg-content:checked ~ .panels .panel-content {
+          display: grid;
+      }
+
+      /* Add vertical spacing around panels only when any panel is visible */
+      .card > .tg-err:checked ~ .panels,
+      .card > .tg-info:checked ~ .panels,
+      .card > .tg-stories:checked ~ .panels,
+      .card > .tg-docs:checked ~ .panels,
+      .card > .tg-content:checked ~ .panels,
+      .card > .tg-props:checked ~ .panels {
+          margin: 10px 0;
+      }
+
+      /* Optional: a subtle 1px ring on the active badge, using :has() if available */
+      @supports selector(.card:has(.tg-err:checked)) {
+          .card:has(.tg-err:checked) label[for$='-err'],
+          .card:has(.tg-info:checked) label[for$='-info'],
+          .card:has(.tg-stories:checked) label[for$='-stories'],
+          .card:has(.tg-docs:checked) label[for$='-docs'],
+          .card:has(.tg-content:checked) label[for$='-content'],
+          .card:has(.tg-props:checked) label[for$='-props'] {
+              box-shadow: 0 0 0 1px currentColor;
+              border-color: currentColor;
+          }
+      }
+
+      /* Wrap long lines in code blocks at ~120 characters */
+      pre, code {
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      pre {
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          overflow-x: auto; /* fallback for extremely long tokens */
+          margin: 8px 0 0;
+      }
+      pre > code {
+          display: block;
+          white-space: inherit;
+          overflow-wrap: inherit;
+          word-break: inherit;
+          inline-size: min(100%, 120ch);
+      }
+
+      /* MDX content container for docs */
+      .mdx-content {
+          background: #0f131b;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 12px;
+          max-height: 400px;
+          overflow-y: auto;
+          margin-top: 8px;
+      }
+  </style>
+</head>
+<body>
+<!-- Hidden targets for the top-level filters -->
+<span id="filter-all"></span>
+<span id="filter-errors"></span>
+<span id="filter-infos"></span>
+<span id="filter-story-errors"></span>
+<span id="filter-doc-errors"></span>
+<span id="filter-docs"></span>
+<header>
+  <div class="wrap">
+    <h1>Manifest Debugger</h1>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/12 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">2/12 infos</a><a class="filter-pill err" data-k="story-errors" href="#filter-story-errors">1/40 story errors</a><a class="filter-pill ok" data-k="docs" href="#filter-docs">17 docs ok</a></div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="note ok" style="margin-bottom: 16px;">
+              Using <code>react-docgen-typescript</code>. Generation took <strong>2.5s</strong>.
+            </div>
+    <h2 class="section-title">Components</h2>
+    <div class="grid" role="list">
+      
+<article
+  class="card 
+  no-error 
+  has-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="BasketModifier">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> BasketModifier</h2>
+      <div class="badges">
+        <label for="c-0-components-ticker-basketmodifier-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-0-components-ticker-basketmodifier-info" class="badge info as-toggle">1 info</label>
+        <label for="c-0-components-ticker-basketmodifier-stories" class="badge ok as-toggle">4 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Ticker/BasketModifier/BasketModifier.stories.tsx">components-ticker-basketmodifier · ./src/components/Ticker/BasketModifier/BasketModifier.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="c-0-components-ticker-basketmodifier-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-0-components-ticker-basketmodifier-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-0-components-ticker-basketmodifier-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">9 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Ticker\BasketModifier\BasketModifier.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * The default ticker value, defaults to `min` if unset
+ */
+defaultValue?: number | (number &amp; readonly string[])
+
+/**
+ * Height of the element
+ */
+height?: string
+
+/**
+ * ID attribute to assign to the input field, required for accessibility
+ */
+inputId: string
+
+/**
+ * The maximum possible ticker value
+ */
+max?: number
+
+/**
+ * The minimum possible ticker value, defaults to 0
+ */
+min?: number
+
+/**
+ * Function to call when the value of the ticker is changed.
+ */
+onChange?: ((value: number) =&gt; void | Promise&lt;void&gt;)
+
+/**
+ * The product for which to control the basket quantity of. If a collection of products is provided, this will be treated as a product group.
+ */
+product: ProductData | ProductGroup
+
+/**
+ * Whether to display the maximum value of the ticker.
+ */
+showMaxValue?: boolean
+
+/**
+ * Ref to be set by this component to a function that can be used to update the ticker value externally
+ * to the component
+ */
+updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | null&gt;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { BasketModifier, LRCRemoteSettingsContext } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;BasketModifier
+    onChange={fn()}
+    product={fakeProduct}
+    inputId=&quot;default-basket-modifier-story&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Out Of Stock</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const OutOfStock = () =&gt; &lt;BasketModifier
+    onChange={fn()}
+    product={fakeProduct2}
+    inputId=&quot;out-of-stock-basket-modifier-story&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Disabled</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Disabled = () =&gt; &lt;BasketModifier
+    onChange={fn()}
+    product={fakeProduct3}
+    inputId=&quot;disabled-basket-modifier-story&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Kill Switch</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const KillSwitch = () =&gt; &lt;BasketModifier
+    onChange={fn()}
+    product={fakeProduct2}
+    inputId=&quot;kill-switch-basket-modifier-story&quot; /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="Content">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Content</h2>
+      <div class="badges">
+        <label for="c-1-components-content-props" class="badge ok as-toggle">7 prop types</label>
+        
+        <label for="c-1-components-content-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Content/Content.stories.tsx">components-content · ./src/components/Content/Content.stories.tsx</div>
+    
+    <div class="hint">Content for a page, including important page header tags. You will generally want to use this component in conjunction with a custom `Page` component which should provide a header and footer for the page.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-1-components-content-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-1-components-content-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">7 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Content\Content.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Canonical URL for the page. Used by Google search indexing to determine the &quot;main&quot; URL for a given page.
+ */
+canonical?: string
+
+/**
+ * The ID of the div holding the page content.
+ */
+id?: string
+
+/**
+ * Whether the page is done loading, will display a throbber instead of page content until this is true.
+ */
+loadCondition?: boolean = true
+
+/**
+ * Text to display by the throbber while `loadCondition` is false.
+ */
+loadingText?: string = Loading...
+
+/**
+ * Page description for &lt;meta&gt; tag.
+ */
+metaDescription?: string | null
+
+/**
+ * Whether to tell Googlebot not to index this page.
+ */
+noindex?: boolean = false
+
+/**
+ * The title of the page, written on the tab next to the favicon.
+ */
+title?: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Content } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Content noindex={false} loadCondition={false} loadingText=&quot;Loading...&quot; /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  has-error 
+  has-info 
+  has-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="Events">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> Events</h2>
+      <div class="badges">
+        <label for="c-2-lib-google-analytics-events-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-2-lib-google-analytics-events-info" class="badge info as-toggle">1 info</label>
+        <label for="c-2-lib-google-analytics-events-stories" class="badge err as-toggle">1/1 story errors</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/ga/events.stories.tsx">lib-google-analytics-events · ./src/lib/ga/events.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-2-lib-google-analytics-events-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-2-lib-google-analytics-events-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-2-lib-google-analytics-events-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  53 | import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+  54 |
+&gt; 55 | const meta: Meta = {
+     | ^
+  56 |   title: &quot;lib/Google Analytics/Events&quot;,
+  57 |   parameters: {
+  58 |     docs: {
+
+./src/lib/ga/events.stories.tsx:
+// @ts-ignore
+import trackPageView from &quot;../../../typedoc/ga/events/trackPageView.md?raw&quot;;
+// @ts-ignore
+import trackEarnVirtualCurrency from &quot;../../../typedoc/ga/events/trackEarnVirtualCurrency.md?raw&quot;;
+// @ts-ignore
+import trackJoinGroup from &quot;../../../typedoc/ga/events/trackJoinGroup.md?raw&quot;;
+// @ts-ignore
+import trackLogin from &quot;../../../typedoc/ga/events/trackLogin.md?raw&quot;;
+// @ts-ignore
+import trackSearch from &quot;../../../typedoc/ga/events/trackSearch.md?raw&quot;;
+// @ts-ignore
+import trackSelectContent from &quot;../../../typedoc/ga/events/trackSelectContent.md?raw&quot;;
+// @ts-ignore
+import trackShare from &quot;../../../typedoc/ga/events/trackShare.md?raw&quot;;
+// @ts-ignore
+import trackSignUp from &quot;../../../typedoc/ga/events/trackSignUp.md?raw&quot;;
+// @ts-ignore
+import trackSpendVirtualCurrency from &quot;../../../typedoc/ga/events/trackSpendVirtualCurrency.md?raw&quot;;
+// @ts-ignore
+import trackTutorialBegin from &quot;../../../typedoc/ga/events/trackTutorialBegin.md?raw&quot;;
+// @ts-ignore
+import trackTutorialComplete from &quot;../../../typedoc/ga/events/trackTutorialComplete.md?raw&quot;;
+// @ts-ignore
+import trackAddPaymentInfo from &quot;../../../typedoc/ga/events/trackAddPaymentInfo.md?raw&quot;;
+// @ts-ignore
+import trackAddShippingInfo from &quot;../../../typedoc/ga/events/trackAddShippingInfo.md?raw&quot;;
+// @ts-ignore
+import trackAddToCart from &quot;../../../typedoc/ga/events/trackAddToCart.md?raw&quot;;
+// @ts-ignore
+import trackAddToWishlist from &quot;../../../typedoc/ga/events/trackAddToWishlist.md?raw&quot;;
+// @ts-ignore
+import trackBeginCheckout from &quot;../../../typedoc/ga/events/trackBeginCheckout.md?raw&quot;;
+// @ts-ignore
+import trackPurchase from &quot;../../../typedoc/ga/events/trackPurchase.md?raw&quot;;
+// @ts-ignore
+import trackRefund from &quot;../../../typedoc/ga/events/trackRefund.md?raw&quot;;
+// @ts-ignore
+import trackRemoveFromCart from &quot;../../../typedoc/ga/events/trackRemoveFromCart.md?raw&quot;;
+// @ts-ignore
+import trackSelectItem from &quot;../../../typedoc/ga/events/trackSelectItem.md?raw&quot;;
+// @ts-ignore
+import trackSelectPromotion from &quot;../../../typedoc/ga/events/trackSelectPromotion.md?raw&quot;;
+// @ts-ignore
+import trackViewCart from &quot;../../../typedoc/ga/events/trackViewCart.md?raw&quot;;
+// @ts-ignore
+import trackViewItem from &quot;../../../typedoc/ga/events/trackViewItem.md?raw&quot;;
+// @ts-ignore
+import trackViewItemList from &quot;../../../typedoc/ga/events/trackViewItemList.md?raw&quot;;
+// @ts-ignore
+import trackViewPromotion from &quot;../../../typedoc/ga/events/trackViewPromotion.md?raw&quot;;
+import type { Meta } from &quot;@storybook/react&quot;;
+import { StoryObj } from &quot;@storybook/react-vite&quot;;
+import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+
+const meta: Meta = {
+  title: &quot;lib/Google Analytics/Events&quot;,
+  parameters: {
+    docs: {
+      page: () =&gt; (
+        &lt;&gt;
+          &lt;Markdown&gt;{trackPageView}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackEarnVirtualCurrency}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackJoinGroup}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackLogin}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSearch}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectContent}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackShare}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSignUp}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSpendVirtualCurrency}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackTutorialBegin}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackTutorialComplete}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddPaymentInfo}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddShippingInfo}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToWishlist}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackBeginCheckout}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackPurchase}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRefund}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRemoveFromCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectItem}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectPromotion}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItem}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItemList}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewPromotion}&lt;/Markdown&gt;
+          &lt;br /&gt;
+        &lt;/&gt;
+      ),
+      toc: {
+        headingSelector: &quot;h1&quot;,
+      },
+    },
+  },
+};
+
+export default meta;
+
+export const Default: StoryObj = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+            <div class="note err">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge err">story error</span>
+              </div>
+              
+              
+              
+              <pre><code>Could not generate snippet without component name.</code></pre>
+            </div>
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Markdown } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="LRC_Toast">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> LRC_Toast</h2>
+      <div class="badges">
+        <label for="c-3-components-toastwrapper-lrc-toast-props" class="badge ok as-toggle">2 prop types</label>
+        
+        <label for="c-3-components-toastwrapper-lrc-toast-stories" class="badge ok as-toggle">10 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/ToastWrapper/LRC_Toast.stories.tsx">components-toastwrapper-lrc-toast · ./src/components/ToastWrapper/LRC_Toast.stories.tsx</div>
+    
+    <div class="hint">Internal wrapper component for React Bootstrap Toasts.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-3-components-toastwrapper-lrc-toast-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-3-components-toastwrapper-lrc-toast-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">2 prop types</span>
+            </div>
+            <pre><code>Component: src\components\ToastWrapper\ToastWrapper.tsx::LRC_Toast</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Function to call to close the toast
+ */
+onClose: () =&gt; void
+
+/**
+ * Toast to display
+ */
+toast: IToast</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { LRC_Toast } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;LRC_Toast toast={{ msg: &quot;Toast message&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Image</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithImage = () =&gt; &lt;LRC_Toast toast={{ ...toast, image: fakeMinimalImage2 }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Light</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Light = () =&gt; &lt;LRC_Toast toast={{ ...toast, variant: &quot;light&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Dark</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Dark = () =&gt; &lt;LRC_Toast toast={{ ...toast, variant: &quot;dark&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Warning</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Warning = () =&gt; &lt;LRC_Toast toast={{ ...toast, variant: &quot;warning&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Danger</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Danger = () =&gt; &lt;LRC_Toast toast={{ ...toast, variant: &quot;danger&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Info</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Info = () =&gt; &lt;LRC_Toast toast={{ ...toast, variant: &quot;info&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Primary</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Primary = () =&gt; &lt;LRC_Toast toast={{ ...toast, variant: &quot;primary&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Secondary</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Secondary = () =&gt; &lt;LRC_Toast toast={{ ...toast, variant: &quot;secondary&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Success</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Success = () =&gt; &lt;LRC_Toast toast={{ ...toast, variant: &quot;success&quot; }} onClose={fn()} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="LrcContext">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> LrcContext</h2>
+      <div class="badges">
+        <label for="c-4-components-lrccontext-props" class="badge ok as-toggle">1 prop type</label>
+        
+        <label for="c-4-components-lrccontext-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/LRCContext/LRCContext.stories.tsx">components-lrccontext · ./src/components/LRCContext/LRCContext.stories.tsx</div>
+    
+    <div class="hint">Context provider for all key LRC functionality. Each context provider can theoretically be used in isolation, but it&#39;s best to have this as close to the root of the DOM as possible as many of the components in the library (particularly webshop components) require this context to work properly. Provides: - {@link LRCRemoteSettingsContext`LRCRemoteSettingsContext`} - {@link ToastWrapper`ToastWrapper`} - {@link LocaleContext`LocaleContext`}</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-4-components-lrccontext-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-4-components-lrccontext-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">1 prop type</span>
+            </div>
+            <pre><code>Component: src\components\LRCContext\LRCContext.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Settings for components which are provided from some external source. For example, this could be used to configure
+ * the site based on values from a database table, which is fetched when the site loads. Certain keys are reserved for
+ * settings which are used by components, which you can be set freely, so long as they follow the given structure.
+ */
+LRCRemoteSettingsContextValue?: LRCRemoteSettings</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { LrcContext } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;LrcContext&gt;(&lt;span&gt;This is a context component, put content inside it and access it using{&quot; &quot;}
+      &lt;pre style={{ display: &quot;inline&quot; }}&gt;useContext&lt;/pre&gt;.
+            &lt;/span&gt;)&lt;/LrcContext&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="PageSelector">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> PageSelector</h2>
+      <div class="badges">
+        <label for="c-5-components-ticker-pageselector-props" class="badge ok as-toggle">3 prop types</label>
+        
+        <label for="c-5-components-ticker-pageselector-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Ticker/PageSelector/PageSelector.stories.tsx">components-ticker-pageselector · ./src/components/Ticker/PageSelector/PageSelector.stories.tsx</div>
+    
+    <div class="hint">Wrapper for {@link Ticker}. Constructs a component to give the user an interface for selecting a page number in a range.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-5-components-ticker-pageselector-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-5-components-ticker-pageselector-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">3 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Ticker\PageSelector\PageSelector.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * ID attribute to assign to the input field, required for accessibility
+ */
+id: string
+
+/**
+ * Function to call when the page number is changed
+ */
+onChange?: ((value: number) =&gt; void | Promise&lt;void&gt;)
+
+/**
+ * The number of pages available to choose from
+ */
+pageCount: number</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { PageSelector } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;PageSelector onChange={fn()} id=&quot;default-page-selector-story&quot; pageCount={10} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="Price">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Price</h2>
+      <div class="badges">
+        <label for="c-6-components-price-props" class="badge ok as-toggle">4 prop types</label>
+        
+        <label for="c-6-components-price-stories" class="badge ok as-toggle">3 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Price/Price.stories.tsx">components-price · ./src/components/Price/Price.stories.tsx</div>
+    
+    <div class="hint">Price display in user&#39;s local currency provided by {@link LocaleContext} (default , or any custom currency supplied through the `currency` property.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-6-components-price-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-6-components-price-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">4 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Price\Price.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Dinero object representing the price to display to the user.
+ */
+baseDinero: Dinero
+
+/**
+ * Choose a currency to display other than that of the user&#39;s local currency.
+ */
+currency?: Currency
+
+/**
+ * Display baseDinero as is, with no conversion
+ */
+noConversion?: boolean = false
+
+/**
+ * Display currency in a simpler format, with a constant font size and no currency code indicator
+ */
+simple?: boolean = false</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { LocaleContext, Price } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Price
+    baseDinero={DineroFactory({ amount: 499, currency: &quot;GBP&quot;, precision: 2 })}
+    currency=&quot;GBP&quot;
+    noConversion={false}
+    simple={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Simple</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Simple = () =&gt; &lt;Price
+    baseDinero={DineroFactory({ amount: 499, currency: &quot;GBP&quot;, precision: 2 })}
+    currency=&quot;GBP&quot;
+    noConversion={false}
+    simple /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Tax Inclusive Disclaimer</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const TaxInclusiveDisclaimer = () =&gt; &lt;Price
+    baseDinero={DineroFactory({ amount: 499, currency: &quot;GBP&quot;, precision: 2 })}
+    currency=&quot;USD&quot;
+    noConversion={false} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="Product">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Product</h2>
+      <div class="badges">
+        <label for="c-7-components-product-props" class="badge ok as-toggle">6 prop types</label>
+        
+        <label for="c-7-components-product-stories" class="badge ok as-toggle">8 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Product/Product.stories.tsx">components-product · ./src/components/Product/Product.stories.tsx</div>
+    
+    <div class="hint">Displays a product or product group with an optional basket ticker.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-7-components-product-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-7-components-product-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">6 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Product\Product.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Show additional information about the product, such as the SKU. Defaults to `false`
+ */
+admin?: boolean = false
+
+/**
+ * Override currency to display. Only use to display a currency other than the user&#39;s local currency.
+ */
+currency?: Currency
+
+/**
+ * Forces the product to render vertically, even when horizontal space dictates that it should be horizontal.
+ * Defaults to `false`
+ */
+forceVertical?: boolean = false
+
+/**
+ * Whether the product should be forced to order content horizontally rather than vertically. Defaults to
+ * `false`. &lt;br&gt;
+ * This cannot be disabled if `quantityLocked` is `true` since all quantity locked products display horizontally.
+ */
+horizontal?: boolean = false
+
+/**
+ * The product or product group to display.
+ */
+prod: ProductData | ProductGroup
+
+/**
+ * If this `true`, the quantity of the product in the user&#39;s basket cannot be changed by this component. Defaults
+ * to `false`.
+ */
+quantityLocked?: boolean = false</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Product } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Single Product</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SingleProduct = () =&gt; &lt;Product
+    prod={fakeProduct}
+    horizontal={false}
+    quantityLocked={false}
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Single Product Out Of Stock</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SingleProductOutOfStock = () =&gt; &lt;Product
+    prod={fakeProduct2}
+    horizontal={false}
+    quantityLocked={false}
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Single Product Horizontal</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SingleProductHorizontal = () =&gt; &lt;Product
+    prod={fakeProduct}
+    horizontal
+    quantityLocked={false}
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Group</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Group = () =&gt; &lt;Product
+    prod={fakeProductGroup}
+    horizontal={false}
+    quantityLocked={false}
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Group Horizontal</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const GroupHorizontal = () =&gt; &lt;Product
+    prod={fakeProductGroup}
+    horizontal
+    quantityLocked={false}
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Quantity Locked</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const QuantityLocked = () =&gt; &lt;Product
+    prod={fakeProduct}
+    horizontal={false}
+    quantityLocked
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Basket Product</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const BasketProduct = () =&gt; &lt;Product
+    prod={fakeBasketProduct}
+    horizontal={false}
+    quantityLocked
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">No Images</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const NoImages = () =&gt; &lt;Product
+    prod={fakeProductNoImages}
+    horizontal={false}
+    quantityLocked={false}
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="ProductPrice">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ProductPrice</h2>
+      <div class="badges">
+        <label for="c-8-components-price-productprice-props" class="badge ok as-toggle">2 prop types</label>
+        
+        <label for="c-8-components-price-productprice-stories" class="badge ok as-toggle">3 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Price/ProductPrice/ProductPrice.stories.tsx">components-price-productprice · ./src/components/Price/ProductPrice/ProductPrice.stories.tsx</div>
+    
+    <div class="hint">Displays a price (or price range) for a given product or product group.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-8-components-price-productprice-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-8-components-price-productprice-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">2 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Price\ProductPrice\ProductPrice.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Override currency to display. Only use to display a currency other than the user&#39;s local currency.
+ */
+currency?: Currency
+
+/**
+ * The product or product group to display a price for
+ */
+prod: ProductData | ProductGroup</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ProductPrice } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ProductPrice prod={fakeProduct} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Price Range</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const PriceRange = () =&gt; &lt;ProductPrice prod={fakeProductGroup} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">All Equal Prices</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AllEqualPrices = () =&gt; &lt;ProductPrice prod={new ProductGroup(fakeProductGroup.products.slice(0, 2))} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="SquareImageBox">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> SquareImageBox</h2>
+      <div class="badges">
+        <label for="c-9-components-squareimagebox-props" class="badge ok as-toggle">27 prop types</label>
+        
+        <label for="c-9-components-squareimagebox-stories" class="badge ok as-toggle">5 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/SquareImageBox/SquareImageBox.stories.tsx">components-squareimagebox · ./src/components/SquareImageBox/SquareImageBox.stories.tsx</div>
+    
+    <div class="hint">Displays an image coerced into a square box by using blurred versions of the image as letterboxing. When multiple images are supplied, a reactive image carousel is displayed in this same square box.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-9-components-squareimagebox-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-9-components-squareimagebox-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">27 prop types</span>
+            </div>
+            <pre><code>Component: src\components\SquareImageBox\SquareImageBox.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>activeIndex?: number
+
+as?: ElementType&lt;any, keyof IntrinsicElements&gt;
+
+bsPrefix?: string
+
+controls?: boolean
+
+defaultActiveIndex?: number
+
+fade?: boolean
+
+/**
+ * Whether hovering over the image should blow it up into a full screen preview. Defaults to `false`.
+ */
+hoverable?: boolean = false
+
+/**
+ * Image or images to display.
+ */
+image?: MinimalImage | MinimalImage[]
+
+indicatorLabels?: string[]
+
+indicators?: boolean
+
+interval?: number | null
+
+keyboard?: boolean
+
+/**
+ * Loading eagerness of images, &quot;eager&quot; or &quot;lazy&quot;. Defaults to `lazy`.
+ */
+loading?: &quot;eager&quot; | &quot;lazy&quot; = lazy
+
+nextIcon?: ReactNode
+
+nextLabel?: ReactNode
+
+onSelect?: ((eventKey: number, event: Record&lt;string, unknown&gt; | null) =&gt; void)
+
+onSlid?: ((eventKey: number, direction: &quot;start&quot; | &quot;end&quot;) =&gt; void)
+
+onSlide?: ((eventKey: number, direction: &quot;start&quot; | &quot;end&quot;) =&gt; void)
+
+pause?: false | &quot;hover&quot;
+
+prevIcon?: ReactNode
+
+prevLabel?: ReactNode
+
+ref?: Ref&lt;CarouselRef&gt; | MutableRefObject&lt;CarouselRef&gt; | undefined
+
+/**
+ * Size of the box as a dynamic CSS string, defaults to 200px.
+ */
+size?: string = 200px
+
+slide?: boolean
+
+touch?: boolean
+
+variant?: string
+
+wrap?: boolean</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { SquareImageBox } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Single</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Single = () =&gt; &lt;SquareImageBox hoverable={false} image={fakeMinimalImage} size=&quot;300px&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Missing Image</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const MissingImage = () =&gt; &lt;SquareImageBox hoverable={false} image={undefined} size=&quot;300px&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Carousel</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Carousel = () =&gt; &lt;SquareImageBox
+    hoverable={false}
+    image={[fakeMinimalImage, fakeMinimalImage2, fakeMinimalImage3]}
+    size=&quot;300px&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Single Hoverable</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SingleHoverable = () =&gt; &lt;SquareImageBox hoverable image={fakeMinimalImage} size=&quot;300px&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Carousel Hoverable</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const CarouselHoverable = () =&gt; &lt;SquareImageBox
+    hoverable
+    image={[fakeMinimalImage, fakeMinimalImage2, fakeMinimalImage3]}
+    size=&quot;300px&quot; /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="Ticker">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Ticker</h2>
+      <div class="badges">
+        <label for="c-10-components-ticker-props" class="badge ok as-toggle">9 prop types</label>
+        
+        <label for="c-10-components-ticker-stories" class="badge ok as-toggle">2 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Ticker/Ticker.stories.tsx">components-ticker · ./src/components/Ticker/Ticker.stories.tsx</div>
+    
+    <div class="hint">Extensible and generic ticker component with increase &amp; decrease buttons, as well as a text field.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-10-components-ticker-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-10-components-ticker-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">9 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Ticker\Ticker.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * `aria-label` property for input field.
+ */
+ariaLabel?: string
+
+/**
+ * The default ticker value, defaults to `min` if unset
+ */
+defaultValue?: number | (number &amp; readonly string[])
+
+/**
+ * Height of the element
+ */
+height?: string = 50px
+
+/**
+ * ID attribute to assign to the input field, required for accessibility
+ */
+inputId: string
+
+/**
+ * The maximum possible ticker value
+ */
+max?: number
+
+/**
+ * The minimum possible ticker value, defaults to 0
+ */
+min?: number = 0
+
+/**
+ * Function to call when the value of the ticker is changed.
+ */
+onChange?: ((value: number) =&gt; void | Promise&lt;void&gt;)
+
+/**
+ * Whether to display the maximum value of the ticker.
+ */
+showMaxValue?: boolean = false
+
+/**
+ * Ref to be set by this component to a function that can be used to update the ticker value externally
+ * to the component
+ */
+updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | null&gt;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Ticker } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Ticker
+    onChange={fn()}
+    showMaxValue={false}
+    inputId=&quot;default-ticker-story&quot;
+    ariaLabel=&quot;Default Ticker&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Max Value</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const MaxValue = () =&gt; &lt;Ticker
+    onChange={fn()}
+    showMaxValue
+    inputId=&quot;default-ticker-story&quot;
+    ariaLabel=&quot;Default Ticker&quot;
+    max={10} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="ToastWrapper">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ToastWrapper</h2>
+      <div class="badges">
+        <label for="c-11-components-toastwrapper-props" class="badge ok as-toggle">2 prop types</label>
+        
+        <label for="c-11-components-toastwrapper-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/ToastWrapper/ToastWrapper.stories.tsx">components-toastwrapper · ./src/components/ToastWrapper/ToastWrapper.stories.tsx</div>
+    
+    <div class="hint">Wrapper for Bootstrap Toasts, including providing {@link ToastContext} with a method that can be called to display a toast.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-11-components-toastwrapper-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-11-components-toastwrapper-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">2 prop types</span>
+            </div>
+            <pre><code>Component: src\components\ToastWrapper\ToastWrapper.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Default information to display on toasts when not provided.
+ */
+defaults?: Partial&lt;IToast&gt; = { title: &quot;Notification&quot; }
+
+/**
+ * Callback function when the toasts on display change
+ */
+onChange?: ((toasts: IToast[]) =&gt; void) = () =&gt; {}</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import {
+    Controls,
+    Description,
+    Markdown,
+    Primary,
+    Stories,
+    Subtitle,
+    Title,
+    ToastWrapper,
+} from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ToastWrapper onChange={fn()}&gt;&lt;AddToast /&gt;&lt;/ToastWrapper&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+    </div>
+    <div class="error-groups" role="region" aria-label="Prop type error groups">
+        <section class="group">
+          <input id="no-component-found-toggle" class="group-tg" type="checkbox" hidden />
+          <label for="no-component-found-toggle" class="group-header">
+            <span class="caret">▸</span>
+            <span class="group-title">No component found</span>
+            <span class="group-count">1</span>
+          </label>
+          <div class="group-cards">
+<article
+  class="card 
+  has-error 
+  has-info 
+  has-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="Events">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> Events</h2>
+      <div class="badges">
+        <label for="c-error-0-lib-google-analytics-events-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-error-0-lib-google-analytics-events-info" class="badge info as-toggle">1 info</label>
+        <label for="c-error-0-lib-google-analytics-events-stories" class="badge err as-toggle">1/1 story errors</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/ga/events.stories.tsx">lib-google-analytics-events · ./src/lib/ga/events.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-error-0-lib-google-analytics-events-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-0-lib-google-analytics-events-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-0-lib-google-analytics-events-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  53 | import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+  54 |
+&gt; 55 | const meta: Meta = {
+     | ^
+  56 |   title: &quot;lib/Google Analytics/Events&quot;,
+  57 |   parameters: {
+  58 |     docs: {
+
+./src/lib/ga/events.stories.tsx:
+// @ts-ignore
+import trackPageView from &quot;../../../typedoc/ga/events/trackPageView.md?raw&quot;;
+// @ts-ignore
+import trackEarnVirtualCurrency from &quot;../../../typedoc/ga/events/trackEarnVirtualCurrency.md?raw&quot;;
+// @ts-ignore
+import trackJoinGroup from &quot;../../../typedoc/ga/events/trackJoinGroup.md?raw&quot;;
+// @ts-ignore
+import trackLogin from &quot;../../../typedoc/ga/events/trackLogin.md?raw&quot;;
+// @ts-ignore
+import trackSearch from &quot;../../../typedoc/ga/events/trackSearch.md?raw&quot;;
+// @ts-ignore
+import trackSelectContent from &quot;../../../typedoc/ga/events/trackSelectContent.md?raw&quot;;
+// @ts-ignore
+import trackShare from &quot;../../../typedoc/ga/events/trackShare.md?raw&quot;;
+// @ts-ignore
+import trackSignUp from &quot;../../../typedoc/ga/events/trackSignUp.md?raw&quot;;
+// @ts-ignore
+import trackSpendVirtualCurrency from &quot;../../../typedoc/ga/events/trackSpendVirtualCurrency.md?raw&quot;;
+// @ts-ignore
+import trackTutorialBegin from &quot;../../../typedoc/ga/events/trackTutorialBegin.md?raw&quot;;
+// @ts-ignore
+import trackTutorialComplete from &quot;../../../typedoc/ga/events/trackTutorialComplete.md?raw&quot;;
+// @ts-ignore
+import trackAddPaymentInfo from &quot;../../../typedoc/ga/events/trackAddPaymentInfo.md?raw&quot;;
+// @ts-ignore
+import trackAddShippingInfo from &quot;../../../typedoc/ga/events/trackAddShippingInfo.md?raw&quot;;
+// @ts-ignore
+import trackAddToCart from &quot;../../../typedoc/ga/events/trackAddToCart.md?raw&quot;;
+// @ts-ignore
+import trackAddToWishlist from &quot;../../../typedoc/ga/events/trackAddToWishlist.md?raw&quot;;
+// @ts-ignore
+import trackBeginCheckout from &quot;../../../typedoc/ga/events/trackBeginCheckout.md?raw&quot;;
+// @ts-ignore
+import trackPurchase from &quot;../../../typedoc/ga/events/trackPurchase.md?raw&quot;;
+// @ts-ignore
+import trackRefund from &quot;../../../typedoc/ga/events/trackRefund.md?raw&quot;;
+// @ts-ignore
+import trackRemoveFromCart from &quot;../../../typedoc/ga/events/trackRemoveFromCart.md?raw&quot;;
+// @ts-ignore
+import trackSelectItem from &quot;../../../typedoc/ga/events/trackSelectItem.md?raw&quot;;
+// @ts-ignore
+import trackSelectPromotion from &quot;../../../typedoc/ga/events/trackSelectPromotion.md?raw&quot;;
+// @ts-ignore
+import trackViewCart from &quot;../../../typedoc/ga/events/trackViewCart.md?raw&quot;;
+// @ts-ignore
+import trackViewItem from &quot;../../../typedoc/ga/events/trackViewItem.md?raw&quot;;
+// @ts-ignore
+import trackViewItemList from &quot;../../../typedoc/ga/events/trackViewItemList.md?raw&quot;;
+// @ts-ignore
+import trackViewPromotion from &quot;../../../typedoc/ga/events/trackViewPromotion.md?raw&quot;;
+import type { Meta } from &quot;@storybook/react&quot;;
+import { StoryObj } from &quot;@storybook/react-vite&quot;;
+import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+
+const meta: Meta = {
+  title: &quot;lib/Google Analytics/Events&quot;,
+  parameters: {
+    docs: {
+      page: () =&gt; (
+        &lt;&gt;
+          &lt;Markdown&gt;{trackPageView}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackEarnVirtualCurrency}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackJoinGroup}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackLogin}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSearch}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectContent}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackShare}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSignUp}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSpendVirtualCurrency}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackTutorialBegin}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackTutorialComplete}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddPaymentInfo}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddShippingInfo}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToWishlist}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackBeginCheckout}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackPurchase}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRefund}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRemoveFromCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectItem}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectPromotion}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItem}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItemList}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewPromotion}&lt;/Markdown&gt;
+          &lt;br /&gt;
+        &lt;/&gt;
+      ),
+      toc: {
+        headingSelector: &quot;h1&quot;,
+      },
+    },
+  },
+};
+
+export default meta;
+
+export const Default: StoryObj = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+            <div class="note err">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge err">story error</span>
+              </div>
+              
+              
+              
+              <pre><code>Could not generate snippet without component name.</code></pre>
+            </div>
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Markdown } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+        </div>
+    
+  </div>
+</article></div>
+        </section>
+      </div>
+    <h2 class="section-title">Unattached Docs</h2>
+    <div class="grid" role="list">
+      
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Lordi&#39;s React Components</h2>
+      <div class="badges">
+        
+        <label for="doc-0-lordi-s-react-components-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/LordisReactComponents.mdx">lordi-s-react-components--docs · ./src/lib/LordisReactComponents.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-0-lordi-s-react-components-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import LordisReactComponents from &quot;../../typedoc/index/LordisReactComponents.md?raw&quot;;
+import README from &quot;../../typedoc/README.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;Lordi&#39;s React Components&quot;/&gt;
+&lt;Markdown&gt;{README}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{LordisReactComponents}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/LocaleContext</h2>
+      <div class="badges">
+        
+        <label for="doc-1-lib-localecontext-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/LocaleContext.mdx">lib-localecontext--docs · ./src/lib/LocaleContext.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-1-lib-localecontext-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import useLocale from &quot;../../typedoc/localeHandler/useLocale.md?raw&quot;;
+import LocaleContext from &quot;../../typedoc/localeHandler/localeContext.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/LocaleContext&quot;/&gt;
+&lt;Markdown&gt;{useLocale}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{LocaleContext}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/Price/convertDinero</h2>
+      <div class="badges">
+        
+        <label for="doc-2-lib-price-convertdinero-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/convertDinero.mdx">lib-price-convertdinero--docs · ./src/lib/convertDinero.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-2-lib-price-convertdinero-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import convertDinero from &quot;../../typedoc/price/convertDinero.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/Price/convertDinero&quot;/&gt;
+&lt;Markdown&gt;{convertDinero}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/Price/fetchExchangeRates</h2>
+      <div class="badges">
+        
+        <label for="doc-3-lib-price-fetchexchangerates-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/fetchExchangeRates.mdx">lib-price-fetchexchangerates--docs · ./src/lib/fetchExchangeRates.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-3-lib-price-fetchexchangerates-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import fetchExchangeRates from &quot;../../typedoc/price/fetchExchangeRates.md?raw&quot;;
+import ExchangeRates from &quot;../../typedoc/price/ExchangeRates.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/Price/fetchExchangeRates&quot;/&gt;
+&lt;Markdown&gt;{fetchExchangeRates}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{ExchangeRates}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/Google Analytics/GAItem</h2>
+      <div class="badges">
+        
+        <label for="doc-4-lib-google-analytics-gaitem-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/ga/GAItem.mdx">lib-google-analytics-gaitem--docs · ./src/lib/ga/GAItem.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-4-lib-google-analytics-gaitem-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import GAItem from &quot;../../../typedoc/ga/types/GAItem.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/Google Analytics/GAItem&quot;/&gt;
+&lt;Markdown&gt;{GAItem}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/Google Analytics/Cookie Consent</h2>
+      <div class="badges">
+        
+        <label for="doc-5-lib-google-analytics-cookie-consent-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/ga/index.mdx">lib-google-analytics-cookie-consent--docs · ./src/lib/ga/index.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-5-lib-google-analytics-cookie-consent-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import acceptCookies from &quot;../../../typedoc/ga/acceptCookies.md?raw&quot;;
+import declineCookies from &quot;../../../typedoc/ga/declineCookies.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/Google Analytics/Cookie Consent&quot;/&gt;
+# Cookie Consent
+&lt;br/&gt;
+&lt;Markdown&gt;{acceptCookies}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{declineCookies}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/Google Analytics/initGA4</h2>
+      <div class="badges">
+        
+        <label for="doc-6-lib-google-analytics-initga4-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/ga/initGA4.mdx">lib-google-analytics-initga4--docs · ./src/lib/ga/initGA4.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-6-lib-google-analytics-initga4-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import initGA4 from &quot;../../../typedoc/ga/init/initGA4.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/Google Analytics/initGA4&quot;/&gt;
+&lt;Markdown&gt;{initGA4}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/getProductPagePath</h2>
+      <div class="badges">
+        
+        <label for="doc-7-lib-getproductpagepath-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/getProductPagePath.mdx">lib-getproductpagepath--docs · ./src/lib/getProductPagePath.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-7-lib-getproductpagepath-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import getProductPagePath from &quot;../../typedoc/routing/getProductPagePath.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/getProductPagePath&quot;/&gt;
+&lt;Markdown&gt;{getProductPagePath}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/Image/getRepresentativeImage</h2>
+      <div class="badges">
+        
+        <label for="doc-8-lib-image-getrepresentativeimage-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/getRepresentativeImage.mdx">lib-image-getrepresentativeimage--docs · ./src/lib/getRepresentativeImage.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-8-lib-image-getrepresentativeimage-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import getRepresentativeImage from &quot;../../typedoc/image/getRepresentativeImage.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/Image/getRepresentativeImage&quot;/&gt;
+&lt;Markdown&gt;{getRepresentativeImage}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/types/Basket/Basket</h2>
+      <div class="badges">
+        
+        <label for="doc-9-lib-types-basket-basket-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/types/Basket.mdx">lib-types-basket-basket--docs · ./src/lib/types/Basket.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-9-lib-types-basket-basket-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import Basket from &quot;../../../typedoc/types/basket/Basket.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/types/Basket/Basket&quot;/&gt;
+&lt;Markdown&gt;{Basket}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/types/Basket/BasketProduct</h2>
+      <div class="badges">
+        
+        <label for="doc-10-lib-types-basket-basketproduct-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/types/BasketProduct.mdx">lib-types-basket-basketproduct--docs · ./src/lib/types/BasketProduct.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-10-lib-types-basket-basketproduct-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import BasketProduct from &quot;../../../typedoc/types/basket/BasketProduct.md?raw&quot;;
+import ProductDataConstructorOpts from &quot;../../../typedoc/types/product/ProductDataConstructorOpts.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/types/Basket/BasketProduct&quot;/&gt;
+&lt;Markdown&gt;{BasketProduct}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{ProductDataConstructorOpts}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/types/LRCRemoteSettings</h2>
+      <div class="badges">
+        
+        <label for="doc-11-lib-types-lrcremotesettings-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/types/LRCRemoteSettings.mdx">lib-types-lrcremotesettings--docs · ./src/lib/types/LRCRemoteSettings.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-11-lib-types-lrcremotesettings-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import LRCRemoteSettings from &quot;../../../typedoc/types/LRCRemoteSettings.md?raw&quot;;
+import SessionNotif from &quot;../../../typedoc/types/SessionNotif.md?raw&quot;;
+import ClockifyUser from &quot;../../../typedoc/types/ClockifyUser.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/types/LRCRemoteSettings&quot;/&gt;
+&lt;Markdown&gt;{LRCRemoteSettings}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{SessionNotif}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{ClockifyUser}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/types/Image/MinimalImage</h2>
+      <div class="badges">
+        
+        <label for="doc-12-lib-types-image-minimalimage-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/types/MinimalImage.mdx">lib-types-image-minimalimage--docs · ./src/lib/types/MinimalImage.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-12-lib-types-image-minimalimage-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import MinimalImage from &quot;../../../typedoc/types/image/MinimalImage.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/types/Image/MinimalImage&quot;/&gt;
+&lt;Markdown&gt;{MinimalImage}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/types/Product/MinimalProduct</h2>
+      <div class="badges">
+        
+        <label for="doc-13-lib-types-product-minimalproduct-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/types/MinimalProduct.mdx">lib-types-product-minimalproduct--docs · ./src/lib/types/MinimalProduct.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-13-lib-types-product-minimalproduct-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import MinimalProduct from &quot;../../../typedoc/types/product/MinimalProduct.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/types/Product/MinimalProduct&quot;/&gt;
+&lt;Markdown&gt;{MinimalProduct}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/types/Image/MinimalProductImage</h2>
+      <div class="badges">
+        
+        <label for="doc-14-lib-types-image-minimalproductimage-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/types/MinimalProductImage.mdx">lib-types-image-minimalproductimage--docs · ./src/lib/types/MinimalProductImage.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-14-lib-types-image-minimalproductimage-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import MinimalProductImage from &quot;../../../typedoc/types/image/MinimalProductImage.md?raw&quot;;
+import AssociationMetadata from &quot;../../../typedoc/types/image/AssociationMetadata.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/types/Image/MinimalProductImage&quot;/&gt;
+&lt;Markdown&gt;{MinimalProductImage}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{AssociationMetadata}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/types/Product/ProductData</h2>
+      <div class="badges">
+        
+        <label for="doc-15-lib-types-product-productdata-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/types/ProductData.mdx">lib-types-product-productdata--docs · ./src/lib/types/ProductData.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-15-lib-types-product-productdata-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import ProductData from &quot;../../../typedoc/types/product/ProductData.md?raw&quot;;
+import ProductDataConstructorOpts from &quot;../../../typedoc/types/product/ProductDataConstructorOpts.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/types/Product/ProductData&quot;/&gt;
+&lt;Markdown&gt;{ProductData}&lt;/Markdown&gt;
+&lt;br/&gt;
+&lt;Markdown&gt;{ProductDataConstructorOpts}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> lib/types/Product/ProductGroup</h2>
+      <div class="badges">
+        
+        <label for="doc-16-lib-types-product-productgroup-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/types/ProductGroup.mdx">lib-types-product-productgroup--docs · ./src/lib/types/ProductGroup.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-16-lib-types-product-productgroup-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import ProductGroup from &quot;../../../typedoc/types/product/ProductGroup.md?raw&quot;;
+import {Markdown, Meta} from &quot;@storybook/addon-docs/blocks&quot;;
+
+&lt;Meta title=&quot;lib/types/Product/ProductGroup&quot;/&gt;
+&lt;Markdown&gt;{ProductGroup}&lt;/Markdown&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+    </div>
+    
+  </div>
+</main>
+</body>
+</html>  

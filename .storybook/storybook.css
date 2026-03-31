@@ -1,0 +1,5 @@
+/* Hide TOC if there is no content */
+/* NOTE: alternatively, use `.sbdocs.sbdocs-toc--custom:not(:has(.toc-list))` which may be slightly less performant, but more succinct and arguably less dependent on the exact HTML structure */
+/*.sbdocs.sbdocs-toc--custom:not(:has(> nav > .toc-wrapper > .toc-list)) {*/
+/*  display: none;*/
+/*}*/
