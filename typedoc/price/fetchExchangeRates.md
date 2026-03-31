@@ -2,7 +2,7 @@
 
 > **fetchExchangeRates**(`from`): `Promise`&lt;[`ExchangeRates`](ExchangeRates.md)&gt;
 
-Defined in: [price.ts:41](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/price.ts#L41)
+Defined in: [price.ts:41](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/price.ts#L41)
 
 Fetch the current exchange rates in relation to a currency.
 

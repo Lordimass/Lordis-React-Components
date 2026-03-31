@@ -6,6 +6,7 @@
 | ------ | ------ |
 | [ga](ga.md) | - |
 | [ga/events](ga/events.md) | - |
+| [ga/events.stories](ga/events.stories.md) | - |
 | [ga/init](ga/init.md) | - |
 | [ga/types](ga/types.md) | - |
 | [image](image.md) | - |

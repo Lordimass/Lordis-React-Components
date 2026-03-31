@@ -1,6 +1,7 @@
 import { Preview } from "@storybook/react-vite";
 import { spyOn } from "storybook/test";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./storybook.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Decorator } from "@storybook/react-vite";
 import LRCContextProvider from "../src/components/LRCContext/LRCContext";
@@ -23,6 +24,9 @@ const preview: Preview = {
       grid: {
         opacity: 0.2,
       },
+    },
+    docs: {
+      toc: true,
     },
     layout: "centered",
   },

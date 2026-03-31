@@ -2,7 +2,7 @@
 
 > **ExchangeRates** = `object` & `object`
 
-Defined in: [price.ts:24](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/price.ts#L24)
+Defined in: [price.ts:24](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/price.ts#L24)
 
 A mapping from currency strings to their conversion rates.
 

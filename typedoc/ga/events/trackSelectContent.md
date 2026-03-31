@@ -2,7 +2,7 @@
 
 > **trackSelectContent**(`content_type`, `content_id`): `void`
 
-Defined in: [ga/events.ts:87](https://github.com/Lordimass/Lordis-React-Components/blob/aa128b98749d67f71bbe2a0ad87371f57e55e964/src/lib/ga/events.ts#L87)
+Defined in: [ga/events.ts:87](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/ga/events.ts#L87)
 
 This event signifies that a user has selected some content of a certain type. This event can help you identify
 popular content and categories of content on your website or app.
