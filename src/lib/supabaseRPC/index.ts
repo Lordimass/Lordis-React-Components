@@ -2,13 +2,6 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { LRC } from "../index";
 
-const SUPABASE_DATABASE_URL: string = import.meta.env
-  .VITE_SUPABASE_DATABASE_URL;
-const SUPABASE_ANON_KEY: string = import.meta.env.VITE_SUPABASE_ANON_KEY;
-if (SUPABASE_DATABASE_URL && SUPABASE_ANON_KEY) {
-  LRC.supabase = new SupabaseClient(SUPABASE_DATABASE_URL, SUPABASE_ANON_KEY);
-}
-
 /**
  * Safe call of {@link SupabaseClient.rpc} with the option to notify users when something goes wrong. It's recommended
  * that you wrap this function with other functions for each Postgres function you want to call, e.g. a `getProducts`
@@ -68,8 +61,7 @@ export interface UseRPCReturn<T> {
  * Postgres function you want to call, e.g. a `useGetProducts` function which wraps `useCallRPC("get_products", {})`,
  * and returns {@link UseRPCReturn | `UseRPCReturn<ProductData>`} for type safety.
  *
- * {@link LRC.supabase} must be defined. If `VITE_SUPABASE_DATABASE_URL` & `VITE_SUPABASE_ANON_KEY` from
- * `import.meta.env`
+ * {@link LRC.supabase} must be defined.
  *
  * @param functionName The name of the Postgres function to call.
  * @param params Any parameters for the function.

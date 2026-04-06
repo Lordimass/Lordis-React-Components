@@ -29,9 +29,8 @@ export const LordisReactComponents: {
    */
   defaultCurrency: Currency;
   /**
-   * The Supabase Client to use when needed. By default, this will try to pull the database URL and Anon key as
-   * `VITE_SUPABASE_DATABASE_URL` & `VITE_SUPABASE_ANON_KEY` from `import.meta.env`, but if they aren't found then
-   * this is left `undefined` and you will need to provide it yourself if needed.
+   * The Supabase Client to use when needed. By default, this is left `undefined` and you will need to provide it
+   * yourself if needed.
    */
   supabase?: SupabaseClient;
 } = {
