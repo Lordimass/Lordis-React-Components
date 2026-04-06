@@ -2,7 +2,7 @@
 
 > `const` **LordisReactComponents**: `object`
 
-Defined in: [index.ts:12](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/index.ts#L12)
+Defined in: [index.ts:14](https://github.com/Lordimass/Lordis-React-Components/blob/84f83f1effeca17588c60e2c43324be932b6da49/src/lib/index.ts#L14)
 
 Configuration for Lordi's React Components. This is also accessible by the builtin alias, `LRC`.
 
@@ -16,3 +16,4 @@ Configuration for Lordi's React Components. This is also accessible by the built
 | `disabledProductMessages.disabled` | `string` | - |
 | `disabledProductMessages.out_of_stock` | `string` | - |
 | <a id="maxproductorder"></a> `maxProductOrder` | `number` | The maximum number of one product that can be ordered at a time, regardless of stock. This is a hard cap. |
+| <a id="supabase"></a> `supabase?` | `SupabaseClient` | The Supabase Client to use when needed. By default, this will try to pull the database URL and Anon key as `VITE_SUPABASE_DATABASE_URL` & `VITE_SUPABASE_ANON_KEY` from `import.meta.env`, but if they aren't found then this is left `undefined` and you will need to provide it yourself if needed. |

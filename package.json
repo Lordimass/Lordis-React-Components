@@ -1,9 +1,9 @@
 {
   "name": "lordis-react-components",
   "type": "module",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "My personal React component library.",
-  "homepage": "https://github.com/Lordimass/Lordis-React-Components",
+  "homepage": "https://lordimass.github.io/Lordis-React-Components",
   "bugs": {
     "url": "https://github.com/Lordimass/Lordis-React-Components/issues"
   },
@@ -29,11 +29,14 @@
     "build-typedoc": "npx typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-rename-defaults",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build-typedoc && npm run build-storybook",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d storybook-static",
     "pub": "tsup && npm publish"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
     "dinero.js": "^1.9.1",
+    "gh-pages": "^6.3.0",
     "locale-currency": "^1.0.0",
     "motion": "^12.34.3",
     "react": "^19.2.4",
@@ -48,6 +51,7 @@
     "@storybook/addon-docs": "^10.3.3",
     "@storybook/addon-vitest": "^10.3.3",
     "@storybook/react-vite": "^10.3.3",
+    "@supabase/supabase-js": "^2.101.1",
     "@types/dinero.js": "^1.9.4",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.14",

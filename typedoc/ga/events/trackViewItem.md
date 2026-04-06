@@ -2,7 +2,7 @@
 
 > **trackViewItem**(`currency`, `value`, `items`): `void`
 
-Defined in: [ga/events.ts:535](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/ga/events.ts#L535)
+Defined in: [ga/events.ts:535](https://github.com/Lordimass/Lordis-React-Components/blob/84f83f1effeca17588c60e2c43324be932b6da49/src/lib/ga/events.ts#L535)
 
 This event signifies that some content was shown to the user. Use this event to discover the most popular items viewed.
 

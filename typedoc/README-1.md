@@ -33,6 +33,12 @@ Re-exports [BasketProduct](types/basket/BasketProduct.md)
 
 ***
 
+### callRPC
+
+Re-exports [callRPC](supabaseRPC/callRPC.md)
+
+***
+
 ### ClockifyUser
 
 Re-exports [ClockifyUser](types/ClockifyUser.md)
@@ -318,3 +324,15 @@ Re-exports [trackViewItemList](ga/events/trackViewItemList.md)
 ### trackViewPromotion
 
 Re-exports [trackViewPromotion](ga/events/trackViewPromotion.md)
+
+***
+
+### useCallRPC
+
+Re-exports [useCallRPC](supabaseRPC/useCallRPC.md)
+
+***
+
+### UseRPCReturn
+
+Re-exports [UseRPCReturn](supabaseRPC/UseRPCReturn.md)

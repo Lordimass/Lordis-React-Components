@@ -1,6 +1,6 @@
 # IToast `<Interface>`
 
-Defined in: [toasts.ts:7](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/toasts.ts#L7)
+Defined in: [toasts.ts:7](https://github.com/Lordimass/Lordis-React-Components/blob/84f83f1effeca17588c60e2c43324be932b6da49/src/lib/toasts.ts#L7)
 
 A custom toast.
 

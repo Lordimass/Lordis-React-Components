@@ -14,6 +14,7 @@
 | [localeHandler](localeHandler.md) | - |
 | [price](price.md) | - |
 | [routing](routing.md) | - |
+| [supabaseRPC](supabaseRPC.md) | - |
 | [toasts](toasts.md) | - |
 | [types](types.md) | - |
 | [types/basket](types/basket.md) | - |

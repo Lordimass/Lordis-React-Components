@@ -2,7 +2,7 @@
 
 > **initGA4**(`measurement_id`, `dev?`): `void`
 
-Defined in: [ga/init.ts:21](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/ga/init.ts#L21)
+Defined in: [ga/init.ts:21](https://github.com/Lordimass/Lordis-React-Components/blob/84f83f1effeca17588c60e2c43324be932b6da49/src/lib/ga/init.ts#L21)
 
 Initialises Google Analytics 4 with default denied settings until cookies are accepted.
 

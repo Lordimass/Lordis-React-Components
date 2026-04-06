@@ -1,6 +1,6 @@
 # MinimalImage `<Interface>`
 
-Defined in: [types/image.ts:2](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/types/image.ts#L2)
+Defined in: [types/image.ts:2](https://github.com/Lordimass/Lordis-React-Components/blob/84f83f1effeca17588c60e2c43324be932b6da49/src/lib/types/image.ts#L2)
 
 The minimum data required to represent an image
 

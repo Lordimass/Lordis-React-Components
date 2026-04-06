@@ -1,6 +1,6 @@
 # ClockifyUser `<Interface>`
 
-Defined in: [types/index.ts:30](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/types/index.ts#L30)
+Defined in: [types/index.ts:30](https://github.com/Lordimass/Lordis-React-Components/blob/84f83f1effeca17588c60e2c43324be932b6da49/src/lib/types/index.ts#L30)
 
 ## Properties
 

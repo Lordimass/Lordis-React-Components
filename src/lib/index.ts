@@ -1,4 +1,5 @@
 import Dinero, { Currency } from "dinero.js";
+import { SupabaseClient } from "@supabase/supabase-js";
 
 export * from "./types";
 export * from "./ga";
@@ -7,6 +8,7 @@ export * from "./routing";
 export * from "./toasts";
 export * from "./price";
 export * from "./image";
+export * from "./supabaseRPC";
 
 /** Configuration for Lordi's React Components. This is also accessible by the builtin alias, `LRC`. */
 export const LordisReactComponents: {
@@ -26,6 +28,12 @@ export const LordisReactComponents: {
    * {@link Dinero.defaultCurrency} too.
    */
   defaultCurrency: Currency;
+  /**
+   * The Supabase Client to use when needed. By default, this will try to pull the database URL and Anon key as
+   * `VITE_SUPABASE_DATABASE_URL` & `VITE_SUPABASE_ANON_KEY` from `import.meta.env`, but if they aren't found then
+   * this is left `undefined` and you will need to provide it yourself if needed.
+   */
+  supabase?: SupabaseClient;
 } = {
   maxProductOrder: 10,
   disabledProductMessages: {

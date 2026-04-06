@@ -2,7 +2,7 @@
 
 > **getProductPagePath**(`sku`, `maintainQueryString?`): `string`
 
-Defined in: [routing.ts:13](https://github.com/Lordimass/Lordis-React-Components/blob/f78061d1f0a0b6e5e1d28ae400bc1274db428614/src/lib/routing.ts#L13)
+Defined in: [routing.ts:13](https://github.com/Lordimass/Lordis-React-Components/blob/84f83f1effeca17588c60e2c43324be932b6da49/src/lib/routing.ts#L13)
 
 Get the relative path to a product page. Does not check whether that product actually exists.
 
