@@ -6,7 +6,7 @@ import { LRC } from "../index";
 /** A product object with the absolute minimum data to be identifiable as a product */
 export interface MinimalProduct {
   /** The ID of this product */
-  sku: number;
+  sku: number | string;
   /** Customer facing name of the product.*/
   name?: string;
   /** Quantity of this product in stock */
@@ -36,7 +36,7 @@ export interface ProductDataConstructorOpts {
 /** A fully fledged product object. */
 export class ProductData implements MinimalProduct {
   /** The ID of this product */
-  public sku: number;
+  public sku: number | string;
   /** Customer facing name of the product.*/
   public name: string;
   /** Quantity of this product in stock */
@@ -56,7 +56,7 @@ export class ProductData implements MinimalProduct {
   public metadata: { [key: string]: any };
   [key: string]: unknown;
 
-  constructor(sku: number, opts: ProductDataConstructorOpts = {}) {
+  constructor(sku: number | string, opts: ProductDataConstructorOpts = {}) {
     this.sku = sku;
     this.name = opts.name ?? "...";
     this.stock = opts.stock ?? 0;

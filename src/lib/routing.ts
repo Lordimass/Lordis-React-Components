@@ -10,7 +10,10 @@
  * @example "/products/1"
  * @example "/products/1?locale=en-GB"
  */
-export function getProductPagePath(sku: number, maintainQueryString = true) {
+export function getProductPagePath(
+  sku: number | string,
+  maintainQueryString = true,
+) {
   const url = new URL(window.location.href);
   url.pathname = `/products/${sku}`;
   return url.pathname + (maintainQueryString ? url.search : "");

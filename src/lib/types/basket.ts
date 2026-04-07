@@ -6,7 +6,7 @@ export class BasketProduct extends ProductData {
   public basketQuantity?: number;
 
   constructor(
-    sku: number,
+    sku: number | string,
     /** The quantity of this product in the user's basket */
     basketQuantity: number,
     opts?: ProductDataConstructorOpts,
