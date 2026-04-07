@@ -1,6 +1,0 @@
-# Lordi's React Components
-This is [my](https://lordimass.net/) personal React component library, originally made up of components which were developed for [`TSISG-Webshop`](https://github.com/Lordimass/TSISG-Webshop). At time of writing, it's now used for [`Glow-Me-Webshop`](https://github.com/Lordimass/Glow-Me-Webshop), but it's written in a way that should make it helpful to anyone who wants to use it, and for myself to implement on other web projects if I want to.
-  
-The library doesn't just include React components as the name would suggest; it also contains a bunch of helper methods, types, and classes, which are in the `lib` folder. Much of this is based around the assumption that you would be using [Stripe](https://stripe.com) to manage a webshop with a custom site, as this is what I was doing when I made the components, but it *should* also work for any other ecosystem you choose to use (although this is untested).
-  
-In summary, this library is for my personal (and professional) use, and is designed as such. You may find some of it useful, but don't expect consistent maintenance.
