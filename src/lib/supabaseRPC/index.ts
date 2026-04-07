@@ -81,7 +81,6 @@ export function useCallRPC(
     async function fetchData() {
       try {
         const result = await callRPC(functionName, params, notify);
-        console.log(result);
         setData(result);
       } catch (err: any) {
         setError(err);
