@@ -4,7 +4,10 @@ function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
   if (window.gtag) {
     window.gtag("event", eventName, eventParams);
   } else {
-    console.warn("window.gtag is not defined.");
+    console.warn(
+      `window.gtag is not defined for event "${eventName}" with props: `,
+      eventParams,
+    );
   }
 }
 

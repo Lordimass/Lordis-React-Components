@@ -58,8 +58,8 @@ export const fakeProduct: ProductData = new ProductData(1, {
   stock: 10,
 });
 
-export const fakeProductLongName: ProductData = new ProductData(1, {
-  name: "This product has a reaaaally long name! But it still works ok... I hope.",
+export const fakeProductLongName: ProductData = new ProductData(5, {
+  name: "This product has a reaaaally long name! But it still works ok!",
   images: [fakeMinimalImage3, fakeMinimalImage, fakeMinimalImage2],
   price: 4.99,
   stock: 10,
@@ -84,7 +84,7 @@ export const fakeProduct3: ProductData = new ProductData(3, {
   stock: 10,
 });
 
-export const fakeProductNoImages: ProductData = new ProductData(3, {
+export const fakeProductNoImages: ProductData = new ProductData(4, {
   name: "Fake Product No Images",
   stock: 10,
 });
@@ -103,6 +103,15 @@ export const fakeProductGroup: ProductGroup = new ProductGroup([
     groupName: "Product Group 1",
   }),
 ]);
+
+export const allFakeProducts: (ProductData | ProductGroup)[] = [
+  fakeProduct,
+  fakeProduct2,
+  fakeProduct3,
+  fakeProductNoImages,
+  fakeProductGroup,
+  fakeProductLongName,
+];
 
 export const fakeBasketProduct: BasketProduct = new BasketProduct(
   fakeProduct.sku,

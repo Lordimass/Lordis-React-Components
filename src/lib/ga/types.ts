@@ -1,3 +1,10 @@
+import {
+  BasketProduct,
+  ProductData,
+  ProductDataConstructorOpts,
+  ProductGroup,
+} from "../types";
+
 /**
  * A product used in Google Analytics events.
  *
@@ -99,4 +106,50 @@ export interface GAItem {
    * If not set, `quantity` is set to 1.
    */
   quantity?: number;
+}
+
+/**
+ * A product used in Google Analytics events.
+ *
+ * Interpreted from the [GA4 Documentation](https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtag#add_payment_info_item)
+ */
+export class GAItem {
+  /** Construct a Google Analytics item from {@link ProductData}*/
+  constructor(
+    product: ProductData | BasketProduct | ProductGroup,
+    overrides?: Partial<GAItem>,
+  ) {
+    if (product instanceof ProductGroup) {
+      this.item_id = "" + product.products[0].sku;
+      this.item_name = product.groupName;
+      this.price = product.products[0].price;
+    } else if (product instanceof BasketProduct) {
+      this.quantity = product.basketQuantity;
+    } else {
+      this.item_id = "" + product.sku;
+      this.item_name = product.groupName ?? product.name;
+      this.item_variant = product.groupName ? product.name : undefined;
+      this.price = product.price * 100;
+    }
+
+    if (overrides) {
+      this.item_id = overrides.item_id;
+      this.item_name = overrides.item_name;
+      this.affiliation = overrides.affiliation;
+      this.creative_name = overrides.creative_name;
+      this.creative_slot = overrides.creative_slot;
+      this.discount = overrides.discount;
+      this.index = overrides.index;
+      this.item_brand = overrides.item_brand;
+      this.item_category = overrides.item_category;
+      this.item_category2 = overrides.item_category2;
+      this.item_category3 = overrides.item_category3;
+      this.item_list_id = overrides.item_list_id;
+      this.item_list_name = overrides.item_list_name;
+      this.item_variant = overrides.item_variant;
+      this.location_id = overrides.location_id;
+      this.price = overrides.price;
+      this.quantity = overrides.quantity;
+    }
+  }
 }

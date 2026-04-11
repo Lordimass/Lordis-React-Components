@@ -115,6 +115,9 @@ const meta: Meta = {
       },
     },
   },
+  component: () => {
+    return <></>;
+  },
 };
 
 export default meta;
