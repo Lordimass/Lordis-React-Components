@@ -576,17 +576,235 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/12 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">2/12 infos</a><a class="filter-pill err" data-k="story-errors" href="#filter-story-errors">1/41 story errors</a><a class="filter-pill ok" data-k="docs" href="#filter-docs">18 docs ok</a></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/13 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">2/13 infos</a><span class="filter-pill ok" aria-disabled="true">43 stories ok</span><a class="filter-pill ok" data-k="docs" href="#filter-docs">18 docs ok</a></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note ok" style="margin-bottom: 16px;">
-              Using <code>react-docgen-typescript</code>. Generation took <strong>3.4s</strong>.
+              Using <code>react-docgen-typescript</code>. Generation took <strong>3.1s</strong>.
             </div>
     <h2 class="section-title">Components</h2>
     <div class="grid" role="list">
       
+<article
+  class="card 
+  has-error 
+  has-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> () =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}</h2>
+      <div class="badges">
+        <label for="c-0-lib-google-analytics-events-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-0-lib-google-analytics-events-info" class="badge info as-toggle">1 info</label>
+        <label for="c-0-lib-google-analytics-events-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/ga/events.stories.tsx">lib-google-analytics-events · ./src/lib/ga/events.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-0-lib-google-analytics-events-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-0-lib-google-analytics-events-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-0-lib-google-analytics-events-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>No component file found for the &quot;() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}&quot; component.
+  53 | import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+  54 |
+&gt; 55 | const meta: Meta = {
+     | ^
+  56 |   title: &quot;lib/Google Analytics/Events&quot;,
+  57 |   parameters: {
+  58 |     docs: {
+
+./src/lib/ga/events.stories.tsx:
+// @ts-ignore
+import trackPageView from &quot;../../../typedoc/ga/events/trackPageView.md?raw&quot;;
+// @ts-ignore
+import trackEarnVirtualCurrency from &quot;../../../typedoc/ga/events/trackEarnVirtualCurrency.md?raw&quot;;
+// @ts-ignore
+import trackJoinGroup from &quot;../../../typedoc/ga/events/trackJoinGroup.md?raw&quot;;
+// @ts-ignore
+import trackLogin from &quot;../../../typedoc/ga/events/trackLogin.md?raw&quot;;
+// @ts-ignore
+import trackSearch from &quot;../../../typedoc/ga/events/trackSearch.md?raw&quot;;
+// @ts-ignore
+import trackSelectContent from &quot;../../../typedoc/ga/events/trackSelectContent.md?raw&quot;;
+// @ts-ignore
+import trackShare from &quot;../../../typedoc/ga/events/trackShare.md?raw&quot;;
+// @ts-ignore
+import trackSignUp from &quot;../../../typedoc/ga/events/trackSignUp.md?raw&quot;;
+// @ts-ignore
+import trackSpendVirtualCurrency from &quot;../../../typedoc/ga/events/trackSpendVirtualCurrency.md?raw&quot;;
+// @ts-ignore
+import trackTutorialBegin from &quot;../../../typedoc/ga/events/trackTutorialBegin.md?raw&quot;;
+// @ts-ignore
+import trackTutorialComplete from &quot;../../../typedoc/ga/events/trackTutorialComplete.md?raw&quot;;
+// @ts-ignore
+import trackAddPaymentInfo from &quot;../../../typedoc/ga/events/trackAddPaymentInfo.md?raw&quot;;
+// @ts-ignore
+import trackAddShippingInfo from &quot;../../../typedoc/ga/events/trackAddShippingInfo.md?raw&quot;;
+// @ts-ignore
+import trackAddToCart from &quot;../../../typedoc/ga/events/trackAddToCart.md?raw&quot;;
+// @ts-ignore
+import trackAddToWishlist from &quot;../../../typedoc/ga/events/trackAddToWishlist.md?raw&quot;;
+// @ts-ignore
+import trackBeginCheckout from &quot;../../../typedoc/ga/events/trackBeginCheckout.md?raw&quot;;
+// @ts-ignore
+import trackPurchase from &quot;../../../typedoc/ga/events/trackPurchase.md?raw&quot;;
+// @ts-ignore
+import trackRefund from &quot;../../../typedoc/ga/events/trackRefund.md?raw&quot;;
+// @ts-ignore
+import trackRemoveFromCart from &quot;../../../typedoc/ga/events/trackRemoveFromCart.md?raw&quot;;
+// @ts-ignore
+import trackSelectItem from &quot;../../../typedoc/ga/events/trackSelectItem.md?raw&quot;;
+// @ts-ignore
+import trackSelectPromotion from &quot;../../../typedoc/ga/events/trackSelectPromotion.md?raw&quot;;
+// @ts-ignore
+import trackViewCart from &quot;../../../typedoc/ga/events/trackViewCart.md?raw&quot;;
+// @ts-ignore
+import trackViewItem from &quot;../../../typedoc/ga/events/trackViewItem.md?raw&quot;;
+// @ts-ignore
+import trackViewItemList from &quot;../../../typedoc/ga/events/trackViewItemList.md?raw&quot;;
+// @ts-ignore
+import trackViewPromotion from &quot;../../../typedoc/ga/events/trackViewPromotion.md?raw&quot;;
+import type { Meta } from &quot;@storybook/react&quot;;
+import { StoryObj } from &quot;@storybook/react-vite&quot;;
+import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+
+const meta: Meta = {
+  title: &quot;lib/Google Analytics/Events&quot;,
+  parameters: {
+    docs: {
+      page: () =&gt; (
+        &lt;&gt;
+          &lt;Markdown&gt;{trackPageView}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackEarnVirtualCurrency}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackJoinGroup}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackLogin}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSearch}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectContent}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackShare}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSignUp}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSpendVirtualCurrency}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackTutorialBegin}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackTutorialComplete}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddPaymentInfo}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddShippingInfo}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToWishlist}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackBeginCheckout}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackPurchase}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRefund}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRemoveFromCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectItem}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackSelectPromotion}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItem}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItemList}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewPromotion}&lt;/Markdown&gt;
+          &lt;br /&gt;
+        &lt;/&gt;
+      ),
+      toc: {
+        headingSelector: &quot;h1&quot;,
+      },
+    },
+  },
+  component: () =&gt; {
+    return &lt;&gt;&lt;/&gt;;
+  },
+};
+
+export default meta;
+
+export const Default: StoryObj = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Markdown } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
 <article
   class="card 
   no-error 
@@ -599,9 +817,9 @@
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> BasketModifier</h2>
       <div class="badges">
-        <label for="c-0-components-ticker-basketmodifier-props" class="badge ok as-toggle">9 prop types</label>
-        <label for="c-0-components-ticker-basketmodifier-info" class="badge info as-toggle">1 info</label>
-        <label for="c-0-components-ticker-basketmodifier-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-1-components-ticker-basketmodifier-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-1-components-ticker-basketmodifier-info" class="badge info as-toggle">1 info</label>
+        <label for="c-1-components-ticker-basketmodifier-stories" class="badge ok as-toggle">4 stories</label>
         
       </div>
     </div>
@@ -613,10 +831,10 @@
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-0-components-ticker-basketmodifier-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-0-components-ticker-basketmodifier-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-1-components-ticker-basketmodifier-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-1-components-ticker-basketmodifier-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-0-components-ticker-basketmodifier-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-1-components-ticker-basketmodifier-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -761,9 +979,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Content</h2>
       <div class="badges">
-        <label for="c-1-components-content-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-2-components-content-props" class="badge ok as-toggle">7 prop types</label>
         
-        <label for="c-1-components-content-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-2-components-content-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -776,9 +994,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-1-components-content-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-2-components-content-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-1-components-content-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-2-components-content-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -850,214 +1068,6 @@ title?: string</code></pre>
               
               <pre><code>const Default = () =&gt; &lt;Content noindex={false} loadCondition={false} loadingText=&quot;Loading...&quot; /&gt;;</code></pre>
             </div>
-        </div>
-    
-  </div>
-</article>
-<article
-  class="card 
-  has-error 
-  has-info 
-  has-story-error
-  no-doc-error"
-  role="listitem"
-  aria-label="Events">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-err"></span> Events</h2>
-      <div class="badges">
-        <label for="c-2-lib-google-analytics-events-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-2-lib-google-analytics-events-info" class="badge info as-toggle">1 info</label>
-        <label for="c-2-lib-google-analytics-events-stories" class="badge err as-toggle">1/1 story errors</label>
-        
-      </div>
-    </div>
-    <div class="meta" title="./src/lib/ga/events.stories.tsx">lib-google-analytics-events · ./src/lib/ga/events.stories.tsx</div>
-    
-    
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-2-lib-google-analytics-events-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-2-lib-google-analytics-events-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-2-lib-google-analytics-events-stories" class="tg tg-stories" type="checkbox" hidden />
-  
-  
-
-  <div class="panels">
-    
-        <div class="panel panel-err">
-          
-    <div class="note err">
-      <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
-  53 | import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
-  54 |
-&gt; 55 | const meta: Meta = {
-     | ^
-  56 |   title: &quot;lib/Google Analytics/Events&quot;,
-  57 |   parameters: {
-  58 |     docs: {
-
-./src/lib/ga/events.stories.tsx:
-// @ts-ignore
-import trackPageView from &quot;../../../typedoc/ga/events/trackPageView.md?raw&quot;;
-// @ts-ignore
-import trackEarnVirtualCurrency from &quot;../../../typedoc/ga/events/trackEarnVirtualCurrency.md?raw&quot;;
-// @ts-ignore
-import trackJoinGroup from &quot;../../../typedoc/ga/events/trackJoinGroup.md?raw&quot;;
-// @ts-ignore
-import trackLogin from &quot;../../../typedoc/ga/events/trackLogin.md?raw&quot;;
-// @ts-ignore
-import trackSearch from &quot;../../../typedoc/ga/events/trackSearch.md?raw&quot;;
-// @ts-ignore
-import trackSelectContent from &quot;../../../typedoc/ga/events/trackSelectContent.md?raw&quot;;
-// @ts-ignore
-import trackShare from &quot;../../../typedoc/ga/events/trackShare.md?raw&quot;;
-// @ts-ignore
-import trackSignUp from &quot;../../../typedoc/ga/events/trackSignUp.md?raw&quot;;
-// @ts-ignore
-import trackSpendVirtualCurrency from &quot;../../../typedoc/ga/events/trackSpendVirtualCurrency.md?raw&quot;;
-// @ts-ignore
-import trackTutorialBegin from &quot;../../../typedoc/ga/events/trackTutorialBegin.md?raw&quot;;
-// @ts-ignore
-import trackTutorialComplete from &quot;../../../typedoc/ga/events/trackTutorialComplete.md?raw&quot;;
-// @ts-ignore
-import trackAddPaymentInfo from &quot;../../../typedoc/ga/events/trackAddPaymentInfo.md?raw&quot;;
-// @ts-ignore
-import trackAddShippingInfo from &quot;../../../typedoc/ga/events/trackAddShippingInfo.md?raw&quot;;
-// @ts-ignore
-import trackAddToCart from &quot;../../../typedoc/ga/events/trackAddToCart.md?raw&quot;;
-// @ts-ignore
-import trackAddToWishlist from &quot;../../../typedoc/ga/events/trackAddToWishlist.md?raw&quot;;
-// @ts-ignore
-import trackBeginCheckout from &quot;../../../typedoc/ga/events/trackBeginCheckout.md?raw&quot;;
-// @ts-ignore
-import trackPurchase from &quot;../../../typedoc/ga/events/trackPurchase.md?raw&quot;;
-// @ts-ignore
-import trackRefund from &quot;../../../typedoc/ga/events/trackRefund.md?raw&quot;;
-// @ts-ignore
-import trackRemoveFromCart from &quot;../../../typedoc/ga/events/trackRemoveFromCart.md?raw&quot;;
-// @ts-ignore
-import trackSelectItem from &quot;../../../typedoc/ga/events/trackSelectItem.md?raw&quot;;
-// @ts-ignore
-import trackSelectPromotion from &quot;../../../typedoc/ga/events/trackSelectPromotion.md?raw&quot;;
-// @ts-ignore
-import trackViewCart from &quot;../../../typedoc/ga/events/trackViewCart.md?raw&quot;;
-// @ts-ignore
-import trackViewItem from &quot;../../../typedoc/ga/events/trackViewItem.md?raw&quot;;
-// @ts-ignore
-import trackViewItemList from &quot;../../../typedoc/ga/events/trackViewItemList.md?raw&quot;;
-// @ts-ignore
-import trackViewPromotion from &quot;../../../typedoc/ga/events/trackViewPromotion.md?raw&quot;;
-import type { Meta } from &quot;@storybook/react&quot;;
-import { StoryObj } from &quot;@storybook/react-vite&quot;;
-import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
-
-const meta: Meta = {
-  title: &quot;lib/Google Analytics/Events&quot;,
-  parameters: {
-    docs: {
-      page: () =&gt; (
-        &lt;&gt;
-          &lt;Markdown&gt;{trackPageView}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackEarnVirtualCurrency}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackJoinGroup}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackLogin}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackSearch}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackSelectContent}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackShare}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackSignUp}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackSpendVirtualCurrency}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackTutorialBegin}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackTutorialComplete}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackAddPaymentInfo}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackAddShippingInfo}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackAddToCart}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackAddToWishlist}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackBeginCheckout}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackPurchase}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackRefund}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackRemoveFromCart}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackSelectItem}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackSelectPromotion}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackViewCart}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackViewItem}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackViewItemList}&lt;/Markdown&gt;
-          &lt;br /&gt;
-          &lt;Markdown&gt;{trackViewPromotion}&lt;/Markdown&gt;
-          &lt;br /&gt;
-        &lt;/&gt;
-      ),
-      toc: {
-        headingSelector: &quot;h1&quot;,
-      },
-    },
-  },
-};
-
-export default meta;
-
-export const Default: StoryObj = {};
-</code></pre></div>
-    </div>
-        </div>
-    
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
-    
-    
-        <div class="panel panel-stories">
-          
-            <div class="note err">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge err">story error</span>
-              </div>
-              
-              
-              
-              <pre><code>Could not generate snippet without component name.</code></pre>
-            </div>
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import { Markdown } from "lordis-react-components";</code></pre>
-              </div>
-          
-          
         </div>
     
   </div>
@@ -1832,14 +1842,119 @@ prod: ProductData | ProductGroup</code></pre>
   no-story-error
   no-doc-error"
   role="listitem"
+  aria-label="Products">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Products</h2>
+      <div class="badges">
+        <label for="c-9-components-product-products-props" class="badge ok as-toggle">3 prop types</label>
+        
+        <label for="c-9-components-product-products-stories" class="badge ok as-toggle">2 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Product/Products/Products.stories.tsx">components-product-products · ./src/components/Product/Products/Products.stories.tsx</div>
+    
+    <div class="hint">Display a list of products, optionally paginated</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-9-components-product-products-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-9-components-product-products-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">3 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Product\Products\Products.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Max elements to display before overflowing onto a new page.
+ */
+pageSize?: number
+
+/**
+ * Products to display
+ */
+prods: (ProductData | ProductGroup)[]
+
+/**
+ * Options for Google Analytics tracking, leaving this undefined will stop tracking for this list.
+ */
+trackViewItemListProps?: { itemListId: string; itemListName: string; }</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Products } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Products
+    prods={allFakeProducts}
+    trackViewItemListProps={{
+      itemListId: &quot;home_page_$page&quot;,
+      itemListName: &quot;Home Page $page&quot;,
+    }} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Paginated</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Paginated = () =&gt; &lt;Products
+    prods={allFakeProducts}
+    trackViewItemListProps={{
+      itemListId: &quot;home_page_$page&quot;,
+      itemListName: &quot;Home Page $page&quot;,
+    }}
+    pageSize={3} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
   aria-label="SquareImageBox">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SquareImageBox</h2>
       <div class="badges">
-        <label for="c-9-components-squareimagebox-props" class="badge ok as-toggle">27 prop types</label>
+        <label for="c-10-components-squareimagebox-props" class="badge ok as-toggle">27 prop types</label>
         
-        <label for="c-9-components-squareimagebox-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-10-components-squareimagebox-stories" class="badge ok as-toggle">5 stories</label>
         
       </div>
     </div>
@@ -1852,9 +1967,9 @@ prod: ProductData | ProductGroup</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-9-components-squareimagebox-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-10-components-squareimagebox-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-9-components-squareimagebox-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-10-components-squareimagebox-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2015,9 +2130,9 @@ wrap?: boolean</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Ticker</h2>
       <div class="badges">
-        <label for="c-10-components-ticker-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-11-components-ticker-props" class="badge ok as-toggle">9 prop types</label>
         
-        <label for="c-10-components-ticker-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-11-components-ticker-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -2030,9 +2145,9 @@ wrap?: boolean</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-10-components-ticker-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-11-components-ticker-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-10-components-ticker-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-11-components-ticker-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2149,9 +2264,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ToastWrapper</h2>
       <div class="badges">
-        <label for="c-11-components-toastwrapper-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-12-components-toastwrapper-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-11-components-toastwrapper-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-12-components-toastwrapper-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -2164,9 +2279,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-11-components-toastwrapper-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-12-components-toastwrapper-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-11-components-toastwrapper-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-12-components-toastwrapper-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2229,10 +2344,10 @@ onChange?: ((toasts: IToast[]) =&gt; void) = () =&gt; {}</code></pre>
     </div>
     <div class="error-groups" role="region" aria-label="Prop type error groups">
         <section class="group">
-          <input id="no-component-found-toggle" class="group-tg" type="checkbox" hidden />
-          <label for="no-component-found-toggle" class="group-header">
+          <input id="no-component-import-found-toggle" class="group-tg" type="checkbox" hidden />
+          <label for="no-component-import-found-toggle" class="group-header">
             <span class="caret">▸</span>
-            <span class="group-title">No component found</span>
+            <span class="group-title">No component import found</span>
             <span class="group-count">1</span>
           </label>
           <div class="group-cards">
@@ -2240,17 +2355,21 @@ onChange?: ((toasts: IToast[]) =&gt; void) = () =&gt; {}</code></pre>
   class="card 
   has-error 
   has-info 
-  has-story-error
+  no-story-error
   no-doc-error"
   role="listitem"
-  aria-label="Events">
+  aria-label="() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-err"></span> Events</h2>
+      <h2><span class="status-dot dot-err"></span> () =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}</h2>
       <div class="badges">
         <label for="c-error-0-lib-google-analytics-events-err" class="badge err as-toggle">prop type error</label>
         <label for="c-error-0-lib-google-analytics-events-info" class="badge info as-toggle">1 info</label>
-        <label for="c-error-0-lib-google-analytics-events-stories" class="badge err as-toggle">1/1 story errors</label>
+        <label for="c-error-0-lib-google-analytics-events-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -2273,7 +2392,9 @@ onChange?: ((toasts: IToast[]) =&gt; void) = () =&gt; {}</code></pre>
           
     <div class="note err">
       <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+      <div class="note-body"><pre><code>No component file found for the &quot;() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}&quot; component.
   53 | import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
   54 |
 &gt; 55 | const meta: Meta = {
@@ -2400,6 +2521,9 @@ const meta: Meta = {
       },
     },
   },
+  component: () =&gt; {
+    return &lt;&gt;&lt;/&gt;;
+  },
 };
 
 export default meta;
@@ -2420,16 +2544,6 @@ export const Default: StoryObj = {};
     
         <div class="panel panel-stories">
           
-            <div class="note err">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge err">story error</span>
-              </div>
-              
-              
-              
-              <pre><code>Could not generate snippet without component name.</code></pre>
-            </div>
           
           
           <div class="note ok">
@@ -2440,6 +2554,17 @@ export const Default: StoryObj = {};
               </div>
           
           
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+} /&gt;;</code></pre>
+            </div>
         </div>
     
   </div>
