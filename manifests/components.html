@@ -576,13 +576,13 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/12 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">2/12 infos</a><a class="filter-pill err" data-k="story-errors" href="#filter-story-errors">1/40 story errors</a><a class="filter-pill ok" data-k="docs" href="#filter-docs">18 docs ok</a></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/12 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">2/12 infos</a><a class="filter-pill err" data-k="story-errors" href="#filter-story-errors">1/41 story errors</a><a class="filter-pill ok" data-k="docs" href="#filter-docs">18 docs ok</a></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note ok" style="margin-bottom: 16px;">
-              Using <code>react-docgen-typescript</code>. Generation took <strong>1.8s</strong>.
+              Using <code>react-docgen-typescript</code>. Generation took <strong>3.4s</strong>.
             </div>
     <h2 class="section-title">Components</h2>
     <div class="grid" role="list">
@@ -1520,7 +1520,7 @@ simple?: boolean = false</code></pre>
       <div class="badges">
         <label for="c-7-components-product-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-7-components-product-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-7-components-product-stories" class="badge ok as-toggle">9 stories</label>
         
       </div>
     </div>
@@ -1606,6 +1606,20 @@ quantityLocked?: boolean = false</code></pre>
               
               <pre><code>const SingleProduct = () =&gt; &lt;Product
     prod={fakeProduct}
+    horizontal={false}
+    quantityLocked={false}
+    admin={false}
+    forceVertical={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Single Product Long Name</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SingleProductLongName = () =&gt; &lt;Product
+    prod={fakeProductLongName}
     horizontal={false}
     quantityLocked={false}
     admin={false}
