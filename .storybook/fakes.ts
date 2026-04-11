@@ -58,6 +58,13 @@ export const fakeProduct: ProductData = new ProductData(1, {
   stock: 10,
 });
 
+export const fakeProductLongName: ProductData = new ProductData(1, {
+  name: "This product has a reaaaally long name! But it still works ok... I hope.",
+  images: [fakeMinimalImage3, fakeMinimalImage, fakeMinimalImage2],
+  price: 4.99,
+  stock: 10,
+});
+
 export const fakeProduct2: ProductData = new ProductData(2, {
   name: "Product 2",
   images: [fakeMinimalImage2, fakeMinimalImage, fakeMinimalImage3],

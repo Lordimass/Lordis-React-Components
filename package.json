@@ -1,7 +1,7 @@
 {
   "name": "lordis-react-components",
   "type": "module",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "My personal React component library.",
   "homepage": "https://lordimass.github.io/Lordis-React-Components",
   "bugs": {
@@ -76,7 +76,7 @@
     "typedoc-plugin-rename-defaults": "^0.7.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.0",
-    "vite": "^7.3.1",
+    "vite": "8.0.5",
     "vitest": "^4.0.18"
   },
   "peerDependencies": {

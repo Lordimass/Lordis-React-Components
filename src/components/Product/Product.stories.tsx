@@ -4,6 +4,7 @@ import {
   fakeProduct,
   fakeProduct2,
   fakeProductGroup,
+  fakeProductLongName,
   fakeProductNoImages,
 } from "../../../.storybook/fakes";
 import Product from "./Product";
@@ -37,6 +38,12 @@ export default meta;
 type Product = StoryObj<typeof Product>;
 
 export const SingleProduct: Product = {};
+
+export const SingleProductLongName: Product = {
+  args: {
+    prod: fakeProductLongName,
+  },
+};
 
 export const SingleProductOutOfStock: Product = {
   args: {
