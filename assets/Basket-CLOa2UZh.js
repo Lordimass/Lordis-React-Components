@@ -1,2 +1,0 @@
-import{n as e}from"./chunk-zsgVPwQN.js";import{I as t}from"./iframe-Bi1zjgvR.js";import{r as n}from"./react-Cr4KXag2.js";import{c as r,p as i,s as a}from"./blocks-BXPWMc1w.js";import{t as o}from"./mdx-react-shim-dvMFnbje.js";function s(e){return(0,l.jsxs)(l.Fragment,{children:[(0,l.jsx)(r,{title:`lib/types/BasketManager/BasketManager`}),`
-`,(0,l.jsx)(a,{children:Basket})]})}function c(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,l.jsx)(t,{...e,children:(0,l.jsx)(s,{...e})}):s(e)}var l;e((()=>{l=t(),o(),i()}))();export{c as default};
