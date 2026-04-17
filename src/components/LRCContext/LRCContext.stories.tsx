@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import LrcContext from "./LRCContext";
+import LRCContext from "./LRCContext";
 
 const meta = {
-  component: LrcContext,
+  component: LRCContext,
   args: {
     children: (
       <span>
@@ -19,8 +19,7 @@ const meta = {
   globals: {
     backgrounds: { value: "light", grid: false },
   },
-  tags: ["!"],
-} satisfies Meta<typeof LrcContext>;
+} satisfies Meta<typeof LRCContext>;
 
 export default meta;
 

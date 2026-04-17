@@ -9,3 +9,4 @@ export { default as SquareImageBox } from "./SquareImageBox/SquareImageBox";
 export { default as Product } from "./Product/Product";
 export { default as Products } from "./Product/Products/Products";
 export { default as Content } from "./Content/Content";
+export { default as BasketManager } from "./BasketManager/BasketManager";

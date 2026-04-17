@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./storybook.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Decorator } from "@storybook/react-vite";
-import LRCContextProvider from "../src/components/LRCContext/LRCContext";
+import LRCContext from "../src/components/LRCContext/LRCContext";
 
 const preview: Preview = {
   parameters: {
@@ -49,9 +49,9 @@ export default preview;
 
 export const withLRCContext: Decorator = (Story) => {
   return (
-    <LRCContextProvider>
+    <LRCContext>
       <Story />
-    </LRCContextProvider>
+    </LRCContext>
   );
 };
 

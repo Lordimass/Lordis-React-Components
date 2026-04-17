@@ -3,16 +3,16 @@ import { ProductDataConstructorOpts, ProductData } from "./index";
 /** A product which is in the customer's basket */
 export class BasketProduct extends ProductData {
   /** The quantity of this product in the user's basket */
-  public basketQuantity?: number;
+  public basketQuantity: number;
 
   constructor(
     sku: number | string,
     /** The quantity of this product in the user's basket */
-    basketQuantity: number,
+    basketQuantity?: number,
     opts?: ProductDataConstructorOpts,
   ) {
     super(sku, opts);
-    this.basketQuantity = basketQuantity;
+    this.basketQuantity = basketQuantity ?? 1;
   }
 }
 
