@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '../../index.scss';
+@import '../../common.scss';
 
 .basket {
   user-select: none;
@@ -86,6 +86,7 @@
   gap: 5px;
   box-sizing: border-box;
   overflow-y: scroll;
+  overflow-x: visible;
 }
 
 #checkout-btn {

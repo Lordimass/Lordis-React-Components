@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import "./Ticker.css";
+import "./Ticker.scss";
 import { motion } from "motion/react";
 
 export type TickerProps = {

@@ -1,7 +1,7 @@
 {
   "name": "lordis-react-components",
   "type": "module",
-  "version": "1.4.1",
+  "version": "1.4.6",
   "description": "My personal React component library.",
   "homepage": "https://lordimass.github.io/Lordis-React-Components",
   "bugs": {
@@ -18,7 +18,14 @@
   "files": [
     "dist"
   ],
-  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.cjs",
+      "types": "./dist/index.d.cts"
+    },
+    "./styles": "./dist/index.scss"
+  },
+  "types": "./dist/index.d.cts",
   "scripts": {
     "dev": "concurrently --kill-others \"npm run typedoc\" \"npm run storybook\" --raw",
     "lint": "eslint .",
@@ -31,7 +38,8 @@
     "build": "npm run build-typedoc && npm run build-storybook && xcopy public storybook-static /y",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d storybook-static",
-    "pub": "tsup && npm publish && npm run deploy"
+    "pub": "tsdown && npm run copy-scss && npm publish && npm run deploy",
+    "copy-scss": "cpy \"src/**/*.@(scss|css)\" dist --parents"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
@@ -52,6 +60,7 @@
     "@storybook/addon-vitest": "^10.3.3",
     "@storybook/react-vite": "^10.3.3",
     "@supabase/supabase-js": "^2.101.1",
+    "@tsdown/css": "^0.21.9",
     "@types/dinero.js": "^1.9.4",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.14",
@@ -60,6 +69,7 @@
     "@vitest/browser-playwright": "^4.0.18",
     "@vitest/coverage-v8": "^4.0.18",
     "concurrently": "^9.2.1",
+    "cpy-cli": "^7.0.0",
     "esbuild-sass-plugin": "^3.7.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -70,8 +80,8 @@
     "prettier": "^3.8.1",
     "sass-embedded": "^1.97.3",
     "storybook": "^10.3.3",
+    "tsdown": "^0.21.9",
     "tslib": "^2.8.1",
-    "tsup": "^8.5.1",
     "typedoc": "^0.28.18",
     "typedoc-plugin-markdown": "^4.11.0",
     "typedoc-plugin-rename-defaults": "^0.7.3",

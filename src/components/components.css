@@ -1,0 +1,19 @@
+/* Error: Module loop: this module is already being loaded.
+ *   ,
+ * 4 | @forward "components/components.scss";
+ *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   ..\index.scss 4:1                     @import
+ *   BasketManager\BasketManager.scss 2:9  @forward
+ *   components.scss 1:1                   root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: Module loop: this module is already being loaded.\a   \2577 \a 4 \2502  @forward "components/components.scss";\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   ..\\index.scss 4:1                     @import\a   BasketManager\\BasketManager.scss 2:9  @forward\a   components.scss 1:1                   root stylesheet';
+}
