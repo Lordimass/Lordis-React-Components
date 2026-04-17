@@ -576,13 +576,13 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/13 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">2/13 infos</a><span class="filter-pill ok" aria-disabled="true">43 stories ok</span><a class="filter-pill ok" data-k="docs" href="#filter-docs">18 docs ok</a></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/14 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">3/14 infos</a><span class="filter-pill ok" aria-disabled="true">44 stories ok</span><a class="filter-pill ok" data-k="docs" href="#filter-docs">18 docs ok</a></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note ok" style="margin-bottom: 16px;">
-              Using <code>react-docgen-typescript</code>. Generation took <strong>2.5s</strong>.
+              Using <code>react-docgen-typescript</code>. Generation took <strong>3.4s</strong>.
             </div>
     <h2 class="section-title">Components</h2>
     <div class="grid" role="list">
@@ -812,14 +812,101 @@ export const Default: StoryObj = {};
   no-story-error
   no-doc-error"
   role="listitem"
+  aria-label="Basket">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Basket</h2>
+      <div class="badges">
+        <label for="c-1-components-basket-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-1-components-basket-info" class="badge info as-toggle">1 info</label>
+        <label for="c-1-components-basket-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Basket/Basket.stories.tsx">components-basket · ./src/components/Basket/Basket.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="c-1-components-basket-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-1-components-basket-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-1-components-basket-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen-typescript)</small></span>
+              <span class="badge ok">2 prop types</span>
+            </div>
+            <pre><code>Component: src\components\Basket\Basket.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Paths under which the basket view is disabled, defaults to `[&quot;/checkout&quot;, &quot;/thankyou&quot;]`
+ */
+basketDisabledPaths?: string[] = [&quot;/checkout&quot;, &quot;/thankyou&quot;]
+
+/**
+ * Path to the checkout page. Defaults to `&quot;/checkout&quot;`
+ */
+checkoutPath?: string = /checkout</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Basket } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Basket /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  has-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
   aria-label="BasketModifier">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> BasketModifier</h2>
       <div class="badges">
-        <label for="c-1-components-ticker-basketmodifier-props" class="badge ok as-toggle">9 prop types</label>
-        <label for="c-1-components-ticker-basketmodifier-info" class="badge info as-toggle">1 info</label>
-        <label for="c-1-components-ticker-basketmodifier-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-2-components-ticker-basketmodifier-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-2-components-ticker-basketmodifier-info" class="badge info as-toggle">1 info</label>
+        <label for="c-2-components-ticker-basketmodifier-stories" class="badge ok as-toggle">4 stories</label>
         
       </div>
     </div>
@@ -831,10 +918,10 @@ export const Default: StoryObj = {};
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-1-components-ticker-basketmodifier-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-1-components-ticker-basketmodifier-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-2-components-ticker-basketmodifier-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-2-components-ticker-basketmodifier-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-1-components-ticker-basketmodifier-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-2-components-ticker-basketmodifier-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -979,9 +1066,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Content</h2>
       <div class="badges">
-        <label for="c-2-components-content-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-3-components-content-props" class="badge ok as-toggle">7 prop types</label>
         
-        <label for="c-2-components-content-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-3-components-content-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -994,9 +1081,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-2-components-content-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-3-components-content-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-2-components-content-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-3-components-content-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1084,9 +1171,9 @@ title?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> LRC_Toast</h2>
       <div class="badges">
-        <label for="c-3-components-toastwrapper-lrc-toast-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-4-components-toastwrapper-lrc-toast-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-3-components-toastwrapper-lrc-toast-stories" class="badge ok as-toggle">10 stories</label>
+        <label for="c-4-components-toastwrapper-lrc-toast-stories" class="badge ok as-toggle">10 stories</label>
         
       </div>
     </div>
@@ -1099,9 +1186,9 @@ title?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-3-components-toastwrapper-lrc-toast-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-4-components-toastwrapper-lrc-toast-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-3-components-toastwrapper-lrc-toast-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-4-components-toastwrapper-lrc-toast-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1240,29 +1327,29 @@ toast: IToast</code></pre>
   no-story-error
   no-doc-error"
   role="listitem"
-  aria-label="LrcContext">
+  aria-label="LRCContext">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-ok"></span> LrcContext</h2>
+      <h2><span class="status-dot dot-ok"></span> LRCContext</h2>
       <div class="badges">
-        <label for="c-4-components-lrccontext-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-5-components-lrccontext-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-4-components-lrccontext-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-5-components-lrccontext-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
     <div class="meta" title="./src/components/LRCContext/LRCContext.stories.tsx">components-lrccontext · ./src/components/LRCContext/LRCContext.stories.tsx</div>
     
-    <div class="hint">Context provider for all key LRC functionality. Each context provider can theoretically be used in isolation, but it&#39;s best to have this as close to the root of the DOM as possible as many of the components in the library (particularly webshop components) require this context to work properly. Provides: - {@link LRCRemoteSettingsContext`LRCRemoteSettingsContext`} - {@link ToastWrapper`ToastWrapper`} - {@link LocaleContext`LocaleContext`}</div>
+    <div class="hint">Context provider for all key LRC functionality. Each context provider can theoretically be used in isolation, but it&#39;s best to have this as close to the root of the DOM as possible. This is because many of the components in the library (particularly webshop components) require this context to work properly. Provides: - {@link LRCRemoteSettingsContext`LRCRemoteSettingsContext`} - {@link ToastWrapper`ToastWrapper`} - {@link LocaleContext`LocaleContext`}</div>
     
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-4-components-lrccontext-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-5-components-lrccontext-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-4-components-lrccontext-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-5-components-lrccontext-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1293,7 +1380,7 @@ LRCRemoteSettingsContextValue?: LRCRemoteSettings</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { LrcContext } from "lordis-react-components";</code></pre>
+                <pre><code>import { LRCContext } from "lordis-react-components";</code></pre>
               </div>
           
           
@@ -1304,9 +1391,9 @@ LRCRemoteSettingsContextValue?: LRCRemoteSettings</code></pre>
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;LrcContext&gt;(&lt;span&gt;This is a context component, put content inside it and access it using{&quot; &quot;}
+              <pre><code>const Default = () =&gt; &lt;LRCContext&gt;(&lt;span&gt;This is a context component, put content inside it and access it using{&quot; &quot;}
       &lt;pre style={{ display: &quot;inline&quot; }}&gt;useContext&lt;/pre&gt;.
-            &lt;/span&gt;)&lt;/LrcContext&gt;;</code></pre>
+            &lt;/span&gt;)&lt;/LRCContext&gt;;</code></pre>
             </div>
         </div>
     
@@ -1324,9 +1411,9 @@ LRCRemoteSettingsContextValue?: LRCRemoteSettings</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> PageSelector</h2>
       <div class="badges">
-        <label for="c-5-components-ticker-pageselector-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-6-components-ticker-pageselector-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-5-components-ticker-pageselector-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-6-components-ticker-pageselector-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -1339,9 +1426,9 @@ LRCRemoteSettingsContextValue?: LRCRemoteSettings</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-5-components-ticker-pageselector-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-6-components-ticker-pageselector-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-5-components-ticker-pageselector-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-6-components-ticker-pageselector-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1409,9 +1496,9 @@ pageCount: number</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Price</h2>
       <div class="badges">
-        <label for="c-6-components-price-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-7-components-price-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-6-components-price-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-7-components-price-stories" class="badge ok as-toggle">3 stories</label>
         
       </div>
     </div>
@@ -1424,9 +1511,9 @@ pageCount: number</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-6-components-price-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-7-components-price-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-6-components-price-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-7-components-price-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1528,9 +1615,9 @@ simple?: boolean = false</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Product</h2>
       <div class="badges">
-        <label for="c-7-components-product-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-8-components-product-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-7-components-product-stories" class="badge ok as-toggle">9 stories</label>
+        <label for="c-8-components-product-stories" class="badge ok as-toggle">9 stories</label>
         
       </div>
     </div>
@@ -1543,9 +1630,9 @@ simple?: boolean = false</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-7-components-product-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-8-components-product-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-7-components-product-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-8-components-product-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1749,9 +1836,9 @@ quantityLocked?: boolean = false</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ProductPrice</h2>
       <div class="badges">
-        <label for="c-8-components-price-productprice-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-9-components-price-productprice-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-8-components-price-productprice-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-9-components-price-productprice-stories" class="badge ok as-toggle">3 stories</label>
         
       </div>
     </div>
@@ -1764,9 +1851,9 @@ quantityLocked?: boolean = false</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-8-components-price-productprice-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-9-components-price-productprice-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-8-components-price-productprice-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-9-components-price-productprice-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1847,9 +1934,9 @@ prod: ProductData | ProductGroup</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Products</h2>
       <div class="badges">
-        <label for="c-9-components-product-products-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-10-components-product-products-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-9-components-product-products-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-10-components-product-products-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -1862,9 +1949,9 @@ prod: ProductData | ProductGroup</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-9-components-product-products-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-10-components-product-products-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-9-components-product-products-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-10-components-product-products-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1952,9 +2039,9 @@ trackViewItemListProps?: { itemListId: string; itemListName: string; }</code></p
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SquareImageBox</h2>
       <div class="badges">
-        <label for="c-10-components-squareimagebox-props" class="badge ok as-toggle">27 prop types</label>
+        <label for="c-11-components-squareimagebox-props" class="badge ok as-toggle">27 prop types</label>
         
-        <label for="c-10-components-squareimagebox-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-11-components-squareimagebox-stories" class="badge ok as-toggle">5 stories</label>
         
       </div>
     </div>
@@ -1967,9 +2054,9 @@ trackViewItemListProps?: { itemListId: string; itemListName: string; }</code></p
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-10-components-squareimagebox-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-11-components-squareimagebox-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-10-components-squareimagebox-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-11-components-squareimagebox-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2130,9 +2217,9 @@ wrap?: boolean</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Ticker</h2>
       <div class="badges">
-        <label for="c-11-components-ticker-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-12-components-ticker-props" class="badge ok as-toggle">9 prop types</label>
         
-        <label for="c-11-components-ticker-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-12-components-ticker-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -2145,9 +2232,9 @@ wrap?: boolean</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-11-components-ticker-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-12-components-ticker-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-11-components-ticker-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-12-components-ticker-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2264,9 +2351,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ToastWrapper</h2>
       <div class="badges">
-        <label for="c-12-components-toastwrapper-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-13-components-toastwrapper-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-12-components-toastwrapper-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-13-components-toastwrapper-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -2279,9 +2366,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-12-components-toastwrapper-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-13-components-toastwrapper-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-12-components-toastwrapper-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-13-components-toastwrapper-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
