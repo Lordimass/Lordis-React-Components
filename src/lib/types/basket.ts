@@ -1,4 +1,5 @@
 import { ProductDataConstructorOpts, ProductData } from "./index";
+import { GAItem } from "../ga";
 
 /** A product which is in the customer's basket */
 export class BasketProduct extends ProductData {
@@ -36,6 +37,26 @@ export class Basket {
   ) {
     this.products = products;
     this.lastUpdated = lastUpdated;
+  }
+
+  /**
+   * Get the total value of this basket as the sum of product prices multiplied by the quantity in the basket.
+   * @returns A number representing the total value of this basket.
+   * @example 12.98
+   */
+  getValue(): number {
+    let value = 0;
+    this.products.forEach((p) => {
+      value += p.price * p.basketQuantity;
+    });
+    return value;
+  }
+
+  /**
+   * Get the basket as an array of Google Analytics items.
+   */
+  getGAItems(): GAItem[] {
+    return this.products.map((p) => new GAItem(p));
   }
 
   /**

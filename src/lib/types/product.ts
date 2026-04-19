@@ -1,6 +1,6 @@
 import { MinimalProductImage } from "./image";
 import { Currency } from "dinero.js";
-import { BasketProduct, Basket, LRC } from "../index";
+import { BasketProduct, Basket, LRC, trackModifyCart } from "../index";
 
 /** A product object with the absolute minimum data to be identifiable as a product */
 export interface MinimalProduct {
@@ -111,9 +111,7 @@ export class ProductData implements MinimalProduct {
     // Save to localStorage
     localStorage.setItem("basket", JSON.stringify(basket));
     window.dispatchEvent(new CustomEvent("basketUpdate"));
-
-    // TODO: Trigger GA4 Event
-    // triggerAddToCart(prod, diff, currency).then();
+    trackModifyCart(currency, this, diff);
   }
 }
 

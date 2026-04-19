@@ -1,6 +1,7 @@
 export * from "./init";
 export * from "./events";
 export * from "./types";
+export * from "./helpers";
 
 /**
  * Update consent to agree to Google Analytics cookies.

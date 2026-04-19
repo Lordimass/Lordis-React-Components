@@ -533,10 +533,10 @@ export function trackViewCart(currency: string, value: number, items: Item[]) {
  * you set value.
  *
  * `currency` is required if you set value.
- * @param items The items for the event.
+ * @param item The item for the event.
  */
-export function trackViewItem(currency: string, value: number, items: Item[]) {
-  trackEvent("view_item", { currency, value, items });
+export function trackViewItem(currency: string, value: number, item: Item) {
+  trackEvent("view_item", { currency, value, items: [item] });
 }
 
 /**
@@ -558,8 +558,8 @@ export function trackViewItem(currency: string, value: number, items: Item[]) {
 export function trackViewItemList(
   currency: string,
   items: Item[],
-  item_list_id: string,
-  item_list_name: string,
+  item_list_id?: string,
+  item_list_name?: string,
 ) {
   trackEvent("view_item_list", {
     currency,
