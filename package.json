@@ -1,7 +1,7 @@
 {
   "name": "lordis-react-components",
   "type": "module",
-  "version": "1.4.6",
+  "version": "1.4.12",
   "description": "My personal React component library.",
   "homepage": "https://lordimass.github.io/Lordis-React-Components",
   "bugs": {
@@ -23,7 +23,8 @@
       "import": "./dist/index.cjs",
       "types": "./dist/index.d.cts"
     },
-    "./styles": "./dist/index.scss"
+    "./styles": "./dist/index.scss",
+    "./*": "./dist/*"
   },
   "types": "./dist/index.d.cts",
   "scripts": {

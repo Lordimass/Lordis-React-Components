@@ -1,11 +1,12 @@
-/* Error: Two forwarded modules both define a variable named $white.
+/* Error: Can't find stylesheet to import.
  *   ,
- * 1 | @forward "components/components.scss";
- *   | ===================================== original @forward
- * 2 | @forward "./common.scss";
- *   | ^^^^^^^^^^^^^^^^^^^^^^^^ new @forward
+ * 4 | @use "bootstrap/scss/bootstrap" as *;
+ *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *   '
- *   index.scss 2:1  root stylesheet */
+ *   common.scss 4:1                                  @use
+ *   components\BasketManager\BasketManager.scss 2:1  @forward
+ *   components\components.scss 1:1                   @forward
+ *   index.scss 1:1                                   root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -15,5 +16,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: Two forwarded modules both define a variable named $white.\a   \2577 \a 1 \2502  @forward "components/components.scss";\d\a   \2502  \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  original @forward\a 2 \2502  @forward "./common.scss";\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^ new @forward\a   \2575 \a   index.scss 2:1  root stylesheet';
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 4 \2502  @use \"bootstrap/scss/bootstrap\" as *;\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   common.scss 4:1                                  @use\a   components\\BasketManager\\BasketManager.scss 2:1  @forward\a   components\\components.scss 1:1                   @forward\a   index.scss 1:1                                   root stylesheet";
 }

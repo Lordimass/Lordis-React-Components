@@ -1,5 +1,6 @@
 @use 'sass:color';
-@import '../../common.scss';
+@use '../../common.scss' as *;
+@use "bootstrap/scss/bootstrap" as *;
 
 .basket {
   user-select: none;
