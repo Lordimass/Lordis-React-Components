@@ -1,2 +1,0 @@
-import{j as t}from"./iframe-F3v0Lll7.js";import{u as r,M as s,a as o}from"./blocks-CtSt2DXf.js";import"./preload-helper-PPVm8Dsz.js";function a(e){return t.jsxs(t.Fragment,{children:[t.jsx(s,{title:"lib/types/BasketManager/BasketManager"}),`
-`,t.jsx(o,{children:Basket})]})}function x(e={}){const{wrapper:n}={...r(),...e.components};return n?t.jsx(n,{...e,children:t.jsx(a,{...e})}):a()}export{x as default};
