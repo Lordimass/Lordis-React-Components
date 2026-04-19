@@ -576,13 +576,13 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/14 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">3/14 infos</a><span class="filter-pill ok" aria-disabled="true">44 stories ok</span><a class="filter-pill ok" data-k="docs" href="#filter-docs">18 docs ok</a></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/15 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">4/15 infos</a><span class="filter-pill ok" aria-disabled="true">45 stories ok</span><a class="filter-pill ok" data-k="docs" href="#filter-docs">18 docs ok</a></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note ok" style="margin-bottom: 16px;">
-              Using <code>react-docgen-typescript</code>. Generation took <strong>3.3s</strong>.
+              Using <code>react-docgen-typescript</code>. Generation took <strong>2.8s</strong>.
             </div>
     <h2 class="section-title">Components</h2>
     <div class="grid" role="list">
@@ -807,6 +807,180 @@ export const Default: StoryObj = {};
 </article>
 <article
   class="card 
+  has-error 
+  has-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> () =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}</h2>
+      <div class="badges">
+        <label for="c-1-lib-google-analytics-helpers-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-1-lib-google-analytics-helpers-info" class="badge info as-toggle">1 info</label>
+        <label for="c-1-lib-google-analytics-helpers-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/ga/helpers.stories.tsx">lib-google-analytics-helpers · ./src/lib/ga/helpers.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-1-lib-google-analytics-helpers-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-1-lib-google-analytics-helpers-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-1-lib-google-analytics-helpers-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>No component file found for the &quot;() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}&quot; component.
+  31 | import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+  32 |
+&gt; 33 | const meta: Meta = {
+     | ^
+  34 |   title: &quot;lib/Google Analytics/Helpers&quot;,
+  35 |   parameters: {
+  36 |     docs: {
+
+./src/lib/ga/helpers.stories.tsx:
+// @ts-ignore
+import trackAddPaymentInfoWithBasket from &quot;../../../typedoc/ga/helpers/trackAddPaymentInfoWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackAddShippingInfoWithBasket from &quot;../../../typedoc/ga/helpers/trackAddShippingInfoWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackAddToCartAutoValue from &quot;../../../typedoc/ga/helpers/trackAddToCartAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackModifyCart from &quot;../../../typedoc/ga/helpers/trackModifyCart.md?raw&quot;;
+// @ts-ignore
+import trackAddToWishlistAutoValue from &quot;../../../typedoc/ga/helpers/trackAddToWishlistAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackBeginCheckoutWithBasket from &quot;../../../typedoc/ga/helpers/trackBeginCheckoutWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackPurchaseWithBasket from &quot;../../../typedoc/ga/helpers/trackPurchaseWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackPurchaseAutoValue from &quot;../../../typedoc/ga/helpers/trackPurchaseAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackRefundAutoValue from &quot;../../../typedoc/ga/helpers/trackRefundAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackRemoveFromCartAutoValue from &quot;../../../typedoc/ga/helpers/trackRemoveFromCartAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackViewCartWithBasket from &quot;../../../typedoc/ga/helpers/trackViewCartWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackViewItemAutoConvert from &quot;../../../typedoc/ga/helpers/trackViewItemAutoConvert.md?raw&quot;;
+// @ts-ignore
+import trackViewItemListAutoConvert from &quot;../../../typedoc/ga/helpers/trackViewItemListAutoConvert.md?raw&quot;;
+// @ts-ignore
+import trackViewPromotionAutoConvert from &quot;../../../typedoc/ga/helpers/trackViewPromotionAutoConvert.md?raw&quot;;
+import type { Meta } from &quot;@storybook/react&quot;;
+import { StoryObj } from &quot;@storybook/react-vite&quot;;
+import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+
+const meta: Meta = {
+  title: &quot;lib/Google Analytics/Helpers&quot;,
+  parameters: {
+    docs: {
+      page: () =&gt; (
+        &lt;&gt;
+          &lt;Markdown&gt;{trackAddPaymentInfoWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddShippingInfoWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToCartAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackModifyCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToWishlistAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackBeginCheckoutWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackPurchaseWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackPurchaseAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRefundAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRemoveFromCartAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewCartWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItemAutoConvert}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItemListAutoConvert}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewPromotionAutoConvert}&lt;/Markdown&gt;
+          &lt;br /&gt;
+        &lt;/&gt;
+      ),
+      toc: {
+        headingSelector: &quot;h1&quot;,
+      },
+    },
+  },
+  component: () =&gt; {
+    return &lt;&gt;&lt;/&gt;;
+  },
+};
+
+export default meta;
+
+export const Default: StoryObj = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Markdown } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
   no-error 
   has-info 
   no-story-error
@@ -817,9 +991,9 @@ export const Default: StoryObj = {};
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> BasketManager</h2>
       <div class="badges">
-        <label for="c-1-components-basketmanager-props" class="badge ok as-toggle">2 prop types</label>
-        <label for="c-1-components-basketmanager-info" class="badge info as-toggle">1 info</label>
-        <label for="c-1-components-basketmanager-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-2-components-basketmanager-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-2-components-basketmanager-info" class="badge info as-toggle">1 info</label>
+        <label for="c-2-components-basketmanager-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -831,10 +1005,10 @@ export const Default: StoryObj = {};
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-1-components-basketmanager-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-1-components-basketmanager-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-2-components-basketmanager-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-2-components-basketmanager-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-1-components-basketmanager-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-2-components-basketmanager-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -904,9 +1078,9 @@ checkoutPath?: string = /checkout</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> BasketModifier</h2>
       <div class="badges">
-        <label for="c-2-components-ticker-basketmodifier-props" class="badge ok as-toggle">9 prop types</label>
-        <label for="c-2-components-ticker-basketmodifier-info" class="badge info as-toggle">1 info</label>
-        <label for="c-2-components-ticker-basketmodifier-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-3-components-ticker-basketmodifier-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-3-components-ticker-basketmodifier-info" class="badge info as-toggle">1 info</label>
+        <label for="c-3-components-ticker-basketmodifier-stories" class="badge ok as-toggle">4 stories</label>
         
       </div>
     </div>
@@ -918,10 +1092,10 @@ checkoutPath?: string = /checkout</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-2-components-ticker-basketmodifier-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-2-components-ticker-basketmodifier-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-3-components-ticker-basketmodifier-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-3-components-ticker-basketmodifier-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-2-components-ticker-basketmodifier-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-3-components-ticker-basketmodifier-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1066,9 +1240,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Content</h2>
       <div class="badges">
-        <label for="c-3-components-content-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-4-components-content-props" class="badge ok as-toggle">7 prop types</label>
         
-        <label for="c-3-components-content-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-4-components-content-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -1081,9 +1255,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-3-components-content-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-4-components-content-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-3-components-content-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-4-components-content-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1171,9 +1345,9 @@ title?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> LRC_Toast</h2>
       <div class="badges">
-        <label for="c-4-components-toastwrapper-lrc-toast-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-5-components-toastwrapper-lrc-toast-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-4-components-toastwrapper-lrc-toast-stories" class="badge ok as-toggle">10 stories</label>
+        <label for="c-5-components-toastwrapper-lrc-toast-stories" class="badge ok as-toggle">10 stories</label>
         
       </div>
     </div>
@@ -1186,9 +1360,9 @@ title?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-4-components-toastwrapper-lrc-toast-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-5-components-toastwrapper-lrc-toast-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-4-components-toastwrapper-lrc-toast-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-5-components-toastwrapper-lrc-toast-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1332,9 +1506,9 @@ toast: IToast</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> LRCContext</h2>
       <div class="badges">
-        <label for="c-5-components-lrccontext-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-6-components-lrccontext-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-5-components-lrccontext-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-6-components-lrccontext-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -1347,9 +1521,9 @@ toast: IToast</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-5-components-lrccontext-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-6-components-lrccontext-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-5-components-lrccontext-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-6-components-lrccontext-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1411,9 +1585,9 @@ LRCRemoteSettingsContextValue?: LRCRemoteSettings</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> PageSelector</h2>
       <div class="badges">
-        <label for="c-6-components-ticker-pageselector-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-7-components-ticker-pageselector-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-6-components-ticker-pageselector-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-7-components-ticker-pageselector-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -1426,9 +1600,9 @@ LRCRemoteSettingsContextValue?: LRCRemoteSettings</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-6-components-ticker-pageselector-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-7-components-ticker-pageselector-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-6-components-ticker-pageselector-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-7-components-ticker-pageselector-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1496,9 +1670,9 @@ pageCount: number</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Price</h2>
       <div class="badges">
-        <label for="c-7-components-price-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-8-components-price-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-7-components-price-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-8-components-price-stories" class="badge ok as-toggle">3 stories</label>
         
       </div>
     </div>
@@ -1511,9 +1685,9 @@ pageCount: number</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-7-components-price-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-8-components-price-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-7-components-price-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-8-components-price-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1615,9 +1789,9 @@ simple?: boolean = false</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Product</h2>
       <div class="badges">
-        <label for="c-8-components-product-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-9-components-product-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-8-components-product-stories" class="badge ok as-toggle">9 stories</label>
+        <label for="c-9-components-product-stories" class="badge ok as-toggle">9 stories</label>
         
       </div>
     </div>
@@ -1630,9 +1804,9 @@ simple?: boolean = false</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-8-components-product-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-9-components-product-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-8-components-product-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-9-components-product-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1836,9 +2010,9 @@ quantityLocked?: boolean = false</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ProductPrice</h2>
       <div class="badges">
-        <label for="c-9-components-price-productprice-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-10-components-price-productprice-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-9-components-price-productprice-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-10-components-price-productprice-stories" class="badge ok as-toggle">3 stories</label>
         
       </div>
     </div>
@@ -1851,9 +2025,9 @@ quantityLocked?: boolean = false</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-9-components-price-productprice-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-10-components-price-productprice-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-9-components-price-productprice-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-10-components-price-productprice-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1934,9 +2108,9 @@ prod: ProductData | ProductGroup</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Products</h2>
       <div class="badges">
-        <label for="c-10-components-product-products-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-11-components-product-products-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-10-components-product-products-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-11-components-product-products-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -1949,9 +2123,9 @@ prod: ProductData | ProductGroup</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-10-components-product-products-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-11-components-product-products-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-10-components-product-products-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-11-components-product-products-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2039,9 +2213,9 @@ trackViewItemListProps?: { itemListId: string; itemListName: string; }</code></p
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SquareImageBox</h2>
       <div class="badges">
-        <label for="c-11-components-squareimagebox-props" class="badge ok as-toggle">27 prop types</label>
+        <label for="c-12-components-squareimagebox-props" class="badge ok as-toggle">27 prop types</label>
         
-        <label for="c-11-components-squareimagebox-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-12-components-squareimagebox-stories" class="badge ok as-toggle">5 stories</label>
         
       </div>
     </div>
@@ -2054,9 +2228,9 @@ trackViewItemListProps?: { itemListId: string; itemListName: string; }</code></p
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-11-components-squareimagebox-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-12-components-squareimagebox-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-11-components-squareimagebox-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-12-components-squareimagebox-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2217,9 +2391,9 @@ wrap?: boolean</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Ticker</h2>
       <div class="badges">
-        <label for="c-12-components-ticker-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-13-components-ticker-props" class="badge ok as-toggle">9 prop types</label>
         
-        <label for="c-12-components-ticker-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-13-components-ticker-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -2232,9 +2406,9 @@ wrap?: boolean</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-12-components-ticker-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-13-components-ticker-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-12-components-ticker-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-13-components-ticker-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2351,9 +2525,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ToastWrapper</h2>
       <div class="badges">
-        <label for="c-13-components-toastwrapper-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-14-components-toastwrapper-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-13-components-toastwrapper-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-14-components-toastwrapper-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -2366,9 +2540,9 @@ updateValueRef?: RefObject&lt;((newValue: number) =&gt; Promise&lt;void&gt;) | n
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-13-components-toastwrapper-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-14-components-toastwrapper-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-13-components-toastwrapper-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-14-components-toastwrapper-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2435,7 +2609,7 @@ onChange?: ((toasts: IToast[]) =&gt; void) = () =&gt; {}</code></pre>
           <label for="no-component-import-found-toggle" class="group-header">
             <span class="caret">▸</span>
             <span class="group-title">No component import found</span>
-            <span class="group-count">1</span>
+            <span class="group-count">2</span>
           </label>
           <div class="group-cards">
 <article
@@ -2600,6 +2774,180 @@ const meta: Meta = {
           &lt;Markdown&gt;{trackViewItemList}&lt;/Markdown&gt;
           &lt;br /&gt;
           &lt;Markdown&gt;{trackViewPromotion}&lt;/Markdown&gt;
+          &lt;br /&gt;
+        &lt;/&gt;
+      ),
+      toc: {
+        headingSelector: &quot;h1&quot;,
+      },
+    },
+  },
+  component: () =&gt; {
+    return &lt;&gt;&lt;/&gt;;
+  },
+};
+
+export default meta;
+
+export const Default: StoryObj = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Markdown } from "lordis-react-components";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  has-error 
+  has-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> () =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}</h2>
+      <div class="badges">
+        <label for="c-error-1-lib-google-analytics-helpers-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-error-1-lib-google-analytics-helpers-info" class="badge info as-toggle">1 info</label>
+        <label for="c-error-1-lib-google-analytics-helpers-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/lib/ga/helpers.stories.tsx">lib-google-analytics-helpers · ./src/lib/ga/helpers.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-error-1-lib-google-analytics-helpers-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-1-lib-google-analytics-helpers-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-1-lib-google-analytics-helpers-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>No component file found for the &quot;() =&gt; {
+  return &lt;&gt;&lt;/&gt;;
+}&quot; component.
+  31 | import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+  32 |
+&gt; 33 | const meta: Meta = {
+     | ^
+  34 |   title: &quot;lib/Google Analytics/Helpers&quot;,
+  35 |   parameters: {
+  36 |     docs: {
+
+./src/lib/ga/helpers.stories.tsx:
+// @ts-ignore
+import trackAddPaymentInfoWithBasket from &quot;../../../typedoc/ga/helpers/trackAddPaymentInfoWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackAddShippingInfoWithBasket from &quot;../../../typedoc/ga/helpers/trackAddShippingInfoWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackAddToCartAutoValue from &quot;../../../typedoc/ga/helpers/trackAddToCartAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackModifyCart from &quot;../../../typedoc/ga/helpers/trackModifyCart.md?raw&quot;;
+// @ts-ignore
+import trackAddToWishlistAutoValue from &quot;../../../typedoc/ga/helpers/trackAddToWishlistAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackBeginCheckoutWithBasket from &quot;../../../typedoc/ga/helpers/trackBeginCheckoutWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackPurchaseWithBasket from &quot;../../../typedoc/ga/helpers/trackPurchaseWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackPurchaseAutoValue from &quot;../../../typedoc/ga/helpers/trackPurchaseAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackRefundAutoValue from &quot;../../../typedoc/ga/helpers/trackRefundAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackRemoveFromCartAutoValue from &quot;../../../typedoc/ga/helpers/trackRemoveFromCartAutoValue.md?raw&quot;;
+// @ts-ignore
+import trackViewCartWithBasket from &quot;../../../typedoc/ga/helpers/trackViewCartWithBasket.md?raw&quot;;
+// @ts-ignore
+import trackViewItemAutoConvert from &quot;../../../typedoc/ga/helpers/trackViewItemAutoConvert.md?raw&quot;;
+// @ts-ignore
+import trackViewItemListAutoConvert from &quot;../../../typedoc/ga/helpers/trackViewItemListAutoConvert.md?raw&quot;;
+// @ts-ignore
+import trackViewPromotionAutoConvert from &quot;../../../typedoc/ga/helpers/trackViewPromotionAutoConvert.md?raw&quot;;
+import type { Meta } from &quot;@storybook/react&quot;;
+import { StoryObj } from &quot;@storybook/react-vite&quot;;
+import { Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+
+const meta: Meta = {
+  title: &quot;lib/Google Analytics/Helpers&quot;,
+  parameters: {
+    docs: {
+      page: () =&gt; (
+        &lt;&gt;
+          &lt;Markdown&gt;{trackAddPaymentInfoWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddShippingInfoWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToCartAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackModifyCart}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackAddToWishlistAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackBeginCheckoutWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackPurchaseWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackPurchaseAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRefundAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackRemoveFromCartAutoValue}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewCartWithBasket}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItemAutoConvert}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewItemListAutoConvert}&lt;/Markdown&gt;
+          &lt;br /&gt;
+          &lt;Markdown&gt;{trackViewPromotionAutoConvert}&lt;/Markdown&gt;
           &lt;br /&gt;
         &lt;/&gt;
       ),
