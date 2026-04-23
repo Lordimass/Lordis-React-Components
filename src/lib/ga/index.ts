@@ -22,3 +22,54 @@ export function declineCookies() {
   });
   localStorage.setItem("consentModeAnswer", "decline");
 }
+
+/**
+ * Get the Google Analytics client ID from the cookie.
+ * @returns The GA client ID or null if not found.
+ */
+export function getGAClientId(): string | null {
+  // Get the _ga cookie value.
+  const cookie = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("_ga="));
+  if (!cookie) return null;
+  const value = cookie.split("=")[1];
+
+  // Cookie looks like GA1.2.1234567890.987654321
+  // The last two parts are the client ID
+  // Decode and extract the client ID
+  const parts = value.split(".");
+  if (parts.length >= 4) {
+    return `${parts[2]}.${parts[3]}`;
+  }
+  return null;
+}
+
+/**
+ * Get the Google Analytics session ID.
+ * @returns The GA session ID or null if not found.
+ */
+export async function getGASessionId(): Promise<string | null> {
+  // Timeout if it doesn't resolve fast, like if anti-tracker software is blocking calls to GA
+  const timeoutMs = 300;
+
+  return new Promise((resolve, error) => {
+    const timeout = window.setTimeout(() => {
+      console.warn(
+        "Gtag timed out, likely blocked by anti-tracker software. Fine. You win.",
+      );
+      resolve(null);
+    }, timeoutMs);
+
+    window.gtag(
+      "get",
+      import.meta.env.VITE_GA4_MEASUREMENT_ID,
+      "session_id",
+      (id: any) => {
+        console.log(`Got ID: ${id}`);
+        clearTimeout(timeout);
+        resolve(id);
+      },
+    );
+  });
+}

@@ -1,7 +1,6 @@
 import Ticker from "../Ticker";
 import { ArgumentsType } from "@vitest/utils";
 import { useContext, useEffect, useRef, useState } from "react";
-import "./BasketModifier.css";
 import { useGetDisabledStatus } from "./lib";
 import {
   Basket,

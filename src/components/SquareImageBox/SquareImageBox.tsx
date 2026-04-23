@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./SquareImageBox.css";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { MinimalImage } from "../../lib";
 import { Carousel, CarouselProps } from "react-bootstrap";
-import { CarouselRef } from "react-bootstrap/Carousel";
 
 interface SquareImageBoxProps extends CarouselProps {
   /** Image or images to display. */

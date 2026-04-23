@@ -1,10 +1,9 @@
 import { Preview } from "@storybook/react-vite";
 import { spyOn } from "storybook/test";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./storybook.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Decorator } from "@storybook/react-vite";
 import LRCContext from "../src/components/LRCContext/LRCContext";
+import "../src/index.scss";
 
 const preview: Preview = {
   parameters: {

@@ -13,5 +13,12 @@ const dirname =
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        loadPaths: ["node_modules"],
+      },
+    },
+  },
   plugins: [react()],
 });

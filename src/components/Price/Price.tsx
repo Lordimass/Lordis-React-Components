@@ -1,7 +1,5 @@
 import DineroFactory, { Currency, Dinero } from "dinero.js";
 import { useContext, useEffect, useState } from "react";
-
-import "./Price.css";
 import { convertDinero, LocaleContext } from "../../lib";
 import {
   CURRENCY_SYMBOLS,

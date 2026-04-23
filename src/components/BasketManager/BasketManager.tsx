@@ -1,5 +1,4 @@
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
-import "./BasketManager.scss";
 import {
   GAItem,
   LocaleContext,

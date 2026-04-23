@@ -20,5 +20,14 @@ const config: StorybookConfig = {
       shouldExtractValuesFromUnion: true,
     },
   },
+  viteFinal: async (config) => {
+    config.css ??= {};
+    config.css.preprocessorOptions ??= {};
+    config.css.preprocessorOptions.scss ??= {};
+
+    config.css.preprocessorOptions.scss.quietDeps = true;
+
+    return config;
+  },
 };
 export default config;

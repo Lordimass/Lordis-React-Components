@@ -4,8 +4,6 @@ import { ReactNode, useRef, useState } from "react";
 import { ToastContainer } from "react-bootstrap";
 import Toast from "react-bootstrap/Toast";
 
-import "./ToastWrapper.css";
-
 /** Represents a toast with a unique key, used for distinguishing between toasts with identical content. */
 interface Toast_internal extends IToast {
   key: string | number;

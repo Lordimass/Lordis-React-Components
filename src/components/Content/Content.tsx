@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { Spinner } from "react-bootstrap";
-import "./Content.css";
 
 export type ContentProps = {
   children?: ReactNode;
