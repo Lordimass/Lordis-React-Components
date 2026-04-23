@@ -57,9 +57,13 @@ export class ProductData implements MinimalProduct {
 
   constructor(sku: number | string, opts: ProductDataConstructorOpts = {}) {
     this.sku = sku;
-    const { name, stock, price, groupName, images, active, ...metadata } = {
+    let { name, stock, price, groupName, images, active, ...metadata } = {
       ...opts,
     };
+    if (metadata.metadata != undefined) {
+      metadata = { ...metadata, ...metadata.metadata };
+      delete metadata.metadata;
+    }
     this.sku = sku;
     this.name = name ?? "...";
     this.stock = stock ?? 0;

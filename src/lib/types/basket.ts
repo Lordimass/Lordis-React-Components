@@ -13,6 +13,7 @@ export class BasketProduct extends ProductData {
     opts?: ProductDataConstructorOpts,
   ) {
     super(sku, opts);
+    delete this.metadata.sku;
     this.basketQuantity = basketQuantity ?? 1;
   }
 }
