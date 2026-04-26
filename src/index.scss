@@ -1,2 +1,7 @@
+// Sass deprecation warnings are shown when compiling source Sass files with the latest versions of Dart Sass. This
+// does not prevent compilation or usage of Bootstrap. A long-term fix is in progress, but in the meantime these
+// deprecation notices can be ignored.
+
+@forward "bootstrap/scss/bootstrap";
 @forward "components/components.scss";
-@forward "./common.scss";
+@forward "common";

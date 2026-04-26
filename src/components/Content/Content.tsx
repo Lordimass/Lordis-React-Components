@@ -54,7 +54,6 @@ function LoadingScreen({
   /** Text to display above the loading screen throbber. */
   text: string;
 }) {
-  console.log("text" + text);
   return (
     <div className="loading-screen">
       {text ? <p>{text}</p> : null}

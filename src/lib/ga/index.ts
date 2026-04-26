@@ -47,9 +47,13 @@ export function getGAClientId(): string | null {
 
 /**
  * Get the Google Analytics session ID.
+ *
+ * @param ga4MeasurementId The Google Analytics measurement ID with which to fetch the session ID in association to.
  * @returns The GA session ID or null if not found.
  */
-export async function getGASessionId(): Promise<string | null> {
+export async function getGASessionId(
+  ga4MeasurementId: string,
+): Promise<string | null> {
   // Timeout if it doesn't resolve fast, like if anti-tracker software is blocking calls to GA
   const timeoutMs = 300;
 
@@ -61,15 +65,10 @@ export async function getGASessionId(): Promise<string | null> {
       resolve(null);
     }, timeoutMs);
 
-    window.gtag(
-      "get",
-      import.meta.env.VITE_GA4_MEASUREMENT_ID,
-      "session_id",
-      (id: any) => {
-        console.log(`Got ID: ${id}`);
-        clearTimeout(timeout);
-        resolve(id);
-      },
-    );
+    window.gtag("get", ga4MeasurementId, "session_id", (id: any) => {
+      console.log(`Got ID: ${id}`);
+      clearTimeout(timeout);
+      resolve(id);
+    });
   });
 }

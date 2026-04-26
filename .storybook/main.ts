@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { viteFinal } from "@storybook/react-vite/preset";
 
 const config: StorybookConfig = {
   stories: [
@@ -11,6 +12,7 @@ const config: StorybookConfig = {
     "@storybook/addon-vitest",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
+    "@storybook/addon-styling-webpack"
   ],
   framework: "@storybook/react-vite",
   typescript: {
@@ -20,13 +22,9 @@ const config: StorybookConfig = {
       shouldExtractValuesFromUnion: true,
     },
   },
-  viteFinal: async (config) => {
-    config.css ??= {};
-    config.css.preprocessorOptions ??= {};
-    config.css.preprocessorOptions.scss ??= {};
-
-    config.css.preprocessorOptions.scss.quietDeps = true;
-
+  viteFinal: (config) => {
+    console.log("viteFinal", JSON.stringify(config, null, 2));
+    // make adjustments here
     return config;
   },
 };

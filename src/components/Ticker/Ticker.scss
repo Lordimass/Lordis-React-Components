@@ -1,5 +1,5 @@
-@forward "PageSelector/PageSelector.css";
-@forward "BasketModifier/BasketModifier.css";
+@use "PageSelector/PageSelector.css";
+@use "BasketModifier/BasketModifier.css";
 
 .ticker {
   width: 100%;

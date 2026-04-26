@@ -1,10 +1,10 @@
-/* Error: The default namespace "" is not a valid Sass identifier.
- * 
- * Recommendation: add an "as" clause to define an explicit namespace.
+/* Error: Module loop: this module is already being loaded.
  *   ,
- * 2 | @use "../../";
- *   | ^^^^^^^^^^^^^
+ * 1 | @forward "BasketManager/BasketManager";
+ *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *   '
+ *   ..\components.scss 1:1  @forward
+ *   ..\..\index.scss 8:1    @use
  *   BasketManager.scss 2:1  root stylesheet */
 
 body::before {
@@ -15,5 +15,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: The default namespace "" is not a valid Sass identifier.\a\aRecommendation: add an "as" clause to define an explicit namespace.\a   \2577 \a 2 \2502  @use "../../";\d\a   \2502  ^^^^^^^^^^^^^\a   \2575 \a   BasketManager.scss 2:1  root stylesheet';
+  content: 'Error: Module loop: this module is already being loaded.\a   \2577 \a 1 \2502  @forward "BasketManager/BasketManager";\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   ..\\components.scss 1:1  @forward\a   ..\\..\\index.scss 8:1    @use\a   BasketManager.scss 2:1  root stylesheet';
 }

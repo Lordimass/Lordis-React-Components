@@ -1,6 +1,5 @@
 @use 'sass:color';
-@use '../../common.scss' as *;
-@use "bootstrap/scss/bootstrap" as *;
+@use "bootstrap/scss/bootstrap" as bs;
 
 .basket {
   user-select: none;
@@ -36,7 +35,7 @@
   aspect-ratio: 1 / 1;
   width: 30px;
   padding: 3px;
-  background-color: color.adjust($primary, $alpha: -0.2);
+  background-color: color.adjust(bs.$primary, $alpha: -0.2);
 
   color: white;
   text-align: center;
@@ -60,7 +59,7 @@
 .basket-display {
   display: flex;
   flex-direction: column;
-  background-color: $secondary;
+  background-color: bs.$secondary;
 
   position: absolute;
   width: 540px;
