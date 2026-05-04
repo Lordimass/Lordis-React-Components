@@ -123,14 +123,15 @@ export class GAItem {
       this.item_id = "" + product.products[0].sku;
       this.item_name = product.groupName;
       this.price = product.products[0].price;
+      return;
     } else if (product instanceof BasketProduct) {
       this.quantity = product.basketQuantity;
-    } else {
-      this.item_id = "" + product.sku;
-      this.item_name = product.groupName ?? product.name;
-      this.item_variant = product.groupName ? product.name : undefined;
-      this.price = product.price * 100;
     }
+    this.item_id = "" + product.sku;
+    this.item_name = product.groupName ?? product.name;
+    this.item_variant = product.groupName ? product.name : undefined;
+    this.price = product.price;
+    this.item_category = product.metadata.category ?? undefined;
 
     if (overrides) {
       this.item_id = overrides.item_id;

@@ -9,6 +9,7 @@ import {
 import { Basket } from "../../lib";
 import { Product } from "../index";
 import { FaShoppingBasket } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
 
 export interface BasketProps {
   /** Path to the checkout page. Defaults to `"/checkout"` */
@@ -153,7 +154,7 @@ export default function BasketManager({
         onClick={toggleBasket}
         ref={buttonRef}
       >
-        <FaShoppingBasket />
+        <FaCartShopping />
         <div className="basket-item-count" id="basket-item-count">
           <p>{basketQuantity}</p>
         </div>

@@ -3,6 +3,7 @@ import { SupabaseClient } from "@supabase/supabase-js";
 
 export * from "./types";
 export * from "./ga";
+export * from "./server";
 export * from "./localeHandler";
 export * from "./routing";
 export * from "./toasts";

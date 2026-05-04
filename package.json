@@ -1,7 +1,7 @@
 {
   "name": "lordis-react-components",
   "type": "module",
-  "version": "1.5.5",
+  "version": "1.5.7",
   "description": "My personal React component library.",
   "homepage": "https://lordimass.github.io/Lordis-React-Components",
   "bugs": {
@@ -14,13 +14,14 @@
   "license": "Apache-2.0",
   "author": "Lordimass (lordimass.net)",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "requre": "./dist/index.cjs",
       "types": "./dist/index.d.cts"
     },
     "./styles": "./dist/index.scss",
@@ -33,13 +34,13 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "typedoc": "npx typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-rename-defaults --watch --preserveWatchOutput",
-    "build-storybook": "storybook build",
+    "build-storybook": "npm run build-typedoc && storybook build && xcopy public storybook-static /y",
     "build-typedoc": "npx typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-rename-defaults",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build-typedoc && npm run build-storybook && xcopy public storybook-static /y",
-    "predeploy": "npm run build",
+    "build": "tsdown && npm run copy-scss",
+    "predeploy": "npm run build && npm run build-storybook",
     "deploy": "gh-pages -d storybook-static",
-    "pub": "tsdown && npm run copy-scss && npm publish && npm run deploy",
+    "pub": "npm run deploy && npm publish",
     "copy-scss": "cpy \"src/**/*.@(scss|css)\" dist --parents"
   },
   "dependencies": {
@@ -48,10 +49,11 @@
     "gh-pages": "^6.3.0",
     "locale-currency": "^1.0.0",
     "motion": "^12.34.3",
-    "react": "^19.2.4",
+    "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "@supabase/supabase-js": "^2.105.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.2",
@@ -61,7 +63,6 @@
     "@storybook/addon-styling-webpack": "^3.0.2",
     "@storybook/addon-vitest": "^10.3.5",
     "@storybook/react-vite": "^10.3.5",
-    "@supabase/supabase-js": "^2.101.1",
     "@tsdown/css": "^0.21.9",
     "@types/dinero.js": "^1.9.4",
     "@types/node": "^24.10.1",
