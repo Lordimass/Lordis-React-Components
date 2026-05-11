@@ -10,6 +10,7 @@ export * from "./toasts";
 export * from "./price";
 export * from "./image";
 export * from "./supabaseRPC";
+export * from "./formatting";
 
 /** Configuration for Lordi's React Components. This is also accessible by the builtin alias, `LRC`. */
 export const LordisReactComponents: {

@@ -1,21 +1,26 @@
-import { ContextType, createContext } from "react";
+import { ContextType, createContext, ReactNode } from "react";
 import { MinimalImage } from "./types";
 import { Variant } from "react-bootstrap/types";
 
-/** A custom toast.
+/**
+ * A custom toast.
  */
-export interface IToast {
+export type IToast = {
   /** Message to display on the toast */
-  msg: string;
+  msg: ReactNode;
   /** Override the time to display the toast for in seconds. Null for infinite */
   duration?: number | null;
   /** Override the contents of the title of the toast. */
-  title?: string;
+  title?: ReactNode;
   /** The URI of an image icon to display on the toast */
   image?: MinimalImage;
   /** The variant of toast to display */
   variant?: Variant;
-}
+  /**
+   * A unique key by which to identify this toast.
+   */
+  key?: string | number;
+};
 
 /**
  * Context provided by {@link ToastWrapper}. Contains a single `toast` method which can be called with an instance of
@@ -25,8 +30,16 @@ export const ToastContext = createContext<{
   /** A function which can be called to display a toast */
   toast: (
     /** Toast to display */
-    toast: IToast,
+    toast: IToast | string,
   ) => void;
-}>({ toast: () => {} });
+
+  /**
+   * A function which can be called to close a toast, given its key.
+   */
+  closeToast: (
+    /** The key of the toast to close */
+    key: string | number,
+  ) => void;
+}>({ toast: () => {}, closeToast: () => {} });
 
 export type IToastContext = ContextType<typeof ToastContext>;

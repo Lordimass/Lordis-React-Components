@@ -1,3 +1,7 @@
+import { useContext, useEffect } from "react";
+import { ToastContext } from "../toasts";
+import { BsCookie } from "react-icons/bs";
+
 export * from "./init";
 export * from "./events";
 export * from "./types";
@@ -7,20 +11,82 @@ export * from "./helpers";
  * Update consent to agree to Google Analytics cookies.
  */
 export function acceptCookies() {
+  localStorage.setItem("consentModeAnswer", "accept");
+  if (!window.gtag) {
+    console.error("No window.gtag found.");
+    return;
+  }
   window.gtag("consent", "update", {
     analytics_storage: "granted",
+    ad_user_data: "granted",
   });
-  localStorage.setItem("consentModeAnswer", "accept");
 }
 
 /**
  * Update consent to deny use of Google Analytics cookies.
  */
 export function declineCookies() {
+  if (!window.gtag) {
+    console.error("No window.gtag found.");
+    return;
+  }
   window.gtag("consent", "update", {
     analytics_storage: "denied",
+    ad_user_data: "granted",
   });
-  localStorage.setItem("consentModeAnswer", "decline");
+}
+
+/**
+ * Displays a toast requesting consent to use the `ga_` cookie. If this is not displayed and accepted, cookies are
+ * declined by default.
+ * @param msg Message to display on the toast asking for consent.
+ */
+export function useConsentMode(
+  msg = "Is it ok for us to collect basic site analytics using a cookie?",
+) {
+  const { toast, closeToast } = useContext(ToastContext);
+  const key = "ConsentModeToast";
+  useEffect(() => {
+    if (localStorage.getItem("consentModeAnswer") == "accept") {
+      acceptCookies();
+      return;
+    }
+    toast({
+      title: (
+        <>
+          <BsCookie /> Cookies?
+        </>
+      ),
+      msg: (
+        <>
+          <p>{msg}</p>
+          <div style={{ display: "flex", gap: "3px" }}>
+            <button
+              className={"btn btn-success"}
+              onClick={() => {
+                acceptCookies();
+                closeToast("ConsentModeToast");
+              }}
+            >
+              Accept
+            </button>
+
+            <button
+              className={"btn btn-outline-danger"}
+              onClick={() => {
+                declineCookies();
+                closeToast("ConsentModeToast");
+              }}
+            >
+              Decline
+            </button>
+          </div>
+        </>
+      ),
+      duration: null,
+      key,
+    });
+  }, []);
 }
 
 /**

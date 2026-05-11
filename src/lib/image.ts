@@ -1,4 +1,9 @@
-import { MinimalProductImage, ProductData, ProductGroup } from "./types";
+import {
+  MinimalImage,
+  MinimalProductImage,
+  ProductData,
+  ProductGroup,
+} from "./types";
 
 /**
  * Gets the image that represents a product or group of products
@@ -8,19 +13,6 @@ import { MinimalProductImage, ProductData, ProductGroup } from "./types";
 export function getRepresentativeImage(
   prod: ProductData | ProductGroup,
 ): MinimalProductImage | undefined {
-  const images =
-    prod instanceof ProductGroup
-      ? prod.products.map((prod: ProductData) => prod.images).flat(1)
-      : prod.images;
-  if (!images) return undefined;
-  const representatives = images.filter(
-    (img?: MinimalProductImage) =>
-      img && img.association_metadata?.group_representative,
-  );
-
-  if (representatives.length > 0) {
-    return representatives[0];
-  } else {
-    return images[0];
-  }
+  if (prod instanceof ProductGroup) return prod.getGroupRepresentativeImage();
+  else return prod.images[0];
 }

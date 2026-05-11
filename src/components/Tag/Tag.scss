@@ -1,0 +1,18 @@
+@use "bootstrap/scss/bootstrap" as bs;
+
+.tags {
+  display: flex;
+  gap: 0 3px;
+  height: min-content;
+
+  .tag {
+    background-color: bs.$secondary;
+    height: min-content;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    font-family: "Perfect Penmanship", sans-serif;
+    font-size: 0.8em;
+    user-select: none;
+  }
+}

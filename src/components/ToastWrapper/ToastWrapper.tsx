@@ -48,23 +48,31 @@ export default function ToastWrapper({
   }
 
   // Add a toast to the stack.
-  const toast: IToastContext["toast"] = (toast: IToast) => {
+  const toast: IToastContext["toast"] = (toast: IToast | string) => {
+    // Handle converting strings to `IToast`
+    toast = typeof toast === "string" ? { msg: toast } : toast;
+
     // Unique identifier for the toast
     const key = Date.now();
 
     // Queue up removing the toast from the stack
     // If no duration was supplied, calculate a best guess based on an average character per second reading speed of 16.
     let timeoutId: number | undefined;
-    if (toast.duration !== null) {
-      const delay = toast.duration ?? Math.max(toast.msg.length / 16, 5);
+    let delay = toast.duration;
+    let msg = toast.msg;
+    if (delay !== null) {
+      if (!delay && typeof msg === "string")
+        delay = Math.max(msg.length / 16, 5);
+      else if (!delay) delay = 5;
+
       timeoutId = window.setTimeout(() => closeToast(key), delay * 1000);
     }
 
     // Add toast to stack
     const internalToast: Toast_internal = {
+      key,
       ...defaults,
       ...toast,
-      key,
       timeoutId,
       show: true,
     };
@@ -84,7 +92,7 @@ export default function ToastWrapper({
 
   return (
     // TODO: Fix slight animation jank when there are multiple toasts open and one in the middle of the list closes
-    <ToastContext.Provider value={{ toast }}>
+    <ToastContext.Provider value={{ toast, closeToast }}>
       <ToastContainer className="toast-container" position="top-start">
         {toastStack.map((toast, i) => (
           <AnimatePresence key={i}>

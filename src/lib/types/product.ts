@@ -1,6 +1,6 @@
-import { MinimalProductImage } from "./image";
+import { MinimalImage, MinimalProductImage } from "./image";
 import { Currency } from "dinero.js";
-import { BasketProduct, Basket, LRC, trackModifyCart } from "../index";
+import { Basket, BasketProduct, LRC, trackModifyCart } from "../index";
 
 /** A product object with the absolute minimum data to be identifiable as a product */
 export interface MinimalProduct {
@@ -13,7 +13,7 @@ export interface MinimalProduct {
   [key: string]: unknown;
 }
 
-export interface ProductDataConstructorOpts {
+export type ProductDataConstructorOpts = {
   /** Customer facing name of the product.*/
   name?: string;
   /** Quantity of this product in stock */
@@ -30,7 +30,7 @@ export interface ProductDataConstructorOpts {
   /** Whether this is a product which is currently active and available to buy */
   active?: boolean;
   [key: string]: unknown;
-}
+} & ProductMetadata;
 
 /** A fully fledged product object. */
 export class ProductData implements MinimalProduct {
@@ -52,8 +52,10 @@ export class ProductData implements MinimalProduct {
   /** Whether this is a product which is currently active and available to buy */
   public active: boolean;
   /** Additional data on this product which isn't encoded in the standard class attributes.*/
-  public metadata: { [key: string]: any };
+  public metadata: ProductMetadata;
   [key: string]: unknown;
+
+  public static NULL: ProductData = new ProductData(0);
 
   constructor(sku: number | string, opts: ProductDataConstructorOpts = {}) {
     this.sku = sku;
@@ -69,7 +71,7 @@ export class ProductData implements MinimalProduct {
     this.stock = stock ?? 0;
     this.price = price ?? 0;
     this.groupName = groupName;
-    this.images = images ?? [];
+    this.images = images ? images.sort(MinimalImage.compare) : [];
     this.active = active ?? true;
     this.metadata = metadata;
   }
@@ -123,6 +125,34 @@ export class ProductData implements MinimalProduct {
   }
 }
 
+interface ProductMetadata {
+  active?: boolean;
+  /** Weight of the product in grams. */
+  weight?: number | null;
+  /** The name of this specific variant, if `group_name != undefined` */
+  variant_name?: string;
+  /** The priority of this product to search engines, used in sitemaps */
+  seo_priority?: number;
+  sort_order?: number;
+  /** The user facing description of the product, supports Markdown (*italics*, **bold**, (links)[URL], etc.) */
+  description?: string | null;
+  /** Short description for customs forms. Max length: 50 characters.*/
+  customs_description?: string | null;
+  /** The ISO 3166-1 alpha-3 country code of the country which this product had its final manufacturing stage in. e.g. "CHN" for "China" */
+  origin_country_code?: string | null;
+  /** For products which are too large to fit in smaller boxes, so require a specific minimum box size to send. */
+  package_type_override?: string | null;
+  /** An extended description for customs forms applicable to higher value orders. Max length: 300 characters. */
+  extended_customs_description?: string | null;
+  /** Additional information about the product which is displayed to the customer. Every key-value pair is shown as is. */
+  customer_metadata?: { [key: string]: any };
+  /**
+   * Short informational strings used to identify this product.
+   */
+  tags?: string[];
+  [key: string]: any;
+}
+
 /**
  * A collection of closely related products/variants of the same product
  */
@@ -132,10 +162,10 @@ export class ProductGroup {
   /** The products in the group */
   public products: ProductData[];
 
-  constructor(
-    /** The products in the group */
-    products: ProductData[],
-  ) {
+  /**
+   * @param products The products in the group
+   */
+  constructor(products: ProductData[]) {
     if (!products[0]?.groupName) {
       throw new Error(
         "Could not determine group name for product array:" + products,
@@ -143,5 +173,65 @@ export class ProductGroup {
     }
     this.groupName = products[0].groupName;
     this.products = products;
+  }
+
+  /**
+   * Fetch a list of all the images associated to this group.
+   */
+  getAllImages() {
+    return this.products.map((p: ProductData) => p.images).flat();
+  }
+
+  /**
+   * Get the image that represents this group as a whole.
+   */
+  getGroupRepresentativeImage() {
+    const all = this.getAllImages().sort(MinimalImage.compare);
+    const repr = all.filter(
+      (image: MinimalProductImage) =>
+        image.association_metadata?.group_representative,
+    );
+    return repr.length > 0 ? repr[0] : all[0];
+  }
+
+  /**
+   * Get all the images which should be displayed on image carousels for a product in this group. This includes `global`
+   * images, and excludes `group_representatives` and `group_product_icons`.
+   * @param sku The SKU of the product in the group to use as a reference for which images to fetch.
+   */
+  getCarouselImages(sku: string | number) {
+    const imgs = this.products
+      .map((p: ProductData) => {
+        if (p.sku === sku) {
+          return p.images.filter(
+            (i) =>
+              !i.association_metadata?.group_representative &&
+              !i.association_metadata?.variant_icon,
+          );
+        }
+      })
+      .flat()
+      .filter((i) => !!i)
+      .sort(MinimalImage.compare);
+    const globals = this.products
+      .map((p: ProductData) => {
+        return p.images.filter((i) => i.association_metadata?.global);
+      })
+      .flat()
+      .sort(MinimalImage.compare);
+    return [...new Set([...imgs, ...globals])];
+  }
+
+  /**
+   * Find and return the image attached to this product which has `variant_icon: true` in its `association_metadata`. This
+   * shoud be a small and identifiable icon used when displaying this product as variants in a group.
+   */
+  getVariantIcon(sku: string | number) {
+    const prod = this.products.filter((p) => p.sku === sku)[0];
+    const variantIcons = prod.images.filter(
+      (img) => img.association_metadata?.variant_icon,
+    );
+    if (variantIcons.length > 0) return variantIcons[0];
+    else return this.getCarouselImages(sku)[0];
   }
 }

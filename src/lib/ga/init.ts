@@ -27,7 +27,7 @@ export function initGA4(measurement_id: string, dev?: boolean) {
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurement_id}`;
   document.head.appendChild(script);
 
-  // Initialize gtag function
+  // Initialise gtag function
   window.dataLayer = window.dataLayer || [];
   window.gtag = function () {
     // eslint-disable-next-line prefer-rest-params
@@ -53,10 +53,10 @@ export function initGA4(measurement_id: string, dev?: boolean) {
   // Consent Mode V2 defaults (deny until user chooses)
   window.gtag("consent", "default", {
     // deny optional cookies for now.
-    ad_storage: "denied",
+    ad_storage: consent,
     analytics_storage: consent,
-    ad_user_data: "denied",
-    ad_personalization: "denied",
+    ad_user_data: consent,
+    ad_personalization: consent,
     // allow essential cookies.
     functionality_storage: "granted",
     security_storage: "granted",

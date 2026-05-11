@@ -1,6 +1,6 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
-import { LRC } from "../index";
+import { IToast, LRC } from "../index";
 
 /**
  * Safe call of {@link SupabaseClient.rpc} with the option to notify users when something goes wrong. It's recommended
@@ -8,21 +8,21 @@ import { LRC } from "../index";
  * function which wraps `callRPC("get_products", {})`, and returns [`ProductData[]`]{@link ProductData} for type safety.
  * @param functionName The name of the Postgres function to call.
  * @param params Any parameters for the function.
- * @param notify A method with which to notify the user if something goes wrong.
+ * @param toast A method with which to notify the user if something goes wrong.
  * @param supabase The Supabase client to call the function with. Defaults to {@link LRC.supabase}, but this function
  * may be called within Netlify serverless functions, so the parameter exists to allow supplying a different client.
  */
 export async function callRPC(
   functionName: string,
   params?: { [key: string]: any },
-  notify?: (msg: string) => void,
+  toast?: (toast: IToast | string) => void,
   supabase: SupabaseClient | undefined = LRC.supabase,
 ): Promise<any> {
   // Check that the client exists
   if (!supabase) {
     console.error("`supabase` was not defined.");
-    if (notify) {
-      notify(
+    if (toast) {
+      toast(
         `An error occurred while calling the "${functionName}" function because the Supabase client was not defined"`,
       );
     }
@@ -33,8 +33,8 @@ export async function callRPC(
   const { data, error } = await supabase.rpc(functionName, params);
   if (error) {
     console.error(`Error calling RPC function "${functionName}":`, error);
-    if (notify)
-      notify(
+    if (toast)
+      toast(
         `An error occurred while calling the "${functionName}" function. Please try again later.`,
       );
     return Promise.reject(error);
@@ -65,13 +65,13 @@ export interface UseRPCReturn<T> {
  *
  * @param functionName The name of the Postgres function to call.
  * @param params Any parameters for the function.
- * @param notify A method with which to notify the user if something goes wrong.
+ * @param toast A method with which to notify the user if something goes wrong.
  * @returns A {@link UseRPCReturn | `UseRPCReturn`} object containing 3 React states indicating the status of the RPC call.
  */
 export function useCallRPC(
   functionName: string,
   params?: { [key: string]: any },
-  notify?: (msg: string) => void,
+  toast?: (toast: IToast | string) => void,
 ): UseRPCReturn<any> {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<any>(undefined);
@@ -80,7 +80,7 @@ export function useCallRPC(
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await callRPC(functionName, params, notify);
+        const result = await callRPC(functionName, params, toast);
         setData(result);
       } catch (err: any) {
         setError(err);

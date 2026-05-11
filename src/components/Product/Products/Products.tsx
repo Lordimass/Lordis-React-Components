@@ -6,7 +6,7 @@ import {
   ProductGroup,
   trackViewItemList,
 } from "../../../lib";
-import { ReactElement, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PageSelector from "../../Ticker/PageSelector/PageSelector";
 import Product from "../Product";
 import { Currency } from "dinero.js";

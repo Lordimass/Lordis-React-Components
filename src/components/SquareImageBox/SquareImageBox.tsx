@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { MinimalImage } from "../../lib";
 import { Carousel, CarouselProps } from "react-bootstrap";
+import { CarouselRef } from "react-bootstrap/cjs/Carousel";
 
 interface SquareImageBoxProps extends CarouselProps {
   /** Image or images to display. */
@@ -28,6 +29,15 @@ export default function SquareImageBox({
   const images = image instanceof Array ? image : [image];
   const isCarousel = images.length > 1;
 
+  // Patches issue with hot swapping to a single image carousel where the image wouldn't otherwise show if the carousel
+  // had been scrolled past the first image.
+  const carouselRef = useRef<CarouselRef>(null);
+  useEffect(() => {
+    if (carouselRef.current && !(image instanceof Array)) {
+      carouselRef.current.next();
+    }
+  }, [image]);
+
   const [isHoverShowing, setIsHoverShowing] = useState(false);
   const [activeImage, setActiveImage] = useState<MinimalImage | undefined>(
     images[0],
@@ -42,6 +52,7 @@ export default function SquareImageBox({
         className="square-image-box"
         style={{ width: size }}
         indicators={isCarousel}
+        ref={carouselRef}
         controls={isCarousel}
         onMouseOver={() => setIsHoverShowing(hoverable)}
         onMouseOut={() => setIsHoverShowing(false)}
