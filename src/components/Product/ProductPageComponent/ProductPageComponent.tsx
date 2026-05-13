@@ -3,11 +3,10 @@ import "./ProductPageComponent.scss";
 import { ProductContext } from "./lib";
 import { ProductData, ProductGroup, snakeToTitleCase } from "../../../lib";
 import SquareImageBox from "../../SquareImageBox/SquareImageBox";
-import { BasketModifier, Tags } from "../../index";
+import { BasketModifier, GoHome, Tags } from "../../index";
 import ProductGroupComponent from "./ProductGroup";
 import Markdown from "react-markdown";
 import ProductPrice from "../../Price/ProductPrice/ProductPrice";
-import { BiArrowBack } from "react-icons/bi";
 
 interface ProductPageComponentProps {
   /** Product to display */
@@ -47,11 +46,7 @@ export default function ProductPageComponent({
         }}
       >
         {/* Above actual product. */}
-        <a className="go-home-button" href={"/"}>
-          <h1>
-            <BiArrowBack /> Go Home
-          </h1>
-        </a>
+        <GoHome />
 
         {/* Actual box containing this product's primary information */}
         <div className="product-box">

@@ -21,3 +21,5 @@ export { default as BasketManager } from "./BasketManager/BasketManager";
 
 export { default as Tag } from "./Tag/Tag";
 export { default as Tags } from "./Tag/Tags";
+
+export { default as GoHome } from "./GoHome/GoHome";
