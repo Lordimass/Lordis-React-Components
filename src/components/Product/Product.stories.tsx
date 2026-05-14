@@ -15,7 +15,6 @@ const meta = {
     prod: fakeProduct,
     horizontal: false,
     quantityLocked: false,
-    admin: false,
     forceVertical: false,
   },
   argTypes: {
@@ -25,7 +24,6 @@ const meta = {
     },
     horizontal: { control: "boolean" },
     quantityLocked: { control: "boolean" },
-    admin: { control: "boolean" },
     forceVertical: { control: "boolean" },
   },
   globals: {

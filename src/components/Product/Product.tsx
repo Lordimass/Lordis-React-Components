@@ -1,7 +1,12 @@
 import { Currency } from "dinero.js";
-import { ProductData, ProductGroup, BasketProduct } from "../../lib";
+import {
+  BasketProduct,
+  getProductPagePath,
+  getRepresentativeImage,
+  ProductData,
+  ProductGroup,
+} from "../../lib";
 import { BasketModifier, ProductPrice, SquareImageBox } from "../index";
-import { getProductPagePath, getRepresentativeImage } from "../../lib";
 
 interface ProductProps {
   /** The product or product group to display. */
@@ -17,8 +22,6 @@ interface ProductProps {
    * to `false`.
    */
   quantityLocked?: boolean;
-  /** Show additional information about the product, such as the SKU. Defaults to `false` */
-  admin?: boolean;
   /** Override currency to display. Only use to display a currency other than the user's local currency. */
   currency?: Currency;
   /**
@@ -34,7 +37,6 @@ export default function Product({
   currency,
   horizontal = false,
   quantityLocked = false,
-  admin = false,
   forceVertical = false,
 }: ProductProps) {
   /** Name to display for the product, including SKU if in admin mode */
@@ -43,7 +45,7 @@ export default function Product({
   // Check whether product is a group or single product, and extract a representative product needed for some things.
   let representativeProduct: ProductData;
   // prod is a group with multiple elements.
-  if (prod instanceof ProductGroup && prod.products.length > 0) {
+  if (prod instanceof ProductGroup && prod.products.length > 1) {
     representativeProduct = prod.products[0];
     name = prod.groupName || representativeProduct.name;
 
@@ -60,11 +62,6 @@ export default function Product({
     if (prod instanceof ProductGroup) prod = prod.products[0];
     representativeProduct = prod;
     name = prod.name;
-  }
-
-  // Add SKU to name if in admin mode
-  if (admin) {
-    name += ` [SKU${representativeProduct.sku}]`;
   }
 
   // Quantity locked products always display horizontal

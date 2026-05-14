@@ -166,12 +166,9 @@ export class ProductGroup {
    * @param products The products in the group
    */
   constructor(products: ProductData[]) {
-    if (!products[0]?.groupName) {
-      throw new Error(
-        "Could not determine group name for product array:" + products,
-      );
-    }
-    this.groupName = products[0].groupName;
+    this.groupName = products[0]?.groupName
+      ? products[0].groupName
+      : products[0].name;
     this.products = products;
   }
 
