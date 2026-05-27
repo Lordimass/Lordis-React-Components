@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+
 const config: StorybookConfig = {
   stories: [
     "../src/lib/LordisReactComponents.mdx",
@@ -19,6 +20,9 @@ const config: StorybookConfig = {
       shouldExtractLiteralValuesFromEnum: true,
       shouldExtractValuesFromUnion: true,
     },
+  },
+  tags: {
+    hidden: { excludeFromSidebar: true, excludeFromDocsStories: true },
   },
 };
 export default config;

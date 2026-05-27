@@ -14,7 +14,6 @@ const meta = {
   },
   argTypes: {
     children: { table: { disable: true } },
-    LRCRemoteSettingsContextValue: { control: "object" },
   },
   globals: {
     backgrounds: { value: "light", grid: false },

@@ -13,7 +13,7 @@ interface LRCContextProviderProps {
    * the site based on values from a database table, which is fetched when the site loads. Certain keys are reserved for
    * settings which are used by components, which you can be set freely, so long as they follow the given structure.
    */
-  LRCRemoteSettingsContextValue?: LRCRemoteSettings;
+  getLRCRemoteSettingsHook?: () => LRCRemoteSettings;
   children?: ReactNode;
 }
 
@@ -23,24 +23,37 @@ interface LRCContextProviderProps {
  * library (particularly webshop components) require this context to work properly.
  *
  * Provides:
- * - {@link LRCRemoteSettingsContext|`LRCRemoteSettingsContext`}
  * - {@link ToastWrapper|`ToastWrapper`}
+ * - {@link LRCRemoteSettingsContext|`LRCRemoteSettingsContext`}
  * - {@link LocaleContext|`LocaleContext`}
  */
 export default function LRCContext({
   children,
-  LRCRemoteSettingsContextValue,
+  getLRCRemoteSettingsHook,
+}: LRCContextProviderProps) {
+  return (
+    <ToastWrapper>
+      <ToastDependent
+        children={children}
+        getLRCRemoteSettingsHook={getLRCRemoteSettingsHook}
+      />
+    </ToastWrapper>
+  );
+}
+
+function ToastDependent({
+  children,
+  getLRCRemoteSettingsHook,
 }: LRCContextProviderProps) {
   const localeContext = useLocale();
+  const lrcRemoteSettings = getLRCRemoteSettingsHook
+    ? getLRCRemoteSettingsHook()
+    : {};
   return (
-    <LRCRemoteSettingsContext.Provider
-      value={LRCRemoteSettingsContextValue ?? {}}
-    >
-      <ToastWrapper>
-        <LocaleContext.Provider value={localeContext}>
-          {children}
-        </LocaleContext.Provider>
-      </ToastWrapper>
+    <LRCRemoteSettingsContext.Provider value={lrcRemoteSettings}>
+      <LocaleContext.Provider value={localeContext}>
+        {children}
+      </LocaleContext.Provider>
     </LRCRemoteSettingsContext.Provider>
   );
 }

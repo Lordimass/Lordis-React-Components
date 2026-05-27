@@ -15,7 +15,6 @@ export interface LRCRemoteSettings {
   kill_switch?: { enabled: boolean; message?: string };
   /** A notification to display to users at the start of their session. */
   session_notif?: SessionNotif;
-  clockify_users?: ClockifyUser[];
   [key: string]: any;
 }
 
@@ -25,9 +24,4 @@ export interface SessionNotif {
   startTime: string;
   endTime: string;
   duration: number;
-}
-
-export interface ClockifyUser {
-  userID: string;
-  name: string;
 }

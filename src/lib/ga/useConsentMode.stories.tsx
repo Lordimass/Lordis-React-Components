@@ -1,7 +1,6 @@
 import { StoryObj } from "@storybook/react-vite";
 import { LRCContext } from "../../components";
 import { useConsentMode } from "./index";
-import { Button } from "react-bootstrap";
 
 function DecoratorInner() {
   useConsentMode();
@@ -22,6 +21,7 @@ const meta = {
   beforeEach: () => {
     localStorage.removeItem("consentModeAnswer");
   },
+  tags: ["hidden"],
 };
 
 export default meta;

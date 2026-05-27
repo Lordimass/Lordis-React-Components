@@ -1,9 +1,8 @@
 import useConsentModeDocs from "../../../typedoc/ga/useConsentMode.md?raw";
 import * as useConsentModeStories from "./useConsentMode.stories.tsx";
-import {Markdown, Meta, Canvas} from "@storybook/addon-docs/blocks";
+import {Canvas, Markdown, Meta} from "@storybook/addon-docs/blocks";
 
 <Meta title="lib/Google Analytics/useConsentMode"/>
-
 <Markdown>{useConsentModeDocs}</Markdown>
 
 <Canvas of={useConsentModeStories.Default} layout={"padded"} style={{minHeight: "50vh"}} story={{height: "20vh"}}/>
