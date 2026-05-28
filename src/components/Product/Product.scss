@@ -62,7 +62,6 @@
   flex-direction: row;
   height: var(--horizontal-product-height);
   width: 100%;
-  min-width: 400px;
   max-width: 100%;
 
   .product-image-link {
@@ -122,13 +121,33 @@
       scale: 90%;
     }
   }
+
+  /* Special layout for really narrow screens */
+  @media screen and (max-width: 375px) {
+    --horizontal-product-height: 100px;
+
+    .prod-footer {
+      padding: 2px 4px 2px 4px;
+    }
+
+    .product-text {
+      .price, .price-range {
+        margin-top: -10px;
+      }
+    }
+
+    .basket-modifier-container {
+      margin-top: 0;
+      zoom: 75%
+    }
+  }
 }
 
 .product.horizontal-product {
   @include horizontal-product;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1000px) {
   .product:not(.vertical-product) {
     @include horizontal-product;
   }

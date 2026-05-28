@@ -7,11 +7,11 @@ import {
   getProductPagePath,
   LocaleContext,
   LRC,
-  MinimalProduct,
   ProductData,
   ProductGroup,
 } from "../../../lib";
 import { FaAngleRight, FaShoppingBasket } from "react-icons/fa";
+import { Button } from "react-bootstrap";
 
 type BasketModifierProps = Omit<
   ArgumentsType<typeof Ticker>[0],
@@ -135,14 +135,14 @@ function ProductGroupBasketModifier({
   const representative = disabled ? undefined : group.products[0];
 
   return (
-    <a
-      className="product-group-basket-modifier btn btn-primary"
-      href={representative ? getProductPagePath(representative.sku) : undefined}
-      aria-disabled={disabled}
+    <Button
+      className={"product-group-basket-modifier align-content-center"}
+      disabled={disabled}
       style={{ height }}
+      href={representative ? getProductPagePath(representative.sku) : undefined}
     >
       View Options <FaAngleRight />
-    </a>
+    </Button>
   );
 }
 

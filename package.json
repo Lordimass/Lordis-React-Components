@@ -1,7 +1,7 @@
 {
   "name": "lordis-react-components",
   "type": "module",
-  "version": "1.7.7",
+  "version": "1.7.8",
   "description": "My personal React component library.",
   "homepage": "https://react.lordimass.net",
   "bugs": {
