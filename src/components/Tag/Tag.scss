@@ -10,9 +10,12 @@
     height: min-content;
     padding: 5px;
     border-radius: 10px;
-    color: white;
     font-family: "Perfect Penmanship", sans-serif;
     font-size: 0.8em;
     user-select: none;
+
+    a, p {
+      color: white;
+    }
   }
 }

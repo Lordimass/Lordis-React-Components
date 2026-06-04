@@ -63,6 +63,7 @@ export default function Products({
 
   return (
     <div className="products-box">
+      {!toShow || toShow.length === 0 ? <p>There's nothing here...</p> : null}
       <div className="products">
         {toShow.map((p, i) => (
           <Product prod={p} key={i} />

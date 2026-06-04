@@ -74,8 +74,13 @@
       15px 45px 15px rgba(0, 0, 0, 0.425);
   color: white;
 
-  > p {
+  > p, #subtotal p {
     margin: 0;
+  }
+
+  #subtotal {
+    display: flex;
+    gap: 1ch;
   }
 }
 

@@ -14,7 +14,7 @@ import {
   trackViewItemList,
   trackViewPromotion,
 } from "./events";
-import { GAItem, GAItem as Item } from "./types";
+import { GAItem } from "./types";
 
 /**
  * Wrapper function for {@link trackAddPaymentInfo}. Automatically determines the items and event value from the
@@ -339,7 +339,7 @@ export function trackViewItemAutoConvert(
  */
 export function trackViewItemListAutoConvert(
   currency: Currency,
-  products: BasketProduct[],
+  products: BasketProduct[] | ProductData[],
   item_list_id?: string,
   item_list_name?: string,
 ) {

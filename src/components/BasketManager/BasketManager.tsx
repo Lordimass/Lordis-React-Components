@@ -1,15 +1,17 @@
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import {
+  Basket,
   GAItem,
   LocaleContext,
   LRCRemoteSettingsContext,
   ToastContext,
   trackViewCart,
 } from "../../lib";
-import { Basket } from "../../lib";
 import { Product } from "../index";
 import { FaShoppingBasket } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
+import Price from "../Price/Price";
+import DineroFactory from "dinero.js";
 
 export interface BasketProps {
   /** Path to the checkout page. Defaults to `"/checkout"` */
@@ -86,7 +88,7 @@ export default function BasketManager({
       counter.style.display = "flex";
     }
     changeBasketQuantity(basketQuantTemp);
-    changeBasketPrice("£" + basketPriceTemp.toFixed(2));
+    changeBasketPrice(basketPriceTemp);
   }
 
   const siteSettings = useContext(LRCRemoteSettingsContext);
@@ -94,7 +96,7 @@ export default function BasketManager({
   const { currency } = useContext(LocaleContext);
 
   const [basketQuantity, changeBasketQuantity] = useState(0);
-  const [basketPrice, changeBasketPrice] = useState("£0.00");
+  const [basketPrice, changeBasketPrice] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -136,14 +138,10 @@ export default function BasketManager({
     }
 
     // Bind listener when menu is open
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    if (isOpen) document.addEventListener("mousedown", handleClickOutside);
 
     // Cleanup when menu closes or component unmounts
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
   return (
@@ -169,7 +167,15 @@ export default function BasketManager({
                 <Product prod={p} key={p.sku} horizontal />
               ))}
             </div>
-            <p> Subtotal: {basketPrice}</p>
+            <div id={"subtotal"}>
+              <p>Subtotal: </p>
+              <Price
+                baseDinero={DineroFactory({
+                  amount: Math.round(basketPrice * 100),
+                })}
+                simple={true}
+              />
+            </div>
             <p style={{ color: "var(--jamie-grey)" }}> {killSwitchMessage} </p>
             <div
               className="checkout"

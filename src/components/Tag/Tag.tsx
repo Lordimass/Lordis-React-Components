@@ -6,9 +6,16 @@ import "./Tag.scss";
  */
 export default function Tag({
   tag,
+  clickable = true,
 }: {
   /** The tag to display */
   tag: string;
+  /** Whether the tag should be clickable to go to a /tag/TAG_NAME page. */
+  clickable?: boolean;
 }) {
-  return <div className="tag">{tag}</div>;
+  return (
+    <div className="tag">
+      {clickable ? <a href={`/tag/${tag}`}>{tag}</a> : <p>{tag}</p>}
+    </div>
+  );
 }

@@ -12,12 +12,13 @@ import { sleep } from "../../../.storybook/preview";
 import {
   Controls,
   Description,
+  Markdown,
+  Primary,
   Stories,
   Subtitle,
   Title,
-  Primary,
-  Markdown,
 } from "@storybook/addon-docs/blocks";
+import { Button } from "react-bootstrap";
 
 function AddToast() {
   const { toast } = useContext(ToastContext);
@@ -25,21 +26,15 @@ function AddToast() {
     <div
       style={{
         position: "relative",
-        left: "150%",
+        width: "200px",
         display: "flex",
         flexDirection: "column",
         gap: "5px",
         margin: "10px",
       }}
     >
-      <button
-        className={"btn btn-primary"}
-        onClick={() => toast({ msg: "I'm a toast!" })}
-      >
-        Add Toast
-      </button>
-      <button
-        className={"btn btn-primary"}
+      <Button onClick={() => toast({ msg: "I'm a toast!" })}>Add Toast</Button>
+      <Button
         onClick={() =>
           toast({
             msg: "I'm a toast that doesn't close itself!",
@@ -48,9 +43,8 @@ function AddToast() {
         }
       >
         Add Permanent Toast
-      </button>
-      <button
-        className={"btn btn-primary"}
+      </Button>
+      <Button
         onClick={() =>
           toast({
             msg: "I'm a toast that closes itself very fast!",
@@ -59,7 +53,7 @@ function AddToast() {
         }
       >
         Add Fast Toast
-      </button>
+      </Button>
     </div>
   );
 }

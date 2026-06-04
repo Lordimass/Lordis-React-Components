@@ -13,12 +13,15 @@ interface ProductPageComponentProps {
   p_product: ProductData;
   /** Group that this product is part of to display */
   group?: ProductGroup;
+  /** Whether tags should be clickable to go to a /tag/TAG_NAME page. Defaults to `true` */
+  clickableTags?: boolean;
 }
 
 /** A full screen component giving information on a product. Designed to be used on a dedicated page. */
 export default function ProductPageComponent({
   p_product = ProductData.NULL,
   group,
+  clickableTags = true,
 }: ProductPageComponentProps) {
   // The product being viewed
   const [product, setProduct] = useState<ProductData>(p_product);
@@ -68,7 +71,9 @@ export default function ProductPageComponent({
             <ProductPrice prod={product} />
           </div>
 
-          {product.metadata.tags ? <Tags tags={product.metadata.tags} /> : null}
+          {product.metadata.tags ? (
+            <Tags tags={product.metadata.tags} clickable={clickableTags} />
+          ) : null}
 
           <div className="desc">
             <Markdown>{product.metadata.description}</Markdown>

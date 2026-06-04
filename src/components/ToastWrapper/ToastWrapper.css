@@ -1,6 +1,6 @@
 .toast-container {
-  position: absolute;
-  width: 300px;
+  position: fixed;
+  width: max(300px, 35vw);
 }
 
 .toast-header > img {

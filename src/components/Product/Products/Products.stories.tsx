@@ -38,3 +38,9 @@ export const Paginated: Products = {
     pageSize: 3,
   },
 };
+
+export const NoProducts: Products = {
+  args: {
+    prods: [],
+  },
+};
