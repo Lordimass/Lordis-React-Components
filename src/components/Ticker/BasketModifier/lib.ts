@@ -1,5 +1,7 @@
-import { LRC, LRCRemoteSettingsContext, MinimalProduct } from "../../../lib";
 import { useContext } from "react";
+import { MinimalProduct } from "../../../lib/types/product";
+import { LRCRemoteSettingsContext } from "../../../lib/types";
+import { LRC } from "../../../lib/config";
 
 /**
  * Figure out whether a given product is available to buy, as well as a message if it is not.

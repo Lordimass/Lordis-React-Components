@@ -16,16 +16,90 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "files": [
-    "dist"
+    "./dist"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "requre": "./dist/index.cjs",
-      "types": "./dist/index.d.cts"
+    "./config": {
+      "types": "./dist/config.d.cts",
+      "import": "./dist/config.mjs",
+      "require": "./dist/config.cjs"
     },
-    "./styles": "./dist/index.scss",
-    "./*": "./dist/*"
+    "./datatypes": {
+      "types": "./dist/datatypes.d.cts",
+      "import": "./dist/datatypes.mjs",
+      "require": "./dist/datatypes.cjs"
+    },
+    "./contexts": {
+      "types": "./dist/contexts.d.cts",
+      "import": "./dist/contexts.mjs",
+      "require": "./dist/contexts.cjs"
+    },
+    "./formatting": {
+      "types": "./dist/formatting.d.cts",
+      "import": "./dist/formatting.mjs",
+      "require": "./dist/formatting.cjs"
+    },
+    "./price": {
+      "types": "./dist/price.d.cts",
+      "import": "./dist/price.mjs",
+      "require": "./dist/price.cjs"
+    },
+    "./image": {
+      "types": "./dist/image.d.cts",
+      "import": "./dist/image.mjs",
+      "require": "./dist/image.cjs"
+    },
+    "./routing": {
+      "types": "./dist/routing.d.cts",
+      "import": "./dist/routing.mjs",
+      "require": "./dist/routing.cjs"
+    },
+    "./analytics": {
+      "types": "./dist/analytics.d.cts",
+      "import": "./dist/analytics.mjs",
+      "require": "./dist/analytics.cjs"
+    },
+    "./supabaseServer": {
+      "types": "./dist/supabaseServer.d.cts",
+      "import": "./dist/supabaseServer.mjs",
+      "require": "./dist/supabaseServer.cjs"
+    },
+    "./supabaseClient": {
+      "types": "./dist/supabaseClient.d.cts",
+      "import": "./dist/supabaseClient.mjs",
+      "require": "./dist/supabaseClient.cjs"
+    },
+    "./server": {
+      "types": "./dist/server.d.cts",
+      "import": "./dist/server.mjs",
+      "require": "./dist/server.cjs"
+    },
+    "./useConsentMode": {
+      "types": "./dist/useConsentMode.d.cts",
+      "import": "./dist/useConsentMode.mjs",
+      "require": "./dist/useConsentMode.cjs"
+    },
+    "./components/product": {
+      "types": "./dist/components/product.d.cts",
+      "import": "./dist/components/product.mjs",
+      "require": "./dist/components/product.cjs"
+    },
+    "./components/basket": {
+      "types": "./dist/components/basket.d.cts",
+      "import": "./dist/components/basket.mjs",
+      "require": "./dist/components/basket.cjs"
+    },
+    "./components/ui": {
+      "types": "./dist/components/ui.d.cts",
+      "import": "./dist/components/ui.mjs",
+      "require": "./dist/components/ui.cjs"
+    },
+    "./components/context": {
+      "types": "./dist/components/context.d.cts",
+      "import": "./dist/components/context.mjs",
+      "require": "./dist/components/context.cjs"
+    },
+    "./styles": "./dist/index.scss"
   },
   "types": "./dist/index.d.cts",
   "scripts": {
@@ -52,7 +126,7 @@
     "motion": "^12.34.3",
     "react": "^19.2.4",
     "react-bootstrap": "^2.10.10",
-    "react-dom": "^19.2.0",
+    "react-dom": ">=18",
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0"
   },
@@ -61,9 +135,8 @@
     "@eslint/js": "^9.39.1",
     "@storybook/addon-a11y": "^10.3.5",
     "@storybook/addon-docs": "^10.3.5",
-    "@storybook/addon-styling-webpack": "^3.0.2",
     "@storybook/addon-vitest": "^10.3.5",
-    "@storybook/react-vite": "^10.3.5",
+    "@storybook/nextjs-vite": "^10.3.5",
     "@tsdown/css": "^0.21.9",
     "@types/dinero.js": "^1.9.4",
     "@types/node": "^24.10.1",
@@ -81,6 +154,7 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "eslint-plugin-storybook": "^10.3.5",
     "globals": "^16.5.0",
+    "next": "^16.3.4",
     "playwright": "^1.58.2",
     "prettier": "^3.8.1",
     "sass-embedded": "^1.97.3",
@@ -96,6 +170,6 @@
     "vitest": "^4.0.18"
   },
   "peerDependencies": {
-    "react": "^19.2.4"
+    "react-dom": ">=18"
   }
 }

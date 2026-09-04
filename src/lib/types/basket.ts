@@ -1,4 +1,4 @@
-import { ProductDataConstructorOpts, ProductData } from "./index";
+import { ProductData, ProductDataConstructorOpts } from "./product";
 import { GAItem } from "../ga";
 
 /** A product which is in the customer's basket */

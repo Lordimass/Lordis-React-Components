@@ -1,15 +1,14 @@
+"use client";
+
 import "./Products.css";
-import {
-  GAItem,
-  LocaleContext,
-  ProductData,
-  ProductGroup,
-  trackViewItemList,
-} from "../../../lib";
 import { useContext, useEffect, useState } from "react";
 import PageSelector from "../../Ticker/PageSelector/PageSelector";
 import Product from "../Product";
 import { Currency } from "dinero.js";
+import { ProductData, ProductGroup } from "../../../lib/types/product";
+import { trackViewItemList } from "../../../lib/ga/events";
+import { GAItem } from "../../../lib/types/ga";
+import { LocaleContext } from "../../../lib/locale/localeClient";
 
 export interface ProductsProps {
   /** Products to display */

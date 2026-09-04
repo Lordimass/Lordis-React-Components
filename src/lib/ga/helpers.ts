@@ -1,5 +1,4 @@
 import { Currency } from "dinero.js";
-import { Basket, BasketProduct, ProductData } from "../types";
 import {
   trackAddPaymentInfo,
   trackAddShippingInfo,
@@ -14,7 +13,9 @@ import {
   trackViewItemList,
   trackViewPromotion,
 } from "./events";
-import { GAItem } from "./types";
+import { GAItem } from "../types/ga";
+import { Basket, BasketProduct } from "../types/basket";
+import { ProductData } from "../types/product";
 
 /**
  * Wrapper function for {@link trackAddPaymentInfo}. Automatically determines the items and event value from the

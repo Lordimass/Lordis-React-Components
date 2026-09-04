@@ -1,10 +1,11 @@
 import DineroFactory, { Currency, Dinero } from "dinero.js";
 import { useContext, useEffect, useState } from "react";
-import { convertDinero, LocaleContext } from "../../lib";
 import {
   CURRENCY_SYMBOLS,
   TAX_EXCLUSIVE_COUNTRIES,
 } from "../../assets/currencySymbols";
+import { convertDinero } from "../../lib/price";
+import { LocaleContext } from "../../lib/locale/localeClient";
 
 /**
  * Price display in user's local currency provided by {@link LocaleContext} (default , or any custom currency supplied through the `currency` property.

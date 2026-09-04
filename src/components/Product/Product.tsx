@@ -1,12 +1,11 @@
+"use client";
+
 import { Currency } from "dinero.js";
-import {
-  BasketProduct,
-  getProductPagePath,
-  getRepresentativeImage,
-  ProductData,
-  ProductGroup,
-} from "../../lib";
 import { BasketModifier, ProductPrice, SquareImageBox } from "../index";
+import { ProductData, ProductGroup } from "../../lib/types/product";
+import { getProductPagePath } from "../../lib/routing";
+import { getRepresentativeImage } from "../../lib/image";
+import { BasketProduct } from "../../lib/types/basket";
 
 interface ProductProps {
   /** The product or product group to display. */

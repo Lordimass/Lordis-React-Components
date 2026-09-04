@@ -1,6 +1,8 @@
 import { MinimalImage, MinimalProductImage } from "./image";
 import { Currency } from "dinero.js";
-import { Basket, BasketProduct, LRC, trackModifyCart } from "../index";
+import { Basket, BasketProduct } from "./basket";
+import { LRC } from "../config";
+import { trackModifyCart } from "../ga";
 
 /** A product object with the absolute minimum data to be identifiable as a product */
 export interface MinimalProduct {

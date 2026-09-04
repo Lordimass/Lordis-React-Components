@@ -39,7 +39,6 @@ export function initGA4(measurement_id: string, dev?: boolean) {
   window.gtag("config", measurement_id, {
     allow_google_signals: false,
     allow_ad_personalization_signals: false,
-    send_page_view: false,
     debug_mode: dev,
     transport_type: "beacon",
   });

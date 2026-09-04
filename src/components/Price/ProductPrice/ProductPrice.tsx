@@ -1,7 +1,8 @@
 import DineroFactory, { Currency } from "dinero.js";
 import Price from "../Price";
 import "./ProductPrice.css";
-import { LRC, ProductData, ProductGroup } from "../../../lib";
+import { ProductData, ProductGroup } from "../../../lib/types/product";
+import { LRC } from "../../../lib/config";
 
 interface ProductPriceProps {
   /** The product or product group to display a price for */

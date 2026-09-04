@@ -1,8 +1,6 @@
-import { createContext } from "react";
+"use client";
 
-export * from "./product";
-export * from "./image";
-export * from "./basket";
+import { createContext } from "react";
 
 /**
  * Settings for components which are provided from some external source. For example, this could be used to configure

@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "motion/react";
-import { IToast, IToastContext, ToastContext } from "../../lib";
 import { ReactNode, useRef, useState } from "react";
 import { ToastContainer } from "react-bootstrap";
 import Toast from "react-bootstrap/Toast";
+import { IToast, IToastContext, ToastContext } from "../../lib/toasts";
 
 /** Represents a toast with a unique key, used for distinguishing between toasts with identical content. */
 interface Toast_internal extends IToast {

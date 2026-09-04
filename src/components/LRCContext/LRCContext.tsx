@@ -1,11 +1,15 @@
-import { ReactNode } from "react";
+"use client";
+
+import { ReactNode, useEffect, useState } from "react";
 import ToastWrapper from "../ToastWrapper/ToastWrapper";
+import getLocale, { Locale } from "../../lib/locale/localeServer";
+import { LRCRemoteSettings, LRCRemoteSettingsContext } from "../../lib/types";
 import {
+  DEFAULT_COUNTRY,
+  DEFAULT_CURRENCY,
+  DEFAULT_LOCALE,
   LocaleContext,
-  LRCRemoteSettings,
-  LRCRemoteSettingsContext,
-} from "../../lib";
-import useLocale from "../../lib/localeHandler";
+} from "src/lib/locale/localeClient";
 
 interface LRCContextProviderProps {
   /**
@@ -13,7 +17,7 @@ interface LRCContextProviderProps {
    * the site based on values from a database table, which is fetched when the site loads. Certain keys are reserved for
    * settings which are used by components, which you can be set freely, so long as they follow the given structure.
    */
-  getLRCRemoteSettingsHook?: () => LRCRemoteSettings;
+  LRCRemoteSettingsProvider?: () => Promise<LRCRemoteSettings>;
   children?: ReactNode;
 }
 
@@ -29,13 +33,13 @@ interface LRCContextProviderProps {
  */
 export default function LRCContext({
   children,
-  getLRCRemoteSettingsHook,
+  LRCRemoteSettingsProvider,
 }: LRCContextProviderProps) {
   return (
     <ToastWrapper>
       <ToastDependent
         children={children}
-        getLRCRemoteSettingsHook={getLRCRemoteSettingsHook}
+        LRCRemoteSettingsProvider={LRCRemoteSettingsProvider}
       />
     </ToastWrapper>
   );
@@ -43,17 +47,26 @@ export default function LRCContext({
 
 function ToastDependent({
   children,
-  getLRCRemoteSettingsHook,
+  LRCRemoteSettingsProvider,
 }: LRCContextProviderProps) {
-  const localeContext = useLocale();
-  const lrcRemoteSettings = getLRCRemoteSettingsHook
-    ? getLRCRemoteSettingsHook()
-    : {};
+  const [locale, setLocale] = useState<Locale>({
+    locale: DEFAULT_LOCALE,
+    currency: DEFAULT_CURRENCY,
+    country: DEFAULT_COUNTRY,
+  });
+  const [lrcRemoteSettings, setLrcRemoteSettings] = useState<LRCRemoteSettings>(
+    {},
+  );
+  useEffect(() => {
+    getLocale().then((l) => setLocale(l));
+    LRCRemoteSettingsProvider
+      ? LRCRemoteSettingsProvider().then((lrc) => setLrcRemoteSettings(lrc))
+      : null;
+  }, []);
+
   return (
     <LRCRemoteSettingsContext.Provider value={lrcRemoteSettings}>
-      <LocaleContext.Provider value={localeContext}>
-        {children}
-      </LocaleContext.Provider>
+      <LocaleContext.Provider value={locale}>{children}</LocaleContext.Provider>
     </LRCRemoteSettingsContext.Provider>
   );
 }

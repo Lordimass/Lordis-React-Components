@@ -1,12 +1,15 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import "./ProductPageComponent.scss";
 import { ProductContext } from "./lib";
-import { ProductData, ProductGroup, snakeToTitleCase } from "../../../lib";
 import SquareImageBox from "../../SquareImageBox/SquareImageBox";
 import { BasketModifier, GoHome, Tags } from "../../index";
 import ProductGroupComponent from "./ProductGroup";
 import Markdown from "react-markdown";
 import ProductPrice from "../../Price/ProductPrice/ProductPrice";
+import { ProductData, ProductGroup } from "../../../lib/types/product";
+import { snakeToTitleCase } from "../../../lib/formatting";
 
 interface ProductPageComponentProps {
   /** Product to display */

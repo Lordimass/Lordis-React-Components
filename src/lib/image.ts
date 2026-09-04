@@ -1,9 +1,5 @@
-import {
-  MinimalImage,
-  MinimalProductImage,
-  ProductData,
-  ProductGroup,
-} from "./types";
+import { ProductData, ProductGroup } from "./types/product";
+import { MinimalProductImage } from "./types/image";
 
 /**
  * Gets the image that represents a product or group of products

@@ -1,9 +1,5 @@
-import {
-  BasketProduct,
-  ProductData,
-  ProductDataConstructorOpts,
-  ProductGroup,
-} from "../types";
+import { ProductData, ProductGroup } from "./product";
+import { BasketProduct } from "./basket";
 
 /**
  * A product used in Google Analytics events.

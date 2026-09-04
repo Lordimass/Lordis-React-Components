@@ -1,17 +1,17 @@
+"use client";
+
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
-import {
-  Basket,
-  GAItem,
-  LocaleContext,
-  LRCRemoteSettingsContext,
-  ToastContext,
-  trackViewCart,
-} from "../../lib";
 import { Product } from "../index";
 import { FaShoppingBasket } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import Price from "../Price/Price";
 import DineroFactory from "dinero.js";
+import { Basket } from "../../lib/types/basket";
+import { trackViewCart } from "../../lib/ga/events";
+import { GAItem } from "../../lib/types/ga";
+import { LRCRemoteSettingsContext } from "../../lib/types";
+import { ToastContext } from "../../lib/toasts";
+import { LocaleContext } from "../../lib/locale/localeClient";
 
 export interface BasketProps {
   /** Path to the checkout page. Defaults to `"/checkout"` */

@@ -1,4 +1,4 @@
-import { GAItem as Item } from "./types";
+import { GAItem as Item } from "../types/ga";
 
 function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
   if (window.gtag) {
@@ -15,7 +15,7 @@ function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
  * Records a user viewing a page.
  *
  * **Caution:** If you send manual pageviews without disabling pageview measurement, you may end up with duplicate
- * pageviews. *However*, automatic page views are disabled by default when using {@link initGA4} from this library.
+ * pageviews.
  *
  * Whenever someone loads a page of your website or their browser history state is
  * changed by the active site, an enhanced measurement event called page_view is sent from your website to Google

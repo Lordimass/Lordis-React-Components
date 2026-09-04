@@ -1,7 +1,6 @@
-import { Preview } from "@storybook/react-vite";
+import type { Decorator, Preview } from "@storybook/nextjs-vite";
 import { spyOn } from "storybook/test";
 import "./storybook.css";
-import { Decorator } from "@storybook/react-vite";
 import LRCContext from "../src/components/LRCContext/LRCContext";
 import "../src/index.scss";
 

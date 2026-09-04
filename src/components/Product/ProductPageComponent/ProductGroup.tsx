@@ -1,13 +1,13 @@
+"use client";
+
 import { useContext, useEffect, useRef } from "react";
 import { ProductContext } from "./lib";
 import DineroFactory from "dinero.js";
-import {
-  getProductPagePath,
-  LocaleContext,
-  ProductData,
-  trackViewItemAutoConvert,
-} from "../../../lib";
 import { Price, SquareImageBox } from "../../index";
+import { ProductData } from "../../../lib/types/product";
+import { getProductPagePath } from "../../../lib/routing";
+import { trackViewItemAutoConvert } from "../../../lib/ga";
+import { LocaleContext } from "../../../lib/locale/localeClient";
 
 export default function ProductGroup() {
   const { product, group, hoveredVariant, setHoveredVariant } =

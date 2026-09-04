@@ -2,16 +2,13 @@ import Ticker from "../Ticker";
 import { ArgumentsType } from "@vitest/utils";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useGetDisabledStatus } from "./lib";
-import {
-  Basket,
-  getProductPagePath,
-  LocaleContext,
-  LRC,
-  ProductData,
-  ProductGroup,
-} from "../../../lib";
 import { FaAngleRight, FaShoppingBasket } from "react-icons/fa";
 import { Button } from "react-bootstrap";
+import { ProductData, ProductGroup } from "../../../lib/types/product";
+import { Basket } from "../../../lib/types/basket";
+import { LocaleContext } from "../../../lib/locale/localeClient";
+import { LRC } from "../../../lib/config";
+import { getProductPagePath } from "../../../lib/routing";
 
 type BasketModifierProps = Omit<
   ArgumentsType<typeof Ticker>[0],

@@ -1,5 +1,7 @@
+"use client";
+
 import { createContext, Dispatch, SetStateAction } from "react";
-import { ProductData, ProductGroup } from "../../../lib";
+import { ProductData, ProductGroup } from "../../../lib/types/product";
 
 export const ProductContext = createContext<{
   setProduct?: Dispatch<SetStateAction<ProductData>>;

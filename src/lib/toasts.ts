@@ -1,6 +1,8 @@
+"use client";
+
 import { ContextType, createContext, ReactNode } from "react";
-import { MinimalImage } from "./types";
 import { Variant } from "react-bootstrap/types";
+import { MinimalImage } from "./types/image";
 
 /**
  * A custom toast.
